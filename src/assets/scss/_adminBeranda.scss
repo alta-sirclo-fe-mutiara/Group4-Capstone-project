@@ -1,0 +1,79 @@
+$prime-color: #2c7a75;
+
+.primeCol{
+    color: $prime-color
+}
+
+.primeBCol{
+    background-color: $prime-color;
+}
+
+.imgHold{
+    background-color: lightgray;
+    height: 226px;
+}
+
+.f36 {
+    font-size: 36px;
+}
+
+.stats {
+    font-size: 16px;
+    max-height: 226px;
+}
+.stat{
+    font-size: 20px;
+    color:rgb(12,13,54);
+    font-weight: bold;
+}
+
+.tabl{
+    color:rgb(12,13,54);
+    font-weight: lighter;
+    border: rgb(196,196,196) solid 1px;
+
+    .tCol{
+        background-color: rgb(243,243,243);
+    }
+    .trow{
+        height: 60px;
+    }
+}
+.curs{
+    cursor: pointer;
+}
+.boRad{
+    border-radius: 25px;
+}
+.blur{
+    opacity: 50%;
+}
+.scrPar{
+    width:100%;
+    display: flex;
+    overflow: auto;
+}
+.scrChi{
+    min-width: 30%;
+    width: auto;
+}
+.noSpace{
+    margin: 0;
+    padding: 0;
+}
+.actDate{
+    font-size: 12px;
+    color:gray
+}
+.bGray{
+    background-color: rgb(243,243,243);
+}
+.navSide{
+    height:120px
+}
+@media (max-width: 767px) {
+    .stats {
+        font-size: 16px;
+        max-height: 100vh;
+    }
+}
