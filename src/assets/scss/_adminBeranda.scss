@@ -9,14 +9,15 @@ $prime-color: #2c7a75;
 }
 
 .imgHold{
-    background-color: lightgray;
+    background-image: url('../img/img-banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 226px;
 }
 
 .f36 {
     font-size: 36px;
 }
-
 .stats {
     font-size: 16px;
     max-height: 226px;
