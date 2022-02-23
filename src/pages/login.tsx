@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Form } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 
@@ -19,7 +18,6 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState<string>("");
 	const [isInvalid, setIsInvalid] = useState(false);
-	const Navigate = useNavigate();
 
 	const handleSubmit = async (e: FormEvent<HTMLElement>) => {
 		e.preventDefault();
@@ -112,9 +110,6 @@ const Login = () => {
 										</button>
 									</div>
 								</Form>
-								{/* <h1>Data</h1>
-								<h2>{data?.name}</h2>
-								<h3>{data?.email}</h3> */}
 							</div>
 						</div>
 					</div>
