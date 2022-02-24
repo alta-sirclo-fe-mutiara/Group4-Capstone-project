@@ -1,7 +1,39 @@
+.nav-link {
+	&:hover {
+		font-weight: 600;
+	}
+}
+
 input.form-control,
 .form-select,
 textarea.form-control {
 	background-color: #f3f3f3;
 	border: 1px solid #ffffff;
 	border-radius: 8px !important;
+}
+
+.avatar {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	&.img-thumbnail {
+		padding: 4px;
+		max-width: none;
+	}
+
+	& > * {
+		height: 100%;
+		width: 100%;
+	}
 }
