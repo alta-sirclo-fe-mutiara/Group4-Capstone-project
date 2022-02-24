@@ -5,53 +5,54 @@ export default function ManagerBeranda() {
   const [data, setData] = useState([
     {
       date: "19:45 17 Agustus 2022",
-     user: "Zuki Marzuki",
+      user: "Zuki Marzuki",
       category: "Printer",
-      item: "Canon 145D", 
-      status: "Diterima"
+      item: "Canon 145D",
+      status: "Menunggu  Persetujuan",
     },
     {
       date: "19:45 17 Agustus 2022",
-     user: "Zuki Marzuki",
+      user: "Zuki Marzuki",
       category: "Printer",
-      item: "Canon 145D", 
-      status: "Diterima"
+      item: "Canon 145D",
+      status: "Diterima",
     },
     {
       date: "19:45 17 Agustus 2022",
-     user: "Zuki Marzuki",
+      user: "Zuki Marzuki",
       category: "Printer",
-      item: "Canon 145D", 
-      status: "Diterima"
+      item: "Canon 145D",
+      status: "Diterima",
     },
     {
       date: "19:45 17 Agustus 2022",
-     user: "Zuki Marzuki",
+      user: "Zuki Marzuki",
       category: "Printer",
-      item: "Canon 145D", 
-      status: "Diterima"
+      item: "Canon 145D",
+      status: "Diterima",
     },
     {
       date: "19:45 17 Agustus 2022",
-     user: "Zuki Marzuki",
+      user: "Zuki Marzuki",
       category: "Printer",
-      item: "Canon 145D", 
-      status: "Diterima"
-    }
+      item: "Canon 145D",
+      status: "Diterima",
+    },
   ]);
   const perPage = 3;
   let [recentPage, setRecentPage] = useState(1);
+  const [tip, setTip] = useState(0);
   const nextPage = () => {
     setRecentPage((recentPage += 1));
   };
   const prevPage = () => {
     setRecentPage((recentPage -= 1));
   };
-  
+
   return (
     <div className="container">
       <div className="row mt-3 primeCol">
-      <div className="imageHolder col-md-8 d-flex ban justify-content-center align-items-center text-left imgHold">
+        <div className="imageHolder col-md-8 d-flex ban justify-content-center align-items-center text-left imgHold">
           <h1 className="banner">
             Welcome to <br /> E-Assets
           </h1>
@@ -88,43 +89,96 @@ export default function ManagerBeranda() {
       <div className="row mt-5">
         <div className="col-md-9">
           <h2 className="text-left mb-4 primeCol">Permohonan Persetujuan</h2>
-          <table className="w-100 text-left tabl">
-            <thead>
-              <tr className="trow tCol">
-                <th className="text-center">No</th>
-                <th>Tanggal</th>
-                <th>Pemohon</th>
-                <th>Kategori Aset</th>
-                <th>Barang</th>
-                <th>status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.slice((recentPage - 1) * perPage, perPage * recentPage).map((item:any, index) => {
-                  return (
-                    <tr className="trow">
-                      <th className="text-center">{perPage*(recentPage-1)+(index + 1)}</th>
-                      <th>{item.date}</th>
-                      <th>{item.user}</th>
-                      <th>{item.category}</th>
-                      <th>{item.item}</th>
-                      <th>{item.status}</th>
-                      <th>...</th>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
+          <div className="scrTabl">
+            <table className="text-left tabl">
+              <thead>
+                <tr className="trow tCol">
+                  <th className="text-center">No</th>
+                  <th>Tanggal</th>
+                  <th>Pemohon</th>
+                  <th>Kategori Aset</th>
+                  <th>Barang</th>
+                  <th>status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {data
+                  ?.slice((recentPage - 1) * perPage, perPage * recentPage)
+                  .map((item: any, index) => {
+                    let pageNumber = perPage * (recentPage - 1) + (index + 1);
+                    return (
+                      <tr className="trow" key={index}>
+                        <th className="text-center">
+                          {perPage * (recentPage - 1) + (index + 1)}
+                        </th>
+                        <th>{item.date}</th>
+                        <th>{item.user}</th>
+                        <th>{item.category}</th>
+                        <th>{item.item}</th>
+                        <th>{item.status}</th>
+                        <th className="position-relative">
+                          <p
+                            onClick={() => {
+                              if (tip != pageNumber) {
+                                setTip(pageNumber);
+                              } else {
+                                setTip(0);
+                              }
+                            }}
+                            className="curs px-3"
+                          >
+                            ...
+                          </p>
+                          {item.status == "Diterima" ? (
+                            <div
+                              className="tiptool tip1 shadow bg-white p-2 pb-0"
+                              style={
+                                tip == pageNumber
+                                  ? { display: "block" }
+                                  : { display: "none" }
+                              }
+                            >
+                              <p onClick={() => setTip(0)} className="curs">
+                                Lihat Detail
+                              </p>
+                            </div>
+                          ) : (
+                            <div
+                              className="tiptool tip3 shadow bg-white p-2 pb-0"
+                              style={
+                                tip == pageNumber
+                                  ? { display: "block" }
+                                  : { display: "none" }
+                              }
+                            >
+                              <p onClick={() => setTip(0)} className="curs">
+                                Diterima
+                              </p>
+                              <p onClick={() => setTip(0)} className="curs">
+                                Ditolak
+                              </p>
+                              <p onClick={() => setTip(0)} className="curs">
+                                Lihat Detail
+                              </p>
+                            </div>
+                          )}
+                        </th>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
             <p onClick={() => prevPage()} className="mx-3 curs">
               <i className="bi bi-chevron-left"></i>
             </p>
-            {data.map((item) => {
+            {data.map((item, index) => {
               const pageMod = data.indexOf(item) % perPage;
               const pageDiv = data.indexOf(item) / perPage + 1;
               return (
-                <div>
+                <div key={index}>
                   <p
                     className={pageMod == 0 ? "py-2 px-3" : ""}
                     style={
@@ -138,8 +192,7 @@ export default function ManagerBeranda() {
                 </div>
               );
             })}
-            <p
-              onClick={() => nextPage()} className="mx-3 curs">
+            <p onClick={() => nextPage()} className="mx-3 curs">
               <i className="bi bi-chevron-right"></i>
             </p>
           </div>

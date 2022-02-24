@@ -4,10 +4,43 @@ import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/request-aset.png";
 
 export default function EmployeeBeranda() {
-    const [activity, setActivity] = useState([
-        {image: 'dummy', date:"20:00 20 Februari 2022", name:"ASUS", desc:"this is ASUS", status:"diterima"},
-        
-    ]) 
+  const [activity, setActivity] = useState([
+    {
+      image: "dummy",
+      date: "20:00 20 Februari 2022",
+      name: "ASUS",
+      desc: "this is ASUS",
+      status: "diterima",
+    },
+    {
+      image: "dummy",
+      date: "20:00 20 Februari 2022",
+      name: "ASUS",
+      desc: "this is ASUS",
+      status: "diterima",
+    },
+    {
+      image: "dummy",
+      date: "20:00 20 Februari 2022",
+      name: "ASUS",
+      desc: "this is ASUS",
+      status: "diterima",
+    },
+    {
+      image: "dummy",
+      date: "20:00 20 Februari 2022",
+      name: "ASUS",
+      desc: "this is ASUS",
+      status: "diterima",
+    },
+    {
+      image: "dummy",
+      date: "20:00 20 Februari 2022",
+      name: "ASUS",
+      desc: "this is ASUS",
+      status: "diterima",
+    },
+  ]);
   const [data, setData] = useState([
     {
       date: "19:45 17 Agustus 2022",
@@ -38,10 +71,11 @@ export default function EmployeeBeranda() {
       activity: "Peminjaman Barang",
       category: "Printer",
       item: "Canon 145D",
-    }
+    },
   ]);
   const perPage = 3;
   let [recentPage, setRecentPage] = useState(1);
+  const [tip, setTip] = useState(0);
   const nextPage = () => {
     setRecentPage((recentPage += 1));
   };
@@ -89,48 +123,87 @@ export default function EmployeeBeranda() {
         <div className="col-md-9">
           <h2 className="text-left primeCol">Aktivitasmu</h2>
           <div className="scrPar mb-5">
-          {activity.map((item)=>{
-              return(
-              <ActivityCard desc={item.desc} name={item.name} status={item.status} image={require(`../assets/img/`+`${item.image}`+`.png`)} date={item.date}/>
-              )
-          })}
+            {activity.map((item, index) => {
+              return (
+                <ActivityCard
+                  key={index}
+                  desc={item.desc}
+                  name={item.name}
+                  status={item.status}
+                  image={require(`../assets/img/` + `${item.image}` + `.png`)}
+                  date={item.date}
+                />
+              );
+            })}
           </div>
           <h2 className="text-left mb-4 primeCol">Histori Penggunaan Aset</h2>
-          <table className="w-100 text-left tabl">
-            <thead>
-              <tr className="trow tCol">
-                <th className="text-center">No</th>
-                <th>Tanggal</th>
-                <th>Jenis Aktivitas</th>
-                <th>Kategori Aset</th>
-                <th>Barang</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.slice((recentPage - 1) * perPage, perPage * recentPage).map((item:any, index) => {
-                  return (
-                    <tr className="trow">
-                      <th className="text-center">{perPage*(recentPage-1)+(index + 1)}</th>
-                      <th>{item.date}</th>
-                      <th>{item.activity}</th>
-                      <th>{item.category}</th>
-                      <th>{item.item}</th>
-                      <th>...</th>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
+          <div className="scrTabl">
+            <table className="text-left tabl">
+              <thead>
+                <tr className="trow tCol">
+                  <th className="text-center">No</th>
+                  <th>Tanggal</th>
+                  <th>Jenis Aktivitas</th>
+                  <th>Kategori Aset</th>
+                  <th>Barang</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {data
+                  ?.slice((recentPage - 1) * perPage, perPage * recentPage)
+                  .map((item: any, index) => {
+                    let pageNumber = perPage * (recentPage - 1) + (index + 1);
+                    return (
+                      <tr className="trow" key={index}>
+                        <th className="text-center">
+                          {perPage * (recentPage - 1) + (index + 1)}
+                        </th>
+                        <th>{item.date}</th>
+                        <th>{item.activity}</th>
+                        <th>{item.category}</th>
+                        <th>{item.item}</th>
+                        <th className="position-relative">
+                          <p
+                            onClick={() => {
+                              if (tip != pageNumber) {
+                                setTip(pageNumber);
+                              } else {
+                                setTip(0);
+                              }
+                            }}
+                            className="curs px-3"
+                          >
+                            ...
+                          </p>
+                          <div
+                            className="tiptool tip1 shadow bg-white p-2 pb-0"
+                            style={
+                              tip == pageNumber
+                                ? { display: "block" }
+                                : { display: "none" }
+                            }
+                          >
+                            <p onClick={() => setTip(0)} className="curs">
+                              Lihat Detail
+                            </p>
+                          </div>
+                        </th>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
             <p onClick={() => prevPage()} className="mx-3 curs">
               <i className="bi bi-chevron-left"></i>
             </p>
-            {data.map((item) => {
+            {data.map((item, index) => {
               const pageMod = data.indexOf(item) % perPage;
               const pageDiv = data.indexOf(item) / perPage + 1;
               return (
-                <div>
+                <div key={index}>
                   <p
                     className={pageMod == 0 ? "py-2 px-3" : ""}
                     style={
@@ -144,8 +217,7 @@ export default function EmployeeBeranda() {
                 </div>
               );
             })}
-            <p
-              onClick={() => nextPage()} className="mx-3 curs">
+            <p onClick={() => nextPage()} className="mx-3 curs">
               <i className="bi bi-chevron-right"></i>
             </p>
           </div>

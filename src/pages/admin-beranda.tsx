@@ -33,10 +33,12 @@ export default function AdminBeranda() {
       activity: "Peminjaman Barang",
       category: "Printer",
       item: "Canon 145D",
-    }
+    },
   ]);
   const perPage = 3;
   let [recentPage, setRecentPage] = useState(1);
+  const [tip, setTip] = useState(0);
+
   const nextPage = () => {
     setRecentPage((recentPage += 1));
   };
@@ -46,7 +48,7 @@ export default function AdminBeranda() {
   return (
     <div className="container">
       <div className="row mt-3 primeCol">
-      <div className="imageHolder col-md-8 d-flex ban justify-content-center align-items-center text-left imgHold">
+        <div className="imageHolder col-md-8 d-flex ban justify-content-center align-items-center text-left imgHold">
           <h1 className="banner">
             Welcome to <br /> E-Assets
           </h1>
@@ -83,41 +85,74 @@ export default function AdminBeranda() {
       <div className="row mt-5">
         <div className="col-md-9">
           <h2 className="text-left mb-4 primeCol">Permohonan Terbaru</h2>
-          <table className="w-100 text-left tabl">
-            <thead>
-              <tr className="trow tCol">
-                <th className="text-center">No</th>
-                <th>Tanggal</th>
-                <th>Jenis Aktivitas</th>
-                <th>Kategori Aset</th>
-                <th>Barang</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.slice((recentPage - 1) * perPage, perPage * recentPage).map((item:any, index) => {
-                  return (
-                    <tr className="trow">
-                      <th className="text-center">{perPage*(recentPage-1)+(index + 1)}</th>
-                      <th>{item.date}</th>
-                      <th>{item.activity}</th>
-                      <th>{item.category}</th>
-                      <th>{item.item}</th>
-                      <th>...</th>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
+          <div className="scrTabl">
+            <table className="text-left tabl">
+              <thead>
+                <tr className="trow tCol">
+                  <th className="text-center">No</th>
+                  <th>Tanggal</th>
+                  <th>Jenis Aktivitas</th>
+                  <th>Kategori Aset</th>
+                  <th>Barang</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {data
+                  ?.slice((recentPage - 1) * perPage, perPage * recentPage)
+                  .map((item: any, index) => {
+                    let pageNumber = perPage * (recentPage - 1) + (index + 1);
+                    return (
+                      <tr className="trow" key={index}>
+                        <th className="text-center">{pageNumber}</th>
+                        <th>{item.date}</th>
+                        <th>{item.activity}</th>
+                        <th>{item.category}</th>
+                        <th>{item.item}</th>
+                        <th className="position-relative">
+                          <p
+                            onClick={() => {
+                              if (tip != pageNumber) {
+                                setTip(pageNumber);
+                              } else {
+                                setTip(0);
+                              }
+                            }}
+                            className="curs px-3"
+                          >
+                            ...
+                          </p>
+                          <div
+                            className="tiptool tip2 shadow bg-white p-2 pb-0"
+                            style={
+                              tip == pageNumber
+                                ? { display: "block" }
+                                : { display: "none" }
+                            }
+                          >
+                            <p onClick={() => setTip(0)} className="curs">
+                              Minta Persetujuan
+                            </p>
+                            <p onClick={() => setTip(0)} className="curs">
+                              Lihat Detail
+                            </p>
+                          </div>
+                        </th>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
             <p onClick={() => prevPage()} className="mx-3 curs">
               <i className="bi bi-chevron-left"></i>
             </p>
-            {data.map((item) => {
+            {data.map((item,index) => {
               const pageMod = data.indexOf(item) % perPage;
               const pageDiv = data.indexOf(item) / perPage + 1;
               return (
-                <div>
+                <div key={index}>
                   <p
                     className={pageMod == 0 ? "py-2 px-3" : ""}
                     style={
@@ -131,8 +166,7 @@ export default function AdminBeranda() {
                 </div>
               );
             })}
-            <p
-              onClick={() => nextPage()} className="mx-3 curs">
+            <p onClick={() => nextPage()} className="mx-3 curs">
               <i className="bi bi-chevron-right"></i>
             </p>
           </div>
@@ -143,7 +177,9 @@ export default function AdminBeranda() {
             <img className="noSpace img" src={ImgModel1} />
           </div>
           <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
-            <p className="w-50 m-0 p-0 font-weight-bold">Assign Aset Ke Karyawan</p>
+            <p className="w-50 m-0 p-0 font-weight-bold">
+              Assign Aset Ke Karyawan
+            </p>
             <img className="noSpace img" src={ImgModel2} />
           </div>
         </div>
