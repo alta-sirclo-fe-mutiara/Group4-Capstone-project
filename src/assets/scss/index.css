@@ -75,10 +75,90 @@ textarea.form-control {
   width: 100%;
 }
 
+.btn-status,
+.accordion-button {
+  border: 1px solid #3dada6 !important;
+  border-radius: 5px !important;
+}
+
+button.btn-aset {
+  border: 1px solid #3dada6 !important;
+  border-radius: 7px !important;
+}
+
+.heading h1 {
+  color: #2c7a75;
+  font-weight: 600;
+}
+
+.card-asset.card {
+  height: 65vh !important;
+}
+
+.asset-content {
+  height: 15vh;
+}
+
+img.img-asset {
+  height: 20vh;
+}
+
+.asset-info {
+  font-size: 14px;
+}
+
+.aset-user {
+  color: #2c7a75;
+}
+
+.aset-user .ico-user {
+  height: 20px;
+}
+
+@media (max-width: 325px) {
+  .card-asset.card {
+    height: 75vh !important;
+  }
+}
+
+@media (min-width: 325px) and (max-width: 768px) {
+  .card-asset.card.admin {
+    height: 75vh !important;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 768px) {
+  .card-asset.card {
+    height: 77vh !important;
+  }
+  img.img-asset {
+    height: 25vh !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .card-asset.card {
+    height: 70vh !important;
+  }
+  .card-asset.card.admin {
+    height: 75vh !important;
+  }
+}
+
+@media (min-width: 1199.98px) {
+  .card-asset.card {
+    height: 67vh !important;
+  }
+  .card-asset.card.admin {
+    height: 70vh !important;
+  }
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #0c0d36 !important;
 }
 /*# sourceMappingURL=index.css.map */
