@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ImgModel1 from "../assets/img/peminjaman.png";
+import ImgModel2 from "../assets/img/assign to employee.png";
 
 export default function AdminBeranda() {
   const [data, setData] = useState([
@@ -44,32 +46,32 @@ export default function AdminBeranda() {
   return (
     <div className="container">
       <div className="row mt-3 primeCol">
-        <div className="imageHolder col-md-8 boRad d-flex justify-content-center align-items-center text-left imgHold">
-          <h1 className="f36">
+      <div className="imageHolder col-md-8 d-flex ban justify-content-center align-items-center text-left imgHold">
+          <h1 className="banner">
             Welcome to <br /> E-Assets
           </h1>
         </div>
         <div className="col-md-4 stats">
           <div className="row h-100 justify-content-around">
-            <div className="col-md-6">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
                 <p className="p-0 m-0">Total Aset</p>
                 <p className="p-0 m-0 stat">100</p>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
                 <p className="p-0 m-0">Pemeliharaan</p>
                 <p className="p-0 m-0 stat">100</p>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
                 <p className="p-0 m-0">Digunakan</p>
                 <p className="p-0 m-0 stat">100</p>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
                 <p className="p-0 m-0">Tersedia</p>
                 <p className="p-0 m-0 stat">30</p>
@@ -138,11 +140,11 @@ export default function AdminBeranda() {
         <div className="col-md-3 primeCol">
           <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 m-0 p-0 font-weight-bold">Tambah Aset Baru</p>
-            <img src="/" />
+            <img className="noSpace img" src={ImgModel1} />
           </div>
           <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 m-0 p-0 font-weight-bold">Assign Aset Ke Karyawan</p>
-            <img src="/" />
+            <img className="noSpace img" src={ImgModel2} />
           </div>
         </div>
       </div>

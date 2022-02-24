@@ -1,13 +1,11 @@
 import { useState } from "react";
 import ActivityCard from "../componets/ActivityCard";
+import ImgModel1 from "../assets/img/peminjaman.png";
+import ImgModel2 from "../assets/img/request-aset.png";
 
 export default function EmployeeBeranda() {
     const [activity, setActivity] = useState([
-        {image: "i.jpg", date:"20:00 20 Februari 2022", name:"ASUS", desc:"this is ASUS", status:"diterima"},
-        {image: "i.jpg", date:"20:00 20 Februari 2022", name:"ASUS", desc:"this is ASUS", status:"diterima"},
-        {image: "i.jpg", date:"20:00 20 Februari 2022", name:"ASUS", desc:"this is ASUS", status:"ditolak"},
-        {image: "i.jpg", date:"20:00 20 Februari 2022", name:"ASUS", desc:"this is ASUS, which is good, do you believe me? please just believe", status:"diterima"},
-        {image: "i.jpg", date:"20:00 20 Februari 2022", name:"ASUS", desc:"this is ASUS", status:"ditolak"},
+        {image: 'dummy', date:"20:00 20 Februari 2022", name:"ASUS", desc:"this is ASUS", status:"diterima"},
         
     ]) 
   const [data, setData] = useState([
@@ -53,32 +51,32 @@ export default function EmployeeBeranda() {
   return (
     <div className="container">
       <div className="row mt-3 primeCol">
-        <div className="imageHolder col-md-8 boRad d-flex justify-content-center align-items-center text-left imgHold">
-          <h1 className="f36">
+        <div className="imageHolder col-md-8 d-flex ban justify-content-center align-items-center text-left imgHold">
+          <h1 className="banner">
             Welcome to <br /> E-Assets
           </h1>
         </div>
         <div className="col-md-4 stats">
-          <div className="row h-100 justify-content-around">
-            <div className="col-md-6">
+          <div className="row h-100 justify-content-between">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
                 <p className="p-0 m-0">Total Aset</p>
                 <p className="p-0 m-0 stat">100</p>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
                 <p className="p-0 m-0">Pemeliharaan</p>
                 <p className="p-0 m-0 stat">100</p>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
                 <p className="p-0 m-0">Digunakan</p>
                 <p className="p-0 m-0 stat">100</p>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-6">
               <div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
                 <p className="p-0 m-0">Tersedia</p>
                 <p className="p-0 m-0 stat">30</p>
@@ -93,7 +91,7 @@ export default function EmployeeBeranda() {
           <div className="scrPar mb-5">
           {activity.map((item)=>{
               return(
-              <ActivityCard desc={item.desc} name={item.name} status={item.status} image={item.image} date={item.date}/>
+              <ActivityCard desc={item.desc} name={item.name} status={item.status} image={require(`../assets/img/`+`${item.image}`+`.png`)} date={item.date}/>
               )
           })}
           </div>
@@ -155,11 +153,11 @@ export default function EmployeeBeranda() {
         <div className="col-md-3 primeCol">
           <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 m-0 p-0 font-weight-bold">Peminjaman Aset</p>
-            <img src="/" />
+            <img className="noSpace img" src={ImgModel1} />
           </div>
           <div className=" blur shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 m-0 p-0 font-weight-bold">Pengajuan Aset Baru</p>
-            <img src="/" />
+            <img className="noSpace img" src={ImgModel2} />
           </div>
         </div>
       </div>

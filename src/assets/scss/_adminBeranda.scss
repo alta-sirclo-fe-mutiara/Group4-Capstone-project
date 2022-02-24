@@ -14,9 +14,12 @@ $prime-color: #2c7a75;
     background-size: cover;
     height: 226px;
 }
-
-.f36 {
+.ban{
+    border-radius: 25px;
+}
+.banner {
     font-size: 36px;
+    max-width: 100vh;
 }
 .stats {
     font-size: 16px;
@@ -26,11 +29,15 @@ $prime-color: #2c7a75;
     font-size: 20px;
     color:rgb(12,13,54);
     font-weight: bold;
+
+    .row{
+        max-width: 100vh;
+    }
 }
 
 .tabl{
     color:rgb(12,13,54);
-    font-weight: lighter;
+    font-weight:normal;
     border: rgb(196,196,196) solid 1px;
 
     .tCol{
@@ -38,6 +45,10 @@ $prime-color: #2c7a75;
     }
     .trow{
         height: 60px;
+
+        th{
+            font-weight:normal
+        }
     }
 }
 .curs{
@@ -55,7 +66,7 @@ $prime-color: #2c7a75;
     overflow: auto;
 }
 .scrChi{
-    min-width: 30%;
+    min-width: 300px;
     width: auto;
 }
 .noSpace{
@@ -72,9 +83,15 @@ $prime-color: #2c7a75;
 .navSide{
     height:120px
 }
+.img{
+    min-width: 50px;
+}
 @media (max-width: 767px) {
     .stats {
         font-size: 16px;
         max-height: 100vh;
+    }
+    .ban{
+        border-radius: 0%;
     }
 }
