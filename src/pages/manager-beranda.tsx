@@ -130,7 +130,7 @@ export default function ManagerBeranda() {
                           >
                             ...
                           </p>
-                          {item.status == "Diterima" ? (
+                          {item.status == "Diterima" || item.status == "Ditolak" ? (
                             <div
                               className="tiptool tip1 shadow bg-white p-2 pb-0"
                               style={

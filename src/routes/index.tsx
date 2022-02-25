@@ -6,6 +6,8 @@ import EmployeeBeranda from "../pages/employee-beranda";
 import ManagerBeranda from "../pages/manager-beranda";
 import App from "../App";
 import Home from "../pages/home";
+import PenggunaAset from "../pages/admin-pengguna-aset";
+import PermohonanPersetujuan from "../pages/manager-persetujuan";
 
 const Index = () => {
 	return (
@@ -18,6 +20,9 @@ const Index = () => {
 				<Route path="/admin/beranda" element={<AdminBeranda/>}/>
 				<Route path="/employee/beranda" element={<EmployeeBeranda/>}/>
 				<Route path="/manager/beranda" element={<ManagerBeranda/>}/>
+				<Route path="/admin/pengguna_aset" element={<PenggunaAset/>}/>
+				<Route path="/manager/beranda" element={<ManagerBeranda/>}/>
+				<Route path="/manager/permohonan_persetujuan" element={<PermohonanPersetujuan/>}/>
 			</Routes>
 		</BrowserRouter>
 	);
