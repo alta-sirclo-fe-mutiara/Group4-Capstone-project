@@ -106,7 +106,7 @@ export default function PermohonanPersetujuan() {
 					</select>
 				</div>
 			</div>
-			<div className="dateFilter">
+			<div className="dateFilter ">
 				<div className="text-left w-100 noSpace">
 					<p className="noSpace font-weight-bold">Semua Pengguna</p>
 					<p>{data.length} Pemohon</p>
@@ -160,30 +160,31 @@ export default function PermohonanPersetujuan() {
 											item.status === "Ditolak" ||
 											item.status === "Dikembalikan" ? (
 												<div
-													className="tiptool tip1 shadow bg-white p-2 pb-0"
+													className="tiptool border border-1 shadow rounded-3 tip1 shadow bg-white px-3 py-2"
 													style={
 														tip === pageNumber ? { display: "block" } : { display: "none" }
 													}
 												>
-													<p onClick={() => setTip(0)} className="curs">
+													<p onClick={() => setTip(0)} className="curs mb-0">
 														Lihat Detail
 													</p>
 												</div>
 											) : (
 												<div
-													className="tiptool tip3 shadow bg-white p-2 pb-0"
+													className="tiptool tip3 border border-1 shadow rounded-3 shadow bg-white px-3 py-2"
 													style={
 														tip === pageNumber ? { display: "block" } : { display: "none" }
 													}
 												>
 													<p onClick={() => setTip(0)} className="curs">
-														<FaCheckCircle className="mr-1" /> Diterima
+														<FaCheckCircle className="mr-2" />
+														Diterima
 													</p>
 													<p onClick={() => setTip(0)} className="curs">
-														<FaTimesCircle className="mr-1" />
+														<FaTimesCircle className="mr-2" />
 														Ditolak
 													</p>
-													<p onClick={() => setTip(0)} className="curs">
+													<p onClick={() => setTip(0)} className="curs mb-0">
 														Lihat Detail
 													</p>
 												</div>

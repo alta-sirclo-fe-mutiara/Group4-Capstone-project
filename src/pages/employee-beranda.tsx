@@ -10,28 +10,28 @@ export default function EmployeeBeranda() {
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
 			desc: "this is ASUS",
-			status: "diterima",
+			status: "menunggu mersetujuan",
 		},
 		{
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
 			desc: "this is ASUS",
-			status: "diterima",
+			status: "disetujui",
 		},
 		{
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
 			desc: "this is ASUS",
-			status: "diterima",
+			status: "disetujui",
 		},
 		{
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
 			desc: "this is ASUS",
-			status: "diterima",
+			status: "tolak",
 		},
 		{
 			image: "dummy",
@@ -136,7 +136,7 @@ export default function EmployeeBeranda() {
 							);
 						})}
 					</div>
-					<h2 className="text-left mb-4 primeCol">Histori Penggunaan Aset</h2>
+					<h2 className="text-left mb-4 primeCol">History Penggunaan Aset</h2>
 					<div className="scrTabl">
 						<table className="text-left tabl">
 							<thead>
@@ -177,7 +177,7 @@ export default function EmployeeBeranda() {
 														...
 													</p>
 													<div
-														className="tiptool tip1 border border-1 shadow rounded-3 bg-white p-2"
+														className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
 														style={
 															tip == pageNumber ? { display: "block" } : { display: "none" }
 														}
