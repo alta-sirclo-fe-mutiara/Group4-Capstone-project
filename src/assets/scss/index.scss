@@ -1,6 +1,8 @@
+@import "color";
 @import "login";
 @import "components";
 @import "adminBeranda";
+@import "asset";
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -11,4 +13,5 @@ body {
 		sans-serif !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	color: $navi !important;
 }
