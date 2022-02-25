@@ -96,15 +96,15 @@ $prime-color: #2c7a75;
 }
 .tip1 {
   top: 0%;
-  right: -120%;
+  right: 0%;
 }
 .tip2 {
   bottom: 0%;
-  right: -220%;
+  right: 0%;
 }
 .tip3 {
   bottom: 0%;
-  right: -150%;
+  right: 0%;
 }
 @media (max-width: 767px) {
   .stats {
@@ -120,10 +120,5 @@ $prime-color: #2c7a75;
   }
   .scrTabl {
     overflow: auto;
-  }
-  .tip1,
-  .tip2,
-  .tip3 {
-    right: 0%;
   }
 }
