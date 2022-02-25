@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 
 export default function PenggunaAset (){
     const [data, setData] = useState([
@@ -234,10 +236,10 @@ export default function PenggunaAset (){
                               }
                             >
                               <p onClick={() => setTip(0)} className="curs">
-                                Diterima
+                              <FaCheckCircle className="mr-1"/> Diterima
                               </p>
                               <p onClick={() => setTip(0)} className="curs">
-                                Ditolak
+                                <FaTimesCircle className="mr-1"/>Ditolak
                               </p>
                               <p onClick={() => setTip(0)} className="curs">
                                 Lihat Detail

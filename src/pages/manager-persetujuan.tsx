@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 
 export default function PermohonanPersetujuan (){
     const [data, setData] = useState([
@@ -139,7 +141,7 @@ export default function PermohonanPersetujuan (){
                         <th className="position-relative">
                           <p
                             onClick={() => {
-                              if (tip !== pageNumber) {
+                              if (tip !==pageNumber) {
                                 setTip(pageNumber);
                               } else {
                                 setTip(0);
@@ -149,11 +151,11 @@ export default function PermohonanPersetujuan (){
                           >
                             ...
                           </p>
-                          {item.status == "Disetujui" || item.status == "Ditolak" || item.status == "Dikembalikan" ? (
+                          {item.status ==="Disetujui" || item.status ==="Ditolak" || item.status ==="Dikembalikan" ? (
                             <div
                               className="tiptool tip1 shadow bg-white p-2 pb-0"
                               style={
-                                tip == pageNumber
+                                tip ===pageNumber
                                   ? { display: "block" }
                                   : { display: "none" }
                               }
@@ -166,16 +168,16 @@ export default function PermohonanPersetujuan (){
                             <div
                               className="tiptool tip3 shadow bg-white p-2 pb-0"
                               style={
-                                tip == pageNumber
+                                tip ===pageNumber
                                   ? { display: "block" }
                                   : { display: "none" }
                               }
                             >
                               <p onClick={() => setTip(0)} className="curs">
-                                Diterima
+                              <FaCheckCircle className="mr-1"/> Diterima
                               </p>
                               <p onClick={() => setTip(0)} className="curs">
-                                Ditolak
+                                <FaTimesCircle className="mr-1"/>Ditolak
                               </p>
                               <p onClick={() => setTip(0)} className="curs">
                                 Lihat Detail
@@ -199,14 +201,14 @@ export default function PermohonanPersetujuan (){
               return (
                 <div key={index}>
                   <p
-                    className={pageMod === 0 ? "py-2 px-3" : ""}
+                    className={pageMod ===0 ? "py-2 px-3" : ""}
                     style={
-                      pageDiv === recentPage
+                      pageDiv ===recentPage
                         ? { color: "white", backgroundColor: "#2c7a75" }
                         : { color: "rgb(12,13,54)" }
                     }
                   >
-                    {pageMod === 0 ? pageDiv : null}
+                    {pageMod ===0 ? pageDiv : null}
                   </p>
                 </div>
               );

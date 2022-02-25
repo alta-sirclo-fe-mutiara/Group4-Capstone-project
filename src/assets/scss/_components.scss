@@ -37,3 +37,14 @@ textarea.form-control {
 		width: 100%;
 	}
 }
+
+.btn-status,
+.accordion-button {
+	border: 1px solid $tosca !important;
+	border-radius: 5px !important;
+}
+
+button.btn-aset {
+	border: 1px solid $tosca !important;
+	border-radius: 7px !important;
+}

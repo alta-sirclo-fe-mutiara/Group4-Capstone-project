@@ -16,11 +16,16 @@
 }
 .statusFilterDrop{
     display: none;
+    border-radius: 10px;
 }
 .dateFilter{
     display: flex;
     justify-content: space-between;
-    margin: 30px 0
+    margin: 30px 0;
+
+    .date{
+      border-radius: 10px;
+    }
 }
 .scrTablP {
     width: 100%;
