@@ -156,7 +156,9 @@ img.img-asset {
 
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
+ "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+ sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #0c0d36 !important;
