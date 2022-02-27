@@ -1,4 +1,7 @@
 import { useState } from "react";
+// import { Modal, Button } from "react-bootstrap";
+import ModalDetailPenggunaan from "../componets/Modal/ModalDetailPenggunaan";
+import { HiDotsHorizontal } from "react-icons/hi";
 import ActivityCard from "../componets/ActivityCard";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/request-aset.png";
@@ -10,7 +13,7 @@ export default function EmployeeBeranda() {
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
 			desc: "this is ASUS",
-			status: "menunggu mersetujuan",
+			status: "menunggu persetujuan",
 		},
 		{
 			image: "dummy",
@@ -44,35 +47,57 @@ export default function EmployeeBeranda() {
 	const [data, setData] = useState([
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "9:45 27 Agustus 2022",
+			photo: "image 6",
 			activity: "Peminjaman Barang",
 			category: "Printer",
 			item: "Canon 145D",
+			request_description: "buat print berkas-berkas",
+			status: "berhasil dikembalikan",
+		},
+		{
+			date: "19:45 17 Februari 2022",
+			date_return: "9:45 27 September 2022",
+			photo: "image 4",
+			activity: "Peminjaman Barang",
+			category: "Laptop",
+			item: "Apple Macbook Air",
+			request_description: "laptop sebelumnya lemot",
+			status: "berhasil dikembalikan",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "9:45 27 Agustus 2022",
+			photo: "image 5",
 			activity: "Peminjaman Barang",
-			category: "Printer",
-			item: "Canon 145D",
+			category: "Monitor",
+			item: "Monitor LG LED 22",
+			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
+			status: "berhasil dikembalikan",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "9:45 27 Agustus 2022",
+			photo: "image 6",
 			activity: "Peminjaman Barang",
 			category: "Printer",
 			item: "Canon 145D",
+			request_description: "buat print berkas-berkas",
+			status: "berhasil dikembalikan",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "9:45 27 Agustus 2022",
+			photo: "image 6",
 			activity: "Peminjaman Barang",
 			category: "Printer",
 			item: "Canon 145D",
-		},
-		{
-			date: "19:45 17 Agustus 2022",
-			activity: "Peminjaman Barang",
-			category: "Printer",
-			item: "Canon 145D",
+			request_description: "buat print berkas-berkas",
+			status: "berhasil dikembalikan",
 		},
 	]);
+	console.log(data);
+
 	const perPage = 3;
 	let [recentPage, setRecentPage] = useState(1);
 	const [tip, setTip] = useState(0);
@@ -82,6 +107,7 @@ export default function EmployeeBeranda() {
 	const prevPage = () => {
 		setRecentPage((recentPage -= 1));
 	};
+
 	return (
 		<div className="container">
 			<div className="row mt-3 primeCol">
@@ -174,7 +200,7 @@ export default function EmployeeBeranda() {
 														}}
 														className="curs px-3"
 													>
-														...
+														<HiDotsHorizontal />
 													</p>
 													<div
 														className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
@@ -182,14 +208,23 @@ export default function EmployeeBeranda() {
 															tip == pageNumber ? { display: "block" } : { display: "none" }
 														}
 													>
-														<p
+														{/* <p
 															onClick={() => setTip(0)}
 															className="curs mb-0"
 															data-bs-toggle="modal"
 															data-bs-target="#exampleModal"
 														>
 															Lihat Detail
-														</p>
+														</p> */}
+														<ModalDetailPenggunaan
+															photo={item.photo}
+															category={item.category}
+															status={item.status}
+															item={item.item}
+															date={item.date}
+															date_return={item.date_return}
+															request_description={item.request_description}
+														/>
 													</div>
 												</th>
 											</tr>

@@ -1,124 +1,125 @@
 $prime-color: #2c7a75;
 
 .primeCol {
-  color: $prime-color;
+	color: $prime-color;
 }
 
 .primeBCol {
-  background-color: $prime-color;
+	background-color: $prime-color;
 }
 
 .imgHold {
-  background-image: url("../img/img-banner.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 226px;
+	background-image: url("../img/img-banner.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 226px;
 }
 .ban {
-  border-radius: 25px;
+	border-radius: 25px;
 }
 .banner {
-  font-size: 36px;
-  max-width: 100vh;
+	font-size: 36px;
+	max-width: 100vh;
 }
 .stats {
-  font-size: 16px;
-  max-height: 226px;
+	font-size: 16px;
+	max-height: 226px;
 }
 .stat {
-  font-size: 20px;
-  color: rgb(12, 13, 54);
-  font-weight: bold;
+	font-size: 20px;
+	color: rgb(12, 13, 54);
+	font-weight: bold;
 
-  .row {
-    max-width: 100vh;
-  }
+	.row {
+		max-width: 100vh;
+	}
 }
 .scrTabl {
-  width: 100%;
+	width: 100%;
 }
 .tabl {
-  color: rgb(12, 13, 54);
-  font-weight: normal;
-  border: rgb(196, 196, 196) solid 1px;
-  min-width: 100%;
+	color: rgb(12, 13, 54);
+	font-weight: normal;
+	border: rgb(196, 196, 196) solid 1px;
+	min-width: 100%;
 
-  .tCol {
-    background-color: rgb(243, 243, 243);
-  }
-  .trow {
-    height: 60px;
+	.tCol {
+		background-color: rgb(243, 243, 243);
+	}
+	.trow {
+		height: 60px;
 
-    th {
-      font-weight: normal;
-    }
-  }
+		th {
+			font-weight: normal;
+		}
+	}
 }
 .curs {
-  cursor: pointer;
+	cursor: pointer;
 }
 .boRad {
-  border-radius: 25px;
+	border-radius: 25px;
 }
 .blur {
-  opacity: 50%;
+	opacity: 50%;
 }
 .scrPar {
-  width: 100%;
-  display: flex;
-  overflow: auto;
+	width: 100%;
+	display: flex;
+	overflow: auto;
 }
 .scrChi {
-  min-width: 300px;
-  width: auto;
+	min-width: 300px;
+	width: auto;
 }
 .noSpace {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 .actDate {
-  font-size: 12px;
-  color: gray;
+	font-size: 12px;
+	color: gray;
 }
 .bGray {
-  background-color: rgb(243, 243, 243);
+	background-color: rgb(243, 243, 243);
 }
 .navSide {
-  height: 120px;
+	height: 120px;
 }
 .img {
-  min-width: 50px;
+	min-width: 50px;
 }
+
 .tiptool {
-  position: absolute;
-  white-space: nowrap;
-  z-index: 2;
+	position: absolute;
+	white-space: nowrap;
+	z-index: 2;
 }
 .tip1 {
-  top: 0%;
-  right: 0%;
+	top: 0%;
+	right: 0%;
 }
 .tip2 {
-  bottom: 0%;
-  right: 0%;
+	bottom: 0%;
+	right: 0%;
 }
 .tip3 {
-  bottom: 0%;
-  right: 0%;
+	bottom: 0%;
+	right: 0%;
 }
 @media (max-width: 767px) {
-  .stats {
-    font-size: 16px;
-    max-height: 100vh;
-  }
-  .ban {
-    border-radius: 0%;
-  }
-  .tabl {
-    width: 200%;
-    padding-right: 30px;
-  }
-  .scrTabl {
-    overflow: auto;
-  }
+	.stats {
+		font-size: 16px;
+		max-height: 100vh;
+	}
+	.ban {
+		border-radius: 0%;
+	}
+	.tabl {
+		width: 200%;
+		padding-right: 30px;
+	}
+	.scrTabl {
+		overflow: auto;
+	}
 }

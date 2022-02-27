@@ -1,0 +1,27 @@
+.modal-title,
+p.title,
+h6.title {
+	color: $grey !important ;
+}
+
+p.content {
+	font-size: 15px;
+}
+
+.status-detail-aset {
+	font-size: 14px;
+	font-weight: 500;
+	background-color: $light-grey;
+	border-radius: 16px !important;
+}
+
+.btn-detail {
+	border-radius: 7px !important;
+	background: rgba(61, 173, 166, 0.2) !important;
+	color: $navi !important;
+
+	&:hover {
+		color: $white !important;
+		background-color: $tosca !important;
+	}
+}

@@ -391,6 +391,34 @@ img.img-asset {
   }
 }
 
+.modal-title,
+p.title,
+h6.title {
+  color: #979797 !important;
+}
+
+p.content {
+  font-size: 15px;
+}
+
+.status-detail-aset {
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #f3f3f3;
+  border-radius: 16px !important;
+}
+
+.btn-detail {
+  border-radius: 7px !important;
+  background: rgba(61, 173, 166, 0.2) !important;
+  color: #0c0d36 !important;
+}
+
+.btn-detail:hover {
+  color: #ffffff !important;
+  background-color: #3dada6 !important;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;

@@ -21,7 +21,12 @@ export default function ActivityCard(props: Props) {
 			</div>
 			<div className="d-flex justify-content-between px-3 pt-2 noSpace bGray">
 				<p className="text-capitalize">{props.status}</p>
-				<HiDotsHorizontal />
+				<p className="curs px-3">
+					<HiDotsHorizontal />
+				</p>
+				<div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2">
+					<p className="curs mb-0">Lihat Detail</p>
+				</div>
 			</div>
 		</div>
 	);
