@@ -1,71 +1,101 @@
 import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
+import { HiDotsHorizontal } from "react-icons/hi";
+import ModalPermohonanManager from "../componets/Modal/ModalPermohonanManager";
 
 export default function PermohonanPersetujuan() {
 	const [data, setData] = useState([
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "-",
 			activity: "Peminjaman Barang",
-			category: "Printer",
-			item: "Canon 145D",
+			photo: "image 4",
+			category: "Laptop",
+			item: "Apple Macbook Air",
+			avail: 7,
 			user: "Alex Madagascar",
+			divisi: "Tech",
 			time: "35 days",
 			status: "Ditolak",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "9:45 27 Agustus 2022",
 			activity: "Peminjaman Barang",
-			category: "Printer",
-			item: "Canon 145D",
-			user: "Alex Madagascar",
-			time: "35 days",
-			status: "Ditolak",
+			photo: "image 5",
+			category: "Monitor",
+			item: "Monitor LG LED 22",
+			avail: 7,
+			user: "Beth Hamone",
+			divisi: "Tech",
+			time: "-",
+			status: "Dikembalikan",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "-",
 			activity: "Peminjaman Barang",
+			photo: "image 5",
 			category: "Printer",
 			item: "Canon 145D",
+			avail: 7,
 			user: "Alex Madagascar",
 			time: "35 days",
 			status: "Menunggu Persetujuan",
+			divisi: "Tech",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "-",
 			activity: "Peminjaman Barang",
+			photo: "image 6",
 			category: "Printer",
+			avail: 7,
 			item: "Canon 145D",
 			user: "Alex Madagascar",
 			time: "35 days",
 			status: "Disetujui",
+			divisi: "Tech",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "-",
 			activity: "Peminjaman Barang",
+			photo: "image 5",
 			category: "Printer",
+			avail: 7,
 			item: "Canon 145D",
 			user: "Alex Madagascar",
 			time: "35 days",
 			status: "Disetujui",
+			divisi: "Tech",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "-",
 			activity: "Peminjaman Barang",
+			photo: "image 5",
 			category: "Printer",
+			avail: 7,
 			item: "Canon 145D",
 			user: "Alex Madagascar",
 			time: "35 days",
 			status: "Ditolak",
+			divisi: "Tech",
 		},
 		{
 			date: "19:45 17 Agustus 2022",
+			date_return: "-",
 			activity: "Peminjaman Barang",
+			photo: "image 6",
 			category: "Printer",
+			avail: 7,
 			item: "Canon 145D",
 			user: "Alex Madagascar",
 			time: "35 days",
 			status: "Menunggu Persetujuan",
+			divisi: "Tech",
 		},
 	]);
 	const perPage = 4;
@@ -154,7 +184,7 @@ export default function PermohonanPersetujuan() {
 												}}
 												className="curs px-3"
 											>
-												...
+												<HiDotsHorizontal />
 											</p>
 											{item.status === "Disetujui" ||
 											item.status === "Ditolak" ||
@@ -165,9 +195,22 @@ export default function PermohonanPersetujuan() {
 														tip === pageNumber ? { display: "block" } : { display: "none" }
 													}
 												>
-													<p onClick={() => setTip(0)} className="curs mb-0">
+													{/* <p onClick={() => setTip(0)} className="curs mb-0">
 														Lihat Detail
-													</p>
+													</p> */}
+													<ModalPermohonanManager
+														photo={item.photo}
+														category={item.category}
+														item={item.item}
+														avail={item.avail}
+														user={item.user}
+														date={item.date}
+														divisi={item.divisi}
+														date_return={item.date_return}
+														status={item.status}
+														time={item.time}
+														request_description={item.request_description}
+													/>
 												</div>
 											) : (
 												<div
@@ -184,9 +227,19 @@ export default function PermohonanPersetujuan() {
 														<FaTimesCircle className="mr-2" />
 														Ditolak
 													</p>
-													<p onClick={() => setTip(0)} className="curs mb-0">
-														Lihat Detail
-													</p>
+													<ModalPermohonanManager
+														photo={item.photo}
+														category={item.category}
+														item={item.item}
+														avail={item.avail}
+														user={item.user}
+														date={item.date}
+														divisi={item.divisi}
+														date_return={item.date_return}
+														status={item.status}
+														time={item.time}
+														request_description={item.request_description}
+													/>
 												</div>
 											)}
 										</th>
