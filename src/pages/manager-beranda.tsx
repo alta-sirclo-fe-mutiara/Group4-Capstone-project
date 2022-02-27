@@ -3,7 +3,7 @@ import ImgModel from "../assets/img/peminjaman.png";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
-import ModalPermohonanManager from "../componets/Modal/ModalPermohonanManager";
+import { ModalPermohonanManager } from "../componets/Modal/ModalPermohonan";
 
 export default function ManagerBeranda() {
 	const [data, setData] = useState([

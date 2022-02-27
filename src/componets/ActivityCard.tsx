@@ -1,5 +1,5 @@
 import { HiDotsHorizontal } from "react-icons/hi";
-
+import { ModalPermohonanEmployee } from "../componets/Modal/ModalPermohonan";
 interface Props {
 	name: string;
 	status: string;
@@ -26,6 +26,13 @@ export default function ActivityCard(props: Props) {
 				</p>
 				<div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2 d-block">
 					<p className="curs mb-0">Lihat Detail</p>
+					{props.status === "menunggu persetujuan" ? (
+						<p className="curs mb-0 batal">Batalkan Pengajuan</p>
+					) : props.status === "disetujui" ? (
+						<p className="curs mb-0 ajukan">Ajukan Pengembalian</p>
+					) : (
+						<p className="curs mb-0 ajukan">Ajukan Peminjaman Ulang</p>
+					)}
 				</div>
 			</div>
 		</div>

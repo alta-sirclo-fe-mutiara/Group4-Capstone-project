@@ -419,6 +419,18 @@ p.content {
   background-color: #3dada6 !important;
 }
 
+p.batal {
+  color: #ff7158;
+}
+
+p.ajukan {
+  color: #2c7a75;
+}
+
+.request {
+  color: #3dada6;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;

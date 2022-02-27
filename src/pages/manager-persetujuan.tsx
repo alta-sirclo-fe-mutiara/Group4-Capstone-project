@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
-import ModalPermohonanManager from "../componets/Modal/ModalPermohonanManager";
+import { ModalPermohonanManager } from "../componets/Modal/ModalPermohonan";
 
 export default function PermohonanPersetujuan() {
 	const [data, setData] = useState([

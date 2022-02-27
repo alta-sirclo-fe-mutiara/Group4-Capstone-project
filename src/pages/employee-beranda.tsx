@@ -1,8 +1,9 @@
 import { useState } from "react";
 // import { Modal, Button } from "react-bootstrap";
 import ModalDetailPenggunaan from "../componets/Modal/ModalDetailPenggunaan";
+import { ModalPermohonanEmployee } from "../componets/Modal/ModalPermohonan";
 import { HiDotsHorizontal } from "react-icons/hi";
-import ActivityCard from "../componets/ActivityCard";
+// import ActivityCard from "../componets/ActivityCard";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/request-aset.png";
 
@@ -12,36 +13,51 @@ export default function EmployeeBeranda() {
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
+			avail: 7,
+			category: "Laptop",
 			desc: "this is ASUS",
+			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
 			status: "menunggu persetujuan",
 		},
 		{
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
+			avail: 7,
+			category: "Laptop",
 			desc: "this is ASUS",
+			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
 			status: "disetujui",
 		},
 		{
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
+			avail: 7,
+			category: "Laptop",
 			desc: "this is ASUS",
+			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
 			status: "disetujui",
 		},
 		{
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
+			avail: 7,
+			category: "Laptop",
 			desc: "this is ASUS",
+			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
 			status: "tolak",
 		},
 		{
 			image: "dummy",
 			date: "20:00 20 Februari 2022",
 			name: "ASUS",
+			avail: 7,
+			category: "Laptop",
 			desc: "this is ASUS",
-			status: "diterima",
+			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
+			status: "menunggu persetujuan",
 		},
 	]);
 	const [data, setData] = useState([
@@ -96,7 +112,6 @@ export default function EmployeeBeranda() {
 			status: "berhasil dikembalikan",
 		},
 	]);
-	console.log(data);
 
 	const perPage = 3;
 	let [recentPage, setRecentPage] = useState(1);
@@ -151,14 +166,54 @@ export default function EmployeeBeranda() {
 					<div className="scrPar mb-5">
 						{activity.map((item, index) => {
 							return (
-								<ActivityCard
+								// <ActivityCard
+								// 	key={index}
+								// 	desc={item.desc}
+								// 	name={item.name}
+								// 	status={item.status}
+								// 	image={require(`../assets/img/` + `${item.image}` + `.png`)}
+								// 	date={item.date}
+								// />
+								<div
+									className="shadow bg-white rounded text-left m-3 scrChi d-flex flex-column justify-content-between"
 									key={index}
-									desc={item.desc}
-									name={item.name}
-									status={item.status}
-									image={require(`../assets/img/` + `${item.image}` + `.png`)}
-									date={item.date}
-								/>
+								>
+									<div className="row p-3">
+										<img
+											src={require(`../assets/img/` + `${item.image}` + `.png`)}
+											className="col-5"
+										/>
+										<div className="col-7">
+											<p className="actDate noSpace">{item.date}</p>
+											<p className="font-weight-bold noSpace">{item.name}</p>
+											<p className="noSpace">{item.desc}</p>
+										</div>
+									</div>
+									<div className="d-flex justify-content-between px-3 pt-2 noSpace bGray position-relative">
+										<p className="text-capitalize">{item.status}</p>
+										<p className="curs px-3">
+											<HiDotsHorizontal />
+										</p>
+										<div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2 d-block">
+											<ModalPermohonanEmployee
+												photo={item.image}
+												category={item.category}
+												item={item.name}
+												avail={item.avail}
+												date={item.date}
+												status={item.status}
+												request_description={item.request_description}
+											/>
+											{item.status === "menunggu persetujuan" ? (
+												<p className="curs mb-0 batal">Batalkan Pengajuan</p>
+											) : item.status === "disetujui" ? (
+												<p className="curs mb-0 ajukan">Ajukan Pengembalian</p>
+											) : (
+												<p className="curs mb-0 ajukan">Ajukan Peminjaman Ulang</p>
+											)}
+										</div>
+									</div>
+								</div>
 							);
 						})}
 					</div>
