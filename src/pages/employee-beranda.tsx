@@ -194,6 +194,13 @@ export default function EmployeeBeranda() {
 											<HiDotsHorizontal />
 										</p>
 										<div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2 d-block">
+											{item.status === "disetujui" ? (
+												<p className="curs mb-0 ajukan">Ajukan Pengembalian</p>
+											) : item.status === "tolak" ? (
+												<p className="curs mb-0 ajukan">Ajukan Peminjaman Ulang</p>
+											) : (
+												<></>
+											)}
 											<ModalPermohonanEmployee
 												photo={item.image}
 												category={item.category}
@@ -203,13 +210,6 @@ export default function EmployeeBeranda() {
 												status={item.status}
 												request_description={item.request_description}
 											/>
-											{item.status === "menunggu persetujuan" ? (
-												<p className="curs mb-0 batal">Batalkan Pengajuan</p>
-											) : item.status === "disetujui" ? (
-												<p className="curs mb-0 ajukan">Ajukan Pengembalian</p>
-											) : (
-												<p className="curs mb-0 ajukan">Ajukan Peminjaman Ulang</p>
-											)}
 										</div>
 									</div>
 								</div>
