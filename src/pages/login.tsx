@@ -1,6 +1,7 @@
 import { Form } from "react-bootstrap";
 import axios from "axios";
-import { ChangeEvent, FormEvent, useState, useEffect } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import ImgModel from "../assets/img/img-login.png";
 import Logo from "../assets/img/logo.svg";
@@ -17,6 +18,7 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState<string>("");
 	const [isInvalid, setIsInvalid] = useState(false);
+	const Navigate = useNavigate();
 
 	const handleSubmit = async (e: FormEvent<HTMLElement>) => {
 		e.preventDefault();
@@ -28,13 +30,15 @@ const Login = () => {
 
 	const LoginUser = async (credential: credential) => {
 		axios
-			.post("http://54.169.184.219:8080/login", credential)
+			.post("/login", credential)
 			.then((res) => {
 				const { data } = res;
-				localStorage.setItem("token", data.token);
-				localStorage.setItem("user_id", data.user_id);
-				localStorage.setItem("isAuthenticated", "true");
-				fetchData();
+				localStorage.setItem("token", JSON.stringify(data.Data));
+				// localStorage.setItem("user_id", data.user_id);
+				// localStorage.setItem("isAuthenticated", "true");
+				axios.defaults.headers.common[
+					"Authorization"
+				] = `Bearer ${data.Data.token}`;
 			})
 			.catch((err) => {
 				setIsInvalid(true);
@@ -42,22 +46,22 @@ const Login = () => {
 			});
 	};
 
-	useEffect(() => {
-		fetchData();
-	}, []);
+	// useEffect(() => {
+	// 	fetchData();
+	// }, []);
 
-	const fetchData = () => {
-		axios
-			.get(`http://54.169.184.219:8080/users/${localStorage.getItem("user_id")}`)
-			.then((res) => {
-				setData(res.data.data);
-				setName(res.data.data.name);
-				setEmail(res.data.data.email);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// const fetchData = () => {
+	// 	axios
+	// 		.get(`http://54.169.184.219:8080/users/${localStorage.getItem("user_id")}`)
+	// 		.then((res) => {
+	// 			setData(res.data.data);
+	// 			setName(res.data.data.name);
+	// 			setEmail(res.data.data.email);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
 	return (
 		<>
@@ -109,6 +113,9 @@ const Login = () => {
 										</button>
 									</div>
 								</Form>
+								{/* <h1>Data</h1>
+								<h2>{data?.name}</h2>
+								<h3>{data?.email}</h3> */}
 							</div>
 						</div>
 					</div>

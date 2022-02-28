@@ -21,7 +21,7 @@ export default function RequestAssetModal(props: Props) {
     axios
       .get(`https://dipssyman.space/assets`)
       .then((res) => {
-        setAssetData(res.data.data);
+        setAssetData(res.data.data.data);
         console.log(assetData);
       })
       .catch((err) => {

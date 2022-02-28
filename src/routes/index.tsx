@@ -20,12 +20,15 @@ const Index = () => {
 				</Route>
 				<Route path="/admin/assets" element={<AdminAssets />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="/admin/beranda" element={<AdminBeranda/>}/>
-				<Route path="/employee/beranda" element={<EmployeeBeranda/>}/>
-				<Route path="/manager/beranda" element={<ManagerBeranda/>}/>
-				<Route path="/admin/pengguna_aset" element={<PenggunaAset/>}/>
-				<Route path="/manager/beranda" element={<ManagerBeranda/>}/>
-				<Route path="/manager/permohonan_persetujuan" element={<PermohonanPersetujuan/>}/>
+				<Route path="/admin/beranda" element={<AdminBeranda />} />
+				<Route path="/employee/beranda" element={<EmployeeBeranda />} />
+				<Route path="/manager/beranda" element={<ManagerBeranda />} />
+				<Route path="/admin/pengguna_aset" element={<PenggunaAset />} />
+				<Route path="/manager/beranda" element={<ManagerBeranda />} />
+				<Route
+					path="/manager/permohonan_persetujuan"
+					element={<PermohonanPersetujuan />}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
