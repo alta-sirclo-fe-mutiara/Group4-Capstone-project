@@ -1,0 +1,75 @@
+.statusFilter{
+    ul{
+        list-style: none;
+
+        li{
+            padding: 1em 2em;
+            background-color: rgb(243, 243, 243);
+            border: rgb(196, 196, 196) solid 1px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            cursor: pointer;
+        }
+        li:hover{ 
+            background-color:  rgb(216, 214, 214);
+            }
+    }
+}
+.statusFilterDrop{
+    display: none;
+    border-radius: 10px;
+}
+.dateFilter{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+
+    .date{
+      border-radius: 10px;
+    }
+}
+.scrTablP {
+    width: 100%;
+  }
+  .tablP {
+    color: rgb(12, 13, 54);
+    font-weight: normal;
+    border: rgb(196, 196, 196) solid 1px;
+    min-width: 100%;
+  
+    .tCol {
+      background-color: rgb(243, 243, 243);
+    }
+    .trow {
+      height: 60px;
+  
+      th {
+        font-weight: normal;
+      }
+    }
+  }
+@media (max-width: 767px) {
+    .statusFilter{
+        display: none;
+    }
+    .statusFilterDrop{
+        display: block;
+        margin-top: 20px;
+    }
+    .dateFilter{
+        flex-direction: column-reverse;
+        align-items: center;
+        margin: 15px  0 0 0;
+
+        .date{
+            width:50%;
+            margin-bottom: 30px;
+        }
+    }
+    .tablP {
+        width: 300%;
+        padding-right: 30px;
+      }
+    .scrTablP {
+        overflow: auto;
+      }
+}
