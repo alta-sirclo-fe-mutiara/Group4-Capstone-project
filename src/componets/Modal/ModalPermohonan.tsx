@@ -163,7 +163,7 @@ const ModalPermohonanEmployee = (props: Props) => {
 								<>
 									<div className="col-10 col-md-6 mb-2">
 										<h6 className="title">Status</h6>
-										<div className="col-8 p-2 status-detail-aset text-center">
+										<div className="col-5 p-2 status-detail-aset text-center">
 											{props.status}
 										</div>
 									</div>
@@ -256,7 +256,8 @@ const ModalPermohonanAset = (props: Props) => {
 							<div className="col-10 col-md-8">
 								<p className="title mb-1"> {props.category} </p>
 								<h5 className=""> {props.item} </h5>
-								{props.status === "menunggu persetujuan" ? (
+								{props.status === "Menunggu Persetujuan" ||
+								props.status === "Permohonan Baru" ? (
 									<p className="title mb-1"> {props.avail} item tersedia</p>
 								) : (
 									<></>
@@ -276,11 +277,11 @@ const ModalPermohonanAset = (props: Props) => {
 								<h6 className="title">Divisi</h6>
 								<p className="content">{props.divisi}</p>
 							</div>
-							{props.status === "menunggu persetujuan" ? (
+							{props.status === "Menunggu Persetujuan" ? (
 								<>
 									<div className="col-10 col-md-6 mb-2">
 										<h6 className="title">Waktu Pengembalian</h6>
-										<p className="content">-</p>
+										<p className="content">{props.date_return}</p>
 									</div>
 									<div className="col-10 col-md-6 mb-2">
 										<h6 className="title">Status</h6>
@@ -293,6 +294,92 @@ const ModalPermohonanAset = (props: Props) => {
 										<p className="content">-</p>
 									</div>
 								</>
+							) : props.status === "Permohonan Baru" ||
+							  props.status === "Minta Persetujuan" ? (
+								<>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Waktu Pengembalian</h6>
+										<p className="content">{props.date_return}</p>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Status</h6>
+										<div className="col-11 p-2 status-detail-aset text-center text-capitalize">
+											Menunggu Persetujuan
+										</div>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Sisa Waktu</h6>
+										<p className="content"></p>
+									</div>
+								</>
+							) : props.status === "Digunakan" ? (
+								<>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Waktu Pengembalian</h6>
+										<p className="content">-</p>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Status</h6>
+										<div className="col-6 p-2 status-detail-aset text-center text-capitalize">
+											Diterima
+										</div>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Sisa Waktu</h6>
+										<p className="content">-</p>
+									</div>
+								</>
+							) : props.status === "Ditolak" ? (
+								<>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Waktu Pengembalian</h6>
+										<p className="content">-</p>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Status</h6>
+										<div className="col-6 p-2 status-detail-aset text-center text-capitalize">
+											{props.status}
+										</div>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Sisa Waktu</h6>
+										<p className="content">-</p>
+									</div>
+								</>
+							) : props.status === "Dikembalikan" ? (
+								<>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Waktu Pengembalian</h6>
+										<p className="content">-</p>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Status</h6>
+										<div className="col-8 p-2 status-detail-aset text-center text-capitalize">
+											{props.status}
+										</div>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Sisa Waktu</h6>
+										<p className="content">-</p>
+									</div>
+								</>
+							) : props.status === "Minta Dikembalikan" ? (
+								<>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Waktu Pengembalian</h6>
+										<p className="content">-</p>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Status</h6>
+										<div className="col-11 p-2 status-detail-aset text-center text-capitalize">
+											Ajukan Pengembalian
+										</div>
+									</div>
+									<div className="col-10 col-md-6 mb-2">
+										<h6 className="title">Sisa Waktu</h6>
+										<p className="content">{props.time}</p>
+									</div>
+								</>
 							) : (
 								<></>
 							)}
@@ -303,19 +390,29 @@ const ModalPermohonanAset = (props: Props) => {
 								<p className="content">{props.request_description}</p>
 							</div>
 						</div>
-						<div className="row justify-content-end">
+						<div className="row mt-3 justify-content-center">
 							<div className="col-10 col-md-6">
 								<h6 className="title">Manager</h6>
 								<p className="content">{props.manager}</p>
 							</div>
 							<div className="col-10 col-md-6">
-								<h6 className="request curs">Minta Persetujuan</h6>
+								{props.status === "Permohonan Baru" ||
+								props.status === "menunggu persetujuan" ? (
+									<h6 className="request curs">Minta Persetujuan</h6>
+								) : props.status === "Ditolak" ? (
+									<h6 className="request">{props.status}</h6>
+								) : props.status === "Menunggu Persetujuan" ? (
+									<h6 className="request">{props.status}</h6>
+								) : (
+									<h6 className="request">Disetujui</h6>
+								)}
 							</div>
 						</div>
 					</div>
 				</Modal.Body>
 				<Modal.Footer className="border-0">
-					{props.status === "menunggu persetujuan" ? (
+					{props.status === "Permohonan Baru" ||
+					props.status === "Minta Persetujuan" ? (
 						<>
 							<p className="curs" onClick={handleClose}>
 								Tolak
@@ -324,7 +421,7 @@ const ModalPermohonanAset = (props: Props) => {
 								Terima Pengajuan
 							</Button>
 						</>
-					) : props.status === "disetujui" ? (
+					) : props.status === "Digunakan" ? (
 						<>
 							<p className="curs" onClick={handleClose}>
 								Kembali
@@ -333,7 +430,7 @@ const ModalPermohonanAset = (props: Props) => {
 								Ajukan Pengembalian
 							</Button>
 						</>
-					) : (
+					) : props.status === "Digunakan" ? (
 						<>
 							<p className="curs" onClick={handleClose}>
 								Kembali
@@ -341,6 +438,12 @@ const ModalPermohonanAset = (props: Props) => {
 							<Button className="btn-detail py-2 ms-3 border-0" onClick={handleClose}>
 								Ajukan Peminjaman Ulang
 							</Button>
+						</>
+					) : (
+						<>
+							<h6 className="curs px-2" onClick={handleClose}>
+								Kembali
+							</h6>
 						</>
 					)}
 				</Modal.Footer>

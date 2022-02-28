@@ -190,7 +190,7 @@ export default function ManagerBeranda() {
 													>
 														<HiDotsHorizontal />
 													</p>
-													{item.status === "Diterima" || item.status === "Ditolak" ? (
+													{item.status === "Disetujui" || item.status === "Ditolak" ? (
 														<div
 															className="tiptool border border-1 shadow rounded-3 shadow bg-white px-3 py-2"
 															style={

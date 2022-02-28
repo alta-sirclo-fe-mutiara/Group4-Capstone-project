@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ModalPermohonanAset } from "../componets/Modal/ModalPermohonan";
+import { HiDotsHorizontal } from "react-icons/hi";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/assign to employee.png";
 
@@ -16,7 +17,7 @@ export default function AdminBeranda() {
 			divisi: "Marketing",
 			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
 			manager: "Vladamir Kholer",
-			status: "menunggu persetujuan",
+			status: "Permohonan Baru",
 		},
 		{
 			date: "19:45 19 Maret 2022",
@@ -27,7 +28,7 @@ export default function AdminBeranda() {
 			avail: 7,
 			user: "Djiwanipa",
 			divisi: "Tech",
-			status: "Menunggu Persetujuan",
+			status: "Permohonan Baru",
 			request_description: "ya kan buat kerja jadi butuh laptop",
 			manager: "Elle Fallen",
 		},
@@ -39,7 +40,7 @@ export default function AdminBeranda() {
 			item: "Canon 145D",
 			avail: 7,
 			user: "Nusa Nusantara",
-			status: "Menunggu Persetujuan",
+			status: "Permohonan Baru",
 			divisi: "Tech",
 			request_description: "print file berkas task",
 		},
@@ -51,7 +52,7 @@ export default function AdminBeranda() {
 			item: "Canon 145D",
 			avail: 7,
 			user: "Mahendra Kusuma",
-			status: "Menunggu Persetujuan",
+			status: "Permohonan Baru",
 			divisi: "Tech",
 			request_description: "print file berkas task",
 		},
@@ -63,7 +64,7 @@ export default function AdminBeranda() {
 			item: "Canon 145D",
 			avail: 7,
 			user: "Mahendra Kusuma",
-			status: "Menunggu Persetujuan",
+			status: "Permohonan Baru",
 			divisi: "Tech",
 			request_description: "print file berkas task",
 		},
@@ -153,15 +154,15 @@ export default function AdminBeranda() {
 														}}
 														className="curs px-3"
 													>
-														...
+														<HiDotsHorizontal />
 													</p>
 													<div
-														className="tiptool tip2 shadow bg-white p-2 pb-0"
+														className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
 														style={
 															tip == pageNumber ? { display: "block" } : { display: "none" }
 														}
 													>
-														<p onClick={() => setTip(0)} className="curs">
+														<p onClick={() => setTip(0)} className="curs mb-0">
 															<ModalPermohonanAset
 																photo={item.photo}
 																category={item.category}
