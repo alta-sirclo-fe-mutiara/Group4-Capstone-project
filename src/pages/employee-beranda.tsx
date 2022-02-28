@@ -165,14 +165,6 @@ export default function EmployeeBeranda() {
 					<div className="scrPar mb-5">
 						{activity.map((item, index) => {
 							return (
-								// <ActivityCard
-								// 	key={index}
-								// 	desc={item.desc}
-								// 	name={item.name}
-								// 	status={item.status}
-								// 	image={require(`../assets/img/` + `${item.image}` + `.png`)}
-								// 	date={item.date}
-								// />
 								<div
 									className="shadow bg-white rounded text-left m-3 scrChi d-flex flex-column justify-content-between"
 									key={index}
@@ -262,14 +254,6 @@ export default function EmployeeBeranda() {
 															tip == pageNumber ? { display: "block" } : { display: "none" }
 														}
 													>
-														{/* <p
-															onClick={() => setTip(0)}
-															className="curs mb-0"
-															data-bs-toggle="modal"
-															data-bs-target="#exampleModal"
-														>
-															Lihat Detail
-														</p> */}
 														<ModalDetailPenggunaan
 															photo={item.photo}
 															category={item.category}
