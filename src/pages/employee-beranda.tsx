@@ -2,6 +2,7 @@ import { useState } from "react";
 import ActivityCard from "../componets/ActivityCard";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/request-aset.png";
+import RequestAssetModal from "../componets/RequestAssetModal";
 
 export default function EmployeeBeranda() {
   const [activity, setActivity] = useState([
@@ -76,6 +77,7 @@ export default function EmployeeBeranda() {
   const perPage = 3;
   let [recentPage, setRecentPage] = useState(1);
   const [tip, setTip] = useState(0);
+  const [isRequestAssetOpen, setIsRequestAssetOpen] = useState(false)
   const nextPage = () => {
     setRecentPage((recentPage += 1));
   };
@@ -223,7 +225,7 @@ export default function EmployeeBeranda() {
           </div>
         </div>
         <div className="col-md-3 primeCol">
-          <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
+          <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between" onClick={()=>setIsRequestAssetOpen(true)}>
             <p className="w-50 m-0 p-0 font-weight-bold">Peminjaman Aset</p>
             <img className="noSpace img" src={ImgModel1} />
           </div>
@@ -232,6 +234,10 @@ export default function EmployeeBeranda() {
             <img className="noSpace img" src={ImgModel2} />
           </div>
         </div>
+      </div>
+      {/*MODAL*/}
+      <div>
+        <RequestAssetModal show={isRequestAssetOpen} closeModal={()=>setIsRequestAssetOpen(false)}/>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ const AdminAssets = () => {
 		{
 			id: 1,
 			photo: "image 4",
-			category: "Laptop",
+			category: "1",
 			avail: 5,
 			name: "Apple Macbook Air 13 2020 - Gold",
 			description: "Apple M1-8GB-SSD 512GB-MacOS",
@@ -32,7 +32,7 @@ const AdminAssets = () => {
 		{
 			id: 2,
 			photo: "image 5",
-			category: "Monitor",
+			category: "2",
 			avail: 7,
 			name: "Monitor LG LED 22",
 			description: "22MK600M",
@@ -40,7 +40,7 @@ const AdminAssets = () => {
 		{
 			id: 3,
 			photo: "image 6",
-			category: "Printer",
+			category: "7",
 			avail: 9,
 			name: "Printer Epson L3210 ink Tank",
 			description: "(Print, Scan, Copy) Fast Printing",
@@ -48,7 +48,7 @@ const AdminAssets = () => {
 		{
 			id: 4,
 			photo: "image 6",
-			category: "Printer",
+			category: "7",
 			avail: 9,
 			name: "Printer Epson L3210 ink Tank",
 			description: "(Print, Scan, Copy) Fast Printing",

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/assign to employee.png";
+import AddAssetModal from "../componets/AddAssetModal";
+import AssignAssetModal from "../componets/AssignAssetModal";
 
 export default function AdminBeranda() {
   const [data, setData] = useState([
@@ -38,7 +40,8 @@ export default function AdminBeranda() {
   const perPage = 3;
   let [recentPage, setRecentPage] = useState(1);
   const [tip, setTip] = useState(0);
-
+  const [isAddAssetOpen, setIsAddAssetOpen] = useState(false)
+  const [isAssignAssetOpen, setIsAssignAssetOpen] = useState(false)
   const nextPage = () => {
     setRecentPage((recentPage += 1));
   };
@@ -172,17 +175,22 @@ export default function AdminBeranda() {
           </div>
         </div>
         <div className="col-md-3 primeCol">
-          <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
+          <div className="curs shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between" onClick={()=>setIsAddAssetOpen(true)}>
             <p className="w-50 m-0 p-0 font-weight-bold">Tambah Aset Baru</p>
             <img className="noSpace img" src={ImgModel1} />
           </div>
-          <div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
+          <div className="curs shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between" onClick={()=>setIsAssignAssetOpen(true)}>
             <p className="w-50 m-0 p-0 font-weight-bold">
               Assign Aset Ke Karyawan
             </p>
             <img className="noSpace img" src={ImgModel2} />
           </div>
         </div>
+      </div>
+      {/*MODAL*/}
+      <div>
+        <AddAssetModal show={isAddAssetOpen} closeModal={()=>setIsAddAssetOpen(false)}/>
+        <AssignAssetModal show={isAssignAssetOpen} closeModal={()=>setIsAssignAssetOpen(false)}/>
       </div>
     </div>
   );

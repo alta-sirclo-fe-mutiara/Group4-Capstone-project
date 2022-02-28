@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import AddAssetModal from "./AddAssetModal"
 
 type Props = {
 	photo: string;
@@ -42,6 +44,7 @@ const CardAsset = (props: Props) => {
 };
 
 const CardAssetAdmin = (props: Props) => {
+	const [isDetailOpen, setIsDetailOpen] = useState(false)
 	return (
 		<div className="card card-asset admin mb-3">
 			<div className="card-body">
@@ -73,9 +76,13 @@ const CardAssetAdmin = (props: Props) => {
 					</div>
 				</div>
 				<div className="row pinjam justify-content-center mt-2">
-					<button className="btn col-10 col-xl-11 btn-aset">Lihat Detail</button>
+					<button className="btn col-10 col-xl-11 btn-aset" onClick={()=>setIsDetailOpen(true)}>Lihat Detail</button>
 				</div>
 			</div>
+			{/*MODAL*/}
+			<AddAssetModal show={isDetailOpen} closeModal={()=>setIsDetailOpen(false)} 
+			name={props.name} description={props.description} id_category={props.category} initial_quantity={props.avail.toString()} is_maintenance={false}/>
+							
 		</div>
 	);
 };
