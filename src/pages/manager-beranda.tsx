@@ -4,6 +4,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { ModalPermohonanManager } from "../componets/Modal/ModalPermohonan";
+import Statistik from "../componets/statistik";
 
 export default function ManagerBeranda() {
 	const [data, setData] = useState([
@@ -118,32 +119,7 @@ export default function ManagerBeranda() {
 					</h1>
 				</div>
 				<div className="col-md-4 stats">
-					<div className="row h-100 justify-content-around">
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
-								<p className="p-0 m-0">Total Aset</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
-								<p className="p-0 m-0">Pemeliharaan</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
-								<p className="p-0 m-0">Digunakan</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
-								<p className="p-0 m-0">Tersedia</p>
-								<p className="p-0 m-0 stat">30</p>
-							</div>
-						</div>
-					</div>
+					<Statistik />
 				</div>
 			</div>
 			<div className="row mt-5">

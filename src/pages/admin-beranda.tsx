@@ -1,78 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalPermohonanAset } from "../componets/Modal/ModalPermohonan";
 import { HiDotsHorizontal } from "react-icons/hi";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/assign to employee.png";
 import AddAssetModal from "../componets/AddAssetModal";
 import AssignAssetModal from "../componets/AssignAssetModal";
+import Statistik from "../componets/statistik";
+import axios from "axios";
 
 export default function AdminBeranda() {
   const [isAddAssetOpen, setIsAddAssetOpen] = useState(false)
   const [isAssignAssetOpen, setIsAssignAssetOpen] = useState(false)
-	const [data, setData] = useState([
-		{
-			date: "19:45 17 Agustus 2022",
-			activity: "Peminjaman Barang",
-			item: "Monitor LG LED 22",
-			category: "Monitor",
-			photo: "image 5",
-			avail: 3,
-			user: "Zuki Suzuki",
-			divisi: "Marketing",
-			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
-			manager: "Vladamir Kholer",
-			status: "Permohonan Baru",
-		},
-		{
-			date: "19:45 19 Maret 2022",
-			activity: "Peminjaman Barang",
-			item: "Apple Macbook Air",
-			category: "Laptop",
-			photo: "image 4",
-			avail: 7,
-			user: "Djiwanipa",
-			divisi: "Tech",
-			status: "Permohonan Baru",
-			request_description: "ya kan buat kerja jadi butuh laptop",
-			manager: "Elle Fallen",
-		},
-		{
-			date: "19:45 17 Februari 2022",
-			activity: "Peminjaman Barang",
-			photo: "image 5",
-			category: "Printer",
-			item: "Canon 145D",
-			avail: 7,
-			user: "Nusa Nusantara",
-			status: "Permohonan Baru",
-			divisi: "Tech",
-			request_description: "print file berkas task",
-		},
-		{
-			date: "19:45 17 Februari 2022",
-			activity: "Peminjaman Barang",
-			photo: "image 5",
-			category: "Printer",
-			item: "Canon 145D",
-			avail: 7,
-			user: "Mahendra Kusuma",
-			status: "Permohonan Baru",
-			divisi: "Tech",
-			request_description: "print file berkas task",
-		},
-		{
-			date: "19:45 17 Februari 2022",
-			activity: "Peminjaman Barang",
-			photo: "image 5",
-			category: "Printer",
-			item: "Canon 145D",
-			avail: 7,
-			user: "Mahendra Kusuma",
-			status: "Permohonan Baru",
-			divisi: "Tech",
-			request_description: "print file berkas task",
-		},
-	]);
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		fetchData()
+	  }, []);
+
+	  const fetchData = () => {
+		let config = {
+			headers:
+			{"Authorization":`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImxhbGFAbWFpbC5jb20iLCJleHAiOjE2NDYxODM2OTcsImlkIjo0LCJpZF9yb2xlIjoxfQ.YHBW23R2ckF6yJ2ycYTwdobxFN7LJ5iWVUW2C5KRoYY`}
+		}
+		axios
+		  .get(`/requests?status=new`, config)
+		  .then((res) => {
+			setData(res.data.data.data)
+			console.log(data);
+		  })
+		  .catch((err) => {
+			console.log(err);
+		  });
+	  };
+
 	const perPage = 3;
 	let [recentPage, setRecentPage] = useState(1);
 	const [tip, setTip] = useState(0);
@@ -83,7 +43,7 @@ export default function AdminBeranda() {
 	const prevPage = () => {
 		setRecentPage((recentPage -= 1));
 	};
-  console.log(isAssignAssetOpen, isAddAssetOpen)
+
 	return (
 		<div className="container">
 			<div className="row mt-3 primeCol">
@@ -93,32 +53,7 @@ export default function AdminBeranda() {
 					</h1>
 				</div>
 				<div className="col-md-4 stats">
-					<div className="row h-100 justify-content-around">
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
-								<p className="p-0 m-0">Total Aset</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
-								<p className="p-0 m-0">Pemeliharaan</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
-								<p className="p-0 m-0">Digunakan</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
-								<p className="p-0 m-0">Tersedia</p>
-								<p className="p-0 m-0 stat">30</p>
-							</div>
-						</div>
-					</div>
+					<Statistik />
 				</div>
 			</div>
 			<div className="row mt-5">
@@ -144,10 +79,10 @@ export default function AdminBeranda() {
 										return (
 											<tr className="trow" key={index}>
 												<th className="text-center">{pageNumber}</th>
-												<th>{item.date}</th>
-												<th>{item.activity}</th>
+												<th>{item.request_date}</th>
+												<th>Peminjaman Barang</th>
 												<th>{item.category}</th>
-												<th>{item.item}</th>
+												<th>{item.asset_name}</th>
 												<th className="position-relative">
 													<p
 														onClick={() => {
@@ -171,13 +106,13 @@ export default function AdminBeranda() {
 															<ModalPermohonanAset
 																photo={item.photo}
 																category={item.category}
-																item={item.item}
-																avail={item.avail}
-																user={item.user}
-																date={item.date}
+																item={item.asset_name}
+																avail={item.avail_quantity}
+																user={item.id_user}
+																date={item.request_date}
 																status={item.status}
 																divisi={item.divisi}
-																request_description={item.request_description}
+																request_description={item.description}
 																manager={item.manager}
 															/>
 														</p>

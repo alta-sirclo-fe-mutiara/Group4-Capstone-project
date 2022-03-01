@@ -8,18 +8,20 @@ interface Props {
 }
 //Mapping Category
 export default function RequestAssetModal(props: Props) {
-  const [category, setCategory] = useState<string>("");
+  const [category, setCategory] = useState<string>("laptop");
   const [asset, setAsset] = useState<string>("1");
   const [assetData, setAssetData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
   const [description, setDescription] = useState("")
-
+  
   useEffect(() => {
     fetchData();
+    fetchCategoryData();
   }, []);
 
   const fetchData = () => {
     axios
-      .get(`https://dipssyman.space/assets`)
+      .get(`/assets`)
       .then((res) => {
         setAssetData(res.data.data.data);
         console.log(assetData);
@@ -28,6 +30,18 @@ export default function RequestAssetModal(props: Props) {
         console.log(err);
       });
   };
+  const fetchCategoryData = () => {
+    axios
+      .get(`/assets/categories`)
+      .then((res) => {
+        setCategoryData(res.data.data)
+        console.log(categoryData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  console.log(category, asset)
   return (
     <Modal show={props.show}>
       <Modal.Header>
@@ -40,11 +54,15 @@ export default function RequestAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          onChange={(e) => setAsset(e.target.value)}
+          onChange={(e) => setCategory(e.target.value)}
         >
-              <option value="1">
-                Laptop
+              {categoryData?.map((item: any) => {
+            return (
+              <option value={item.description}>
+                {item.description}
               </option>
+            );
+          })}
             );
         </select>
         <p>Nama Aset</p>
@@ -55,11 +73,12 @@ export default function RequestAssetModal(props: Props) {
           onChange={(e) => setAsset(e.target.value)}
         >
           {assetData?.map((item: any) => {
+            if(item.category===category){
             return (
               <option value={item.id}>
                 {item.name}-{item.category}
               </option>
-            );
+            )}
           })}
         </select>
         <p>Deskripsi Aset</p>

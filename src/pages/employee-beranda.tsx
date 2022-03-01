@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalDetailPenggunaan from "../componets/Modal/ModalDetailPenggunaan";
 import { ModalPermohonanEmployee } from "../componets/Modal/ModalPermohonan";
 import { HiDotsHorizontal } from "react-icons/hi";
@@ -6,117 +6,58 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/request-aset.png";
 import RequestAssetModal from "../componets/RequestAssetModal";
+import axios from "axios"
+import Statistik from "../componets/statistik";
 
 export default function EmployeeBeranda() {
 	const [isRequestOpen, setIsRequestOpen] = useState(false)
-	const [activity, setActivity] = useState([
-		{
-			image: "dummy",
-			date: "20:00 20 Februari 2022",
-			name: "ASUS",
-			avail: 7,
-			category: "Laptop",
-			desc: "this is ASUS",
-			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
-			status: "menunggu persetujuan",
-		},
-		{
-			image: "dummy",
-			date: "20:00 20 Februari 2022",
-			name: "ASUS",
-			avail: 7,
-			category: "Laptop",
-			desc: "this is ASUS",
-			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
-			status: "disetujui",
-		},
-		{
-			image: "dummy",
-			date: "20:00 20 Februari 2022",
-			name: "ASUS",
-			avail: 7,
-			category: "Laptop",
-			desc: "this is ASUS",
-			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
-			status: "disetujui",
-		},
-		{
-			image: "dummy",
-			date: "20:00 20 Februari 2022",
-			name: "ASUS",
-			avail: 7,
-			category: "Laptop",
-			desc: "this is ASUS",
-			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
-			status: "tolak",
-		},
-		{
-			image: "dummy",
-			date: "20:00 20 Februari 2022",
-			name: "ASUS",
-			avail: 7,
-			category: "Laptop",
-			desc: "this is ASUS",
-			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
-			status: "menunggu persetujuan",
-		},
-	]);
-	const [data, setData] = useState([
-		{
-			date: "19:45 17 Agustus 2022",
-			date_return: "9:45 27 Agustus 2022",
-			photo: "image 6",
-			activity: "Peminjaman Barang",
-			category: "Printer",
-			item: "Canon 145D",
-			request_description: "buat print berkas-berkas",
-			status: "berhasil dikembalikan",
-		},
-		{
-			date: "19:45 17 Februari 2022",
-			date_return: "9:45 27 September 2022",
-			photo: "image 4",
-			activity: "Peminjaman Barang",
-			category: "Laptop",
-			item: "Apple Macbook Air",
-			request_description: "laptop sebelumnya lemot",
-			status: "berhasil dikembalikan",
-		},
-		{
-			date: "19:45 17 Agustus 2022",
-			date_return: "9:45 27 Agustus 2022",
-			photo: "image 5",
-			activity: "Peminjaman Barang",
-			category: "Monitor",
-			item: "Monitor LG LED 22",
-			request_description: "perlu monitor tambahan biar ngodingnya lebih jos",
-			status: "berhasil dikembalikan",
-		},
-		{
-			date: "19:45 17 Agustus 2022",
-			date_return: "9:45 27 Agustus 2022",
-			photo: "image 6",
-			activity: "Peminjaman Barang",
-			category: "Printer",
-			item: "Canon 145D",
-			request_description: "buat print berkas-berkas",
-			status: "berhasil dikembalikan",
-		},
-		{
-			date: "19:45 17 Agustus 2022",
-			date_return: "9:45 27 Agustus 2022",
-			photo: "image 6",
-			activity: "Peminjaman Barang",
-			category: "Printer",
-			item: "Canon 145D",
-			request_description: "buat print berkas-berkas",
-			status: "berhasil dikembalikan",
-		},
-	]);
+	const [activity, setActivity] = useState([]);
+	const [historyData, setHistoryData] = useState([]);
+	
+	useEffect(() => {
+		fetchActivityData();
+	  }, []);
+
+	  useEffect(() => {
+		fetchHistoryData()
+	  }, []);
+
+	  const fetchActivityData = () => {
+		let config = {
+			headers:
+			{"Authorization":`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6Im5hcnV0b0BtYWlsLmNvbSIsImV4cCI6MTY0NjEzOTc2MywiaWQiOjUsImlkX3JvbGUiOjJ9.nvvQdWdZJ_dV54G4g96sqnX2NnVJQNFXzYYNXD9cng4`}
+		}
+		axios
+		  .get(`/employee/activity`, config)
+		  .then((res) => {
+			setActivity(res.data.data.data)
+			console.log(activity);
+		  })
+		  .catch((err) => {
+			console.log(err);
+		  });
+	  };
+
+	  const fetchHistoryData = () => {
+		let config = {
+			headers:
+			{"Authorization":`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6Im5hcnV0b0BtYWlsLmNvbSIsImV4cCI6MTY0NjEzOTc2MywiaWQiOjUsImlkX3JvbGUiOjJ9.nvvQdWdZJ_dV54G4g96sqnX2NnVJQNFXzYYNXD9cng4`}
+		}
+		axios
+		  .get(`/employee/history`, config)
+		  .then((res) => {
+			setHistoryData([])
+			console.log(historyData);
+		  })
+		  .catch((err) => {
+			console.log(err);
+		  });
+	  };
 
 	const perPage = 3;
 	let [recentPage, setRecentPage] = useState(1);
 	const [tip, setTip] = useState(0);
+	const [activTip, setActivTip] = useState(0);
 	const nextPage = () => {
 		setRecentPage((recentPage += 1));
 	};
@@ -133,60 +74,50 @@ export default function EmployeeBeranda() {
 					</h1>
 				</div>
 				<div className="col-md-4 stats">
-					<div className="row h-100 justify-content-between">
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
-								<p className="p-0 m-0">Total Aset</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mt-2 mb-1">
-								<p className="p-0 m-0">Pemeliharaan</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
-								<p className="p-0 m-0">Digunakan</p>
-								<p className="p-0 m-0 stat">100</p>
-							</div>
-						</div>
-						<div className="col-6">
-							<div className="shadow bg-white boRad text-left p-4 mb-2 mt-1">
-								<p className="p-0 m-0">Tersedia</p>
-								<p className="p-0 m-0 stat">30</p>
-							</div>
-						</div>
-					</div>
+					<Statistik />
 				</div>
 			</div>
 			<div className="row mt-5">
 				<div className="col-md-9">
 					<h2 className="text-left primeCol">Aktivitasmu</h2>
 					<div className="scrPar mb-5">
-						{activity.map((item, index) => {
+						{activity?.map((item: any, index) => {
+							let pageNumber = perPage * (recentPage - 1) + (index + 1)
 							return (
 								<div
 									className="shadow bg-white rounded text-left m-3 scrChi d-flex flex-column justify-content-between"
 									key={index}
 								>
 									<div className="row p-3">
-										<img
-											src={require(`../assets/img/` + `${item.image}` + `.png`)}
+									<img
+											src={item.photo}
 											className="col-5"
 										/>
 										<div className="col-7">
-											<p className="actDate noSpace">{item.date}</p>
-											<p className="font-weight-bold noSpace">{item.name}</p>
-											<p className="noSpace">{item.desc}</p>
+											<p className="actDate noSpace">{item.request_date}</p>
+											<p className="font-weight-bold noSpace">{item.asset_name}</p>
+											<p className="noSpace">{item.description}</p>
 										</div>
 									</div>
 									<div className="d-flex justify-content-between px-3 pt-2 noSpace bGray position-relative">
 										<p className="text-capitalize">{item.status}</p>
-										<p className="curs px-3">
+										<p 
+										onClick={() => {
+											if (tip != pageNumber) {
+												setActivTip(pageNumber);
+											} else {
+												setActivTip(0);
+											}
+										}}
+										className="curs px-3">
 											<HiDotsHorizontal />
 										</p>
+										<div
+														className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
+														style={
+															activTip == pageNumber ? { display: "block" } : { display: "none" }
+														}
+													>
 										<div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2 d-block">
 											{item.status === "disetujui" ? (
 												<p className="curs mb-0 ajukan">Ajukan Pengembalian</p>
@@ -196,14 +127,15 @@ export default function EmployeeBeranda() {
 												<></>
 											)}
 											<ModalPermohonanEmployee
-												photo={item.image}
+												photo={item.photo}
 												category={item.category}
-												item={item.name}
-												avail={item.avail}
-												date={item.date}
+												item={item.asset_name}
+												avail={item.avail_quantity}
+												date={item.request_date}
 												status={item.status}
-												request_description={item.request_description}
+												request_description={item.description}
 											/>
+										</div>
 										</div>
 									</div>
 								</div>
@@ -224,19 +156,17 @@ export default function EmployeeBeranda() {
 								</tr>
 							</thead>
 							<tbody>
-								{data
-									?.slice((recentPage - 1) * perPage, perPage * recentPage)
-									.map((item: any, index) => {
+								{historyData?.map((item: any, index) => {
 										let pageNumber = perPage * (recentPage - 1) + (index + 1);
 										return (
 											<tr className="trow" key={index}>
 												<th className="text-center">
 													{perPage * (recentPage - 1) + (index + 1)}
 												</th>
-												<th>{item.date}</th>
-												<th>{item.activity}</th>
+												<th>{item.request_date}</th>
+												<th>Peminjaman Barang</th>
 												<th>{item.category}</th>
-												<th>{item.item}</th>
+												<th>{item.asset_name}</th>
 												<th className="position-relative">
 													<p
 														onClick={() => {
@@ -260,10 +190,10 @@ export default function EmployeeBeranda() {
 															photo={item.photo}
 															category={item.category}
 															status={item.status}
-															item={item.item}
-															date={item.date}
-															date_return={item.date_return}
-															request_description={item.request_description}
+															item={item.asset_name}
+															date={item.request_date}
+															date_return={item.return_date}
+															request_description={item.description}
 														/>
 													</div>
 												</th>
@@ -277,9 +207,9 @@ export default function EmployeeBeranda() {
 						<p onClick={() => prevPage()} className="mx-3 curs">
 							<i className="bi bi-chevron-left"></i>
 						</p>
-						{data.map((item, index) => {
-							const pageMod = data.indexOf(item) % perPage;
-							const pageDiv = data.indexOf(item) / perPage + 1;
+						{historyData.map((item, index) => {
+							const pageMod = historyData.indexOf(item) % perPage;
+							const pageDiv = historyData.indexOf(item) / perPage + 1;
 							return (
 								<div key={index}>
 									<p
@@ -301,7 +231,7 @@ export default function EmployeeBeranda() {
 					</div>
 				</div>
 				<div className="col-md-3 primeCol">
-					<div className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between" onClick={()=>setIsRequestOpen(true)}>
+					<div className=" curs shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between" onClick={()=>setIsRequestOpen(true)}>
 						<p className="w-50 m-0 p-0 font-weight-bold">Peminjaman Aset</p>
 						<img className="noSpace img" src={ImgModel1} />
 					</div>

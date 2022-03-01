@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 type Props = {
-	photo: String;
+	photo?: string;
 	category: String;
 	item?: String;
 	avail?: number;
@@ -34,7 +34,7 @@ const ModalPermohonanManager = (props: Props) => {
 						<div className="row d-flex justify-content-center">
 							<div className="col-10 col-md-6">
 								<img
-									src={require(`../../assets/img/` + `${props.photo}` + `.png`)}
+									src={props.photo}
 									alt=""
 									className="rounded-3 img-detail-aset"
 								/>
@@ -141,9 +141,9 @@ const ModalPermohonanEmployee = (props: Props) => {
 				<Modal.Body>
 					<div className="container">
 						<div className="row d-flex justify-content-center">
-							<div className="col-10 col-md-6">
+						<div className="col-10 col-md-6">
 								<img
-									src={require(`../../assets/img/` + `${props.photo}` + `.png`)}
+									src={props.photo}
 									alt=""
 									className="rounded-3 img-detail-aset"
 								/>
@@ -248,7 +248,7 @@ const ModalPermohonanAset = (props: Props) => {
 						<div className="row d-flex justify-content-center">
 							<div className="col-10 col-md-4">
 								<img
-									src={require(`../../assets/img/` + `${props.photo}` + `.png`)}
+									src={props.photo}
 									alt=""
 									className="rounded-3 img-detail-aset"
 								/>

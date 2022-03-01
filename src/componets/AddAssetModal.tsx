@@ -27,7 +27,7 @@ export default function AddAssetModal(props: Props) {
   const [initial_quantity, setQuantity] = useState<string>(initialQuantity);
   const [photo, setPhoto] = useState<any>(initialPhoto);
   const [previewPhoto, setPreviewPhoto] = useState<any>();
-  const [is_maintenance, setIsMaintenance] = useState<boolean>(false);
+  const [is_maintenance, setIsMaintenance] = useState<boolean>(initialMaintenanceStatus);
 
   const addAssetHandle = () => {
     let formData = new FormData();
@@ -38,9 +38,10 @@ export default function AddAssetModal(props: Props) {
     formData.append("initial_quantity", initial_quantity);
     formData.append("is_maintenance", is_maintenance.toString());
     axios
-      .post(`http://54.169.184.219:8080/users`, formData, {
+      .post(`/assets/add`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImxhbGFAbWFpbC5jb20iLCJleHAiOjE2NDYxODM2OTcsImlkIjo0LCJpZF9yb2xlIjoxfQ.YHBW23R2ckF6yJ2ycYTwdobxFN7LJ5iWVUW2C5KRoYY"
         },
       })
       .then((res) => {
@@ -49,7 +50,7 @@ export default function AddAssetModal(props: Props) {
       })
       .catch((err) => {
         console.log(err.message);
-      });
+      })
   };
 
   return (
