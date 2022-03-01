@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ModalDetailPenggunaan from "../componets/Modal/ModalDetailPenggunaan";
-import { ModalPermohonanEmployee } from "../componets/Modal/ModalPermohonan";
+import ModalDetailPenggunaan from "../components/Modal/ModalDetailPenggunaan";
+import { ModalPermohonanEmployee } from "../components/Modal/ModalPermohonan";
 import { HiDotsHorizontal } from "react-icons/hi";
 // import ActivityCard from "../componets/ActivityCard";
 import ImgModel1 from "../assets/img/peminjaman.png";

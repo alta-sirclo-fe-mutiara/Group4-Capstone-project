@@ -8,7 +8,7 @@
 }
 
 .asset-content {
-	height: 15vh;
+	height: 13vh;
 }
 
 img.img-asset {
@@ -28,41 +28,42 @@ img.img-asset {
 
 @media (max-width: 325px) {
 	.card-asset.card {
-		height: 75vh !important;
+		height: 65vh !important;
 	}
 }
 
 @media (min-width: 325px) and (max-width: 768px) {
-	.card-asset.card.admin {
-		height: 75vh !important;
+	.card.card-asset-admin {
+		height: 78vh !important;
 	}
 }
 
 @media (min-width: 375px) and (max-width: 768px) {
 	.card-asset.card {
-		height: 77vh !important;
+		height: 70vh !important;
 	}
+
 	img.img-asset {
 		height: 25vh !important;
 	}
 }
 
-@media (min-width: 768px) and (max-width: 1199.98px) {
+@media (min-width: 769px) and (max-width: 1199.98px) {
 	.card-asset.card {
-		height: 70vh !important;
+		height: 73vh !important;
 	}
 
-	.card-asset.card.admin {
+	.card.card-asset-admin {
 		height: 75vh !important;
 	}
 }
 
-@media (min-width: 1199.98px) {
+@media (min-width: 1120px) {
 	.card-asset.card {
-		height: 67vh !important;
+		height: 60vh !important;
 	}
 
-	.card-asset.card.admin {
-		height: 70vh !important;
+	.card.card-asset-admin {
+		height: 67vh !important;
 	}
 }

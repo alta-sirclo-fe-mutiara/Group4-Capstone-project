@@ -1,6 +1,15 @@
-import { useState } from "react";
-import { CardAssetAdmin } from "../componets/CardAsset";
-// import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { CardAssetAdmin } from "../components/CardAsset";
+import ImgDummy from "../assets/img/dummy-asset.png";
+
+type item = {
+	photo: string;
+	category: string;
+	name: string;
+	avail_quantity: number;
+	description: string;
+};
 
 const AdminAssets = () => {
 	const [category, setCategory] = useState([
@@ -20,40 +29,28 @@ const AdminAssets = () => {
 		{ id: 3, name: "pemeliharaan" },
 	]);
 
-	const [asset, setAsset] = useState([
-		{
-			id: 1,
-			photo: "image 4",
-			category: "Laptop",
-			avail: 5,
-			name: "Apple Macbook Air 13 2020 - Gold",
-			description: "Apple M1-8GB-SSD 512GB-MacOS",
-		},
-		{
-			id: 2,
-			photo: "image 5",
-			category: "Monitor",
-			avail: 7,
-			name: "Monitor LG LED 22",
-			description: "22MK600M",
-		},
-		{
-			id: 3,
-			photo: "image 6",
-			category: "Printer",
-			avail: 9,
-			name: "Printer Epson L3210 ink Tank",
-			description: "(Print, Scan, Copy) Fast Printing",
-		},
-		{
-			id: 4,
-			photo: "image 6",
-			category: "Printer",
-			avail: 9,
-			name: "Printer Epson L3210 ink Tank",
-			description: "(Print, Scan, Copy) Fast Printing",
-		},
-	]);
+	const [asset, setAsset] = useState([]);
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const fetchData = async () => {
+		setIsLoading(true);
+		await axios
+			.get("/assets?maintenance=no")
+			.then((res) => {
+				const { data } = res;
+				console.log(data.data);
+				setAsset(data.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.finally(() => setIsLoading(false));
+	};
 
 	return (
 		<div className="container">
@@ -108,14 +105,14 @@ const AdminAssets = () => {
 				</div>
 			</div>
 			<div className="row d-flex justify-content-center my-4">
-				{asset.map((item, index) => {
+				{asset.map((item: item, index) => {
 					return (
 						<div className="col-10 col-md-6 col-lg-3" key={index}>
 							<CardAssetAdmin
-								photo={item.photo}
-								category={item.category}
-								avail={item.avail}
 								name={item.name}
+								photo={item.photo !== "" ? item.photo : `${ImgDummy}`}
+								category={item.category}
+								avail={item.avail_quantity}
 								description={item.description}
 							/>
 						</div>
