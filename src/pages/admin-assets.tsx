@@ -14,7 +14,7 @@ type item = {
 };
 
 const AdminAssets = () => {
-	const [category, setCategory] = useState([
+	const category = [
 		{ id: 1, name: "laptop" },
 		{ id: 2, name: "monitor" },
 		{ id: 3, name: "printer" },
@@ -23,7 +23,7 @@ const AdminAssets = () => {
 		{ id: 6, name: "headset" },
 		{ id: 7, name: "keybord" },
 		{ id: 8, name: "mouse" },
-	]);
+	];
 
 	const available = [
 		{ id: 1, name: "tersedia", value: "yes" },
@@ -31,7 +31,6 @@ const AdminAssets = () => {
 	];
 
 	const [asset, setAsset] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
 	const [user, setUser] = useState([]);
 	const [getCategory, setGetCategory] = useState<number>(0);
 	const [getAvailable, setGetAvailable] = useState<string>("yes");
@@ -42,7 +41,6 @@ const AdminAssets = () => {
 	}, []);
 
 	const fetchData = async () => {
-		setIsLoading(true);
 		await axios
 			.get("/assets?maintenance=no&limit=4&offset=0")
 			.then((res) => {
@@ -51,12 +49,10 @@ const AdminAssets = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-			})
-			.finally(() => setIsLoading(false));
+			});
 	};
 
 	const listUsage = (id: number) => {
-		setIsLoading(true);
 		axios
 			.get(`https://dipssyman.space/assets/usage/${id}`)
 			.then((res) => {
@@ -69,12 +65,10 @@ const AdminAssets = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-			})
-			.finally(() => setIsLoading(false));
+			});
 	};
 
 	const filterCategory = async (id: number) => {
-		setIsLoading(true);
 		setGetCategory(id);
 		await axios
 			.get(`/assets?category=${id}&avail=${getAvailable}`)
@@ -84,12 +78,10 @@ const AdminAssets = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-			})
-			.finally(() => setIsLoading(false));
+			});
 	};
 
 	const filterAvailable = async (value: string) => {
-		setIsLoading(true);
 		setGetAvailable(value);
 		await axios
 			.get(`/assets?category=${getCategory}&avail=${value}`)
@@ -100,8 +92,7 @@ const AdminAssets = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-			})
-			.finally(() => setIsLoading(false));
+			});
 	};
 
 	// const perPage = 4;
@@ -157,7 +148,7 @@ const AdminAssets = () => {
 				</div>
 			</div>
 			<div className="row d-flex justify-content-center my-4">
-				{asset && !isLoading ? (
+				{asset ? (
 					asset.map((item: item, index) => {
 						return (
 							<div className="col-10 col-md-6 col-lg-3" key={index}>
@@ -172,8 +163,6 @@ const AdminAssets = () => {
 							</div>
 						);
 					})
-				) : isLoading ? (
-					<div>Loading...</div>
 				) : (
 					<div className="text-center">Asset Tidak Tersedia...</div>
 				)}

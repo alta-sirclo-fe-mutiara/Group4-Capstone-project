@@ -14,8 +14,7 @@ type item = {
 
 const EmployeeAssets = () => {
 	const [asset, setAsset] = useState<any>([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [category] = useState([
+	const category = [
 		{ id: 1, name: "laptop" },
 		{ id: 2, name: "monitor" },
 		{ id: 3, name: "printer" },
@@ -24,14 +23,13 @@ const EmployeeAssets = () => {
 		{ id: 6, name: "headset" },
 		{ id: 7, name: "keybord" },
 		{ id: 8, name: "mouse" },
-	]);
+	];
 
 	useEffect(() => {
 		fetchData();
 	}, []);
 
 	const fetchData = async () => {
-		setIsLoading(true);
 		await axios
 			.get("/assets?&avail=yes")
 			.then((res) => {
@@ -41,12 +39,10 @@ const EmployeeAssets = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-			})
-			.finally(() => setIsLoading(false));
+			});
 	};
 
 	const filterCategory = async (id: number) => {
-		setIsLoading(true);
 		await axios
 			.get(`/assets?category=${id}&avail=yes`)
 			.then((res) => {
@@ -55,8 +51,7 @@ const EmployeeAssets = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-			})
-			.finally(() => setIsLoading(false));
+			});
 	};
 
 	return (
@@ -88,21 +83,17 @@ const EmployeeAssets = () => {
 			</div>
 			<div className="row d-flex justify-content-center my-4">
 				{asset ? (
-					!isLoading ? (
-						asset.map((item: item, index: number) => (
-							<div className="col-10 col-md-6 col-lg-3" key={index}>
-								<CardAsset
-									name={item.name}
-									photo={item.photo !== "" ? item.photo : `${ImgDummy}`}
-									category={item.category}
-									avail={item.avail_quantity}
-									description={item.description}
-								/>
-							</div>
-						))
-					) : (
-						<div>Loading...</div>
-					)
+					asset.map((item: item, index: number) => (
+						<div className="col-10 col-md-6 col-lg-3" key={index}>
+							<CardAsset
+								name={item.name}
+								photo={item.photo !== "" ? item.photo : `${ImgDummy}`}
+								category={item.category}
+								avail={item.avail_quantity}
+								description={item.description}
+							/>
+						</div>
+					))
 				) : (
 					<> Asset Tidak Tersedia </>
 				)}
