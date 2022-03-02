@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Form } from "react-bootstrap";
 import { CardAsset } from "../components/CardAsset";
 import ImgDummy from "../assets/img/dummy-asset.png";
 
@@ -12,7 +13,9 @@ type item = {
 };
 
 const EmployeeAssets = () => {
-	const [category, setCategory] = useState([
+	const [asset, setAsset] = useState<any>([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const [category] = useState([
 		{ id: 1, name: "laptop" },
 		{ id: 2, name: "monitor" },
 		{ id: 3, name: "printer" },
@@ -23,10 +26,6 @@ const EmployeeAssets = () => {
 		{ id: 8, name: "mouse" },
 	]);
 
-	const [asset, setAsset] = useState<any>([]);
-
-	const [isLoading, setIsLoading] = useState(false);
-
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -34,10 +33,24 @@ const EmployeeAssets = () => {
 	const fetchData = async () => {
 		setIsLoading(true);
 		await axios
-			.get("/assets?maintenance=no")
+			.get("/assets?&avail=yes")
 			.then((res) => {
 				const { data } = res;
-				console.log(data.data);
+				console.log(data);
+				setAsset(data.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.finally(() => setIsLoading(false));
+	};
+
+	const filterCategory = async (id: number) => {
+		setIsLoading(true);
+		await axios
+			.get(`/assets?category=${id}&avail=yes`)
+			.then((res) => {
+				const { data } = res;
 				setAsset(data.data.data);
 			})
 			.catch((err) => {
@@ -53,27 +66,24 @@ const EmployeeAssets = () => {
 				<p className="sub">berikut merupakan daftar aset karyawan yang tersedia</p>
 			</div>
 			<div className="row justify-content-start filter my-5">
-				<div className="col-10 col-lg-2" id="accordionExample">
-					<div className="dropdown">
-						<div
-							className="btn btn-status dropdown-toggle "
-							role="button"
-							id="dropdownMenuLink"
-							data-bs-toggle="dropdown"
-							aria-expanded="false"
-						>
-							Filter Ketegori
-						</div>
-						<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							{category.map((item) => {
-								return (
-									<li key={item.id}>
-										<button className="dropdown-item text-capitalize">{item.name}</button>
-									</li>
-								);
-							})}
-						</ul>
-					</div>
+				<div className="col-10 col-lg-2 pr-0">
+					<Form.Select
+						className="text-capitalize btn-status text-wrap"
+						aria-label="Default select example"
+						onChange={(e: any) => filterCategory(e.target.value)}
+					>
+						<option>Filter Ketegori</option>
+						{category.map((item: any, index: number) => (
+							<option key={index} value={item.id}>
+								{item.name}
+							</option>
+						))}
+					</Form.Select>
+				</div>
+				<div className="col-10 col-lg-2">
+					<button className="btn btn-status" onClick={() => fetchData()}>
+						All
+					</button>
 				</div>
 			</div>
 			<div className="row d-flex justify-content-center my-4">
@@ -94,7 +104,7 @@ const EmployeeAssets = () => {
 						<div>Loading...</div>
 					)
 				) : (
-					<></>
+					<> Asset Tidak Tersedia </>
 				)}
 			</div>
 		</div>

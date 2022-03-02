@@ -99,6 +99,7 @@ export default function ManagerBeranda() {
 			divisi: "Tech",
 		},
 	]);
+
 	const perPage = 3;
 	let [recentPage, setRecentPage] = useState(1);
 	const [tip, setTip] = useState(0);

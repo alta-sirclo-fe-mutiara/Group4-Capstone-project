@@ -6,6 +6,7 @@ type Props = {
 	avail: number;
 	name: string;
 	description: string;
+	user?: string;
 };
 
 const CardAsset = (props: Props) => {
@@ -61,7 +62,7 @@ const CardAssetAdmin = (props: Props) => {
 						<FaUserCircle className="ico-user w-100" />
 					</div>
 					<div className="col-10 ps-0">
-						<p className="count-user px-0">3 pengguna</p>
+						<p className="count-user px-0">{props.user} pengguna</p>
 					</div>
 				</div>
 				<div className="row pinjam justify-content-center mt-2">
