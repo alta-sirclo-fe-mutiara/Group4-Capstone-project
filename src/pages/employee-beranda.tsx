@@ -14,17 +14,11 @@ export default function EmployeeBeranda() {
   const [historyData, setHistoryData] = useState([]);
 
   useEffect(() => {
-    fetchActivityData();
-    return () => {
-      setActivityData([]);
-    };
-  }, []);
-
-  useEffect(() => {
     fetchHistoryData();
-    return () => {
-      setHistoryData([]);
-    };
+  }, []);
+  
+  useEffect(() => {
+    fetchActivityData();
   }, []);
 
   const fetchActivityData = () => {
@@ -94,7 +88,7 @@ export default function EmployeeBeranda() {
                   key={index}
                 >
                   <div className="row p-3">
-                    <img src={item.photo} className="col-5" />
+                    <img src={item.photo} className="col-5" alt={item.asset_name}/>
                     <div className="col-7">
                       <p className="actDate noSpace">{item.request_date}</p>
                       <p className="font-weight-bold noSpace">
@@ -107,7 +101,7 @@ export default function EmployeeBeranda() {
                     <p className="text-capitalize">{item.status}</p>
                     <p
                       onClick={() => {
-                        if (tip != pageNumber) {
+                        if (tip !== pageNumber) {
                           setActivTip(pageNumber);
                         } else {
                           setActivTip(0);
@@ -120,14 +114,14 @@ export default function EmployeeBeranda() {
                     <div
                       className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
                       style={
-                        activTip == pageNumber
+                        activTip === pageNumber
                           ? { display: "block" }
                           : { display: "none" }
                       }
                     >
                       <div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2 d-block">
                         {item.status === "disetujui" ? (
-                          <p className="curs mb-0 ajukan">
+                          <p className="curs mb-0 ajukan border">
                             Ajukan Pengembalian
                           </p>
                         ) : item.status === "tolak" ? (
@@ -145,6 +139,9 @@ export default function EmployeeBeranda() {
                           date={item.request_date}
                           status={item.status}
                           request_description={item.description}
+                          id_status={item.id_status}
+                          id={item.id}
+                          fetch={fetchActivityData}
                         />
                       </div>
                     </div>
@@ -181,7 +178,7 @@ export default function EmployeeBeranda() {
                       <th className="position-relative">
                         <p
                           onClick={() => {
-                            if (tip != pageNumber) {
+                            if (tip !== pageNumber) {
                               setTip(pageNumber);
                             } else {
                               setTip(0);
@@ -194,7 +191,7 @@ export default function EmployeeBeranda() {
                         <div
                           className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
                           style={
-                            tip == pageNumber
+                            tip === pageNumber
                               ? { display: "block" }
                               : { display: "none" }
                           }
@@ -226,14 +223,14 @@ export default function EmployeeBeranda() {
               return (
                 <div key={index}>
                   <p
-                    className={pageMod == 0 ? "py-2 px-3" : ""}
+                    className={pageMod === 0 ? "py-2 px-3" : ""}
                     style={
-                      pageDiv == recentPage
+                      pageDiv === recentPage
                         ? { color: "white", backgroundColor: "#2c7a75" }
                         : { color: "rgb(12,13,54)" }
                     }
                   >
-                    {pageMod == 0 ? pageDiv : null}
+                    {pageMod === 0 ? pageDiv : null}
                   </p>
                 </div>
               );
@@ -249,17 +246,18 @@ export default function EmployeeBeranda() {
             onClick={() => setIsRequestOpen(true)}
           >
             <p className="w-50 m-0 p-0 font-weight-bold">Peminjaman Aset</p>
-            <img className="noSpace img" src={ImgModel1} />
+            <img className="noSpace img" src={ImgModel1} alt="peminjaman aset"/>
           </div>
           <div className=" blur shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 m-0 p-0 font-weight-bold">Pengajuan Aset Baru</p>
-            <img className="noSpace img" src={ImgModel2} />
+            <img className="noSpace img" src={ImgModel2} alt="pengajuan aset baru"/>
           </div>
         </div>
       </div>
       <RequestAssetModal
         show={isRequestOpen}
         closeModal={() => setIsRequestOpen(false)}
+        fetch={fetchActivityData}
       />
     </div>
   );

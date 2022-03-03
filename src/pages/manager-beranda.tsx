@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import ImgModel from "../assets/img/peminjaman.png";
-import { FaCheckCircle } from "react-icons/fa";
-import { FaTimesCircle } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { ModalPermohonanManager } from "../componets/Modal/ModalPermohonan";
 import Statistik from "../componets/statistik";
@@ -80,7 +78,7 @@ export default function ManagerBeranda() {
                         <th>{item.asset_name}</th>
                         <th>{item.status}</th>
                         <th className="position-relative">
-                          <p
+                        <p
                             onClick={() => {
                               if (tip !== pageNumber) {
                                 setTip(pageNumber);
@@ -92,16 +90,15 @@ export default function ManagerBeranda() {
                           >
                             <HiDotsHorizontal />
                           </p>
-                          {item.status === "Disetujui" ||
-                          item.status === "Ditolak" ? (
-                            <div
-                              className="tiptool border border-1 shadow rounded-3 shadow bg-white px-3 py-2"
-                              style={
-                                tip === pageNumber
-                                  ? { display: "block" }
-                                  : { display: "none" }
-                              }
-                            >
+                          <div
+                            className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
+                            style={
+                              tip === pageNumber
+                                ? { display: "block" }
+                                : { display: "none" }
+                            }
+                          >
+                            <p onClick={() => setTip(0)} className="curs mb-0">
                               <ModalPermohonanManager
                                 photo={item.photo}
                                 category={item.category}
@@ -109,44 +106,16 @@ export default function ManagerBeranda() {
                                 avail={item.avail_quantity}
                                 user={item.user_name}
                                 date={item.request_date}
-                                divisi={item.divisi}
-                                date_return={item.return_date}
                                 status={item.status}
-                                time={item.request_date}
+                                divisi={"tech"}
                                 request_description={item.description}
+                                manager={"Ultramen"}
+                                id_status={item.id_status}
+							                	id={item.id}
+                                fetch={fetchData}
                               />
-                            </div>
-                          ) : (
-                            <div
-                              className="tiptool tip3 border border-1 shadow rounded-3 shadow bg-white px-3 py-2"
-                              style={
-                                tip === pageNumber
-                                  ? { display: "block" }
-                                  : { display: "none" }
-                              }
-                            >
-                              <p onClick={() => setTip(0)} className="curs">
-                                <FaCheckCircle className="mr-1" /> Diterima
-                              </p>
-                              <p onClick={() => setTip(0)} className="curs">
-                                <FaTimesCircle className="mr-1" />
-                                Ditolak
-                              </p>
-                              <ModalPermohonanManager
-                                photo={item.photo}
-                                category={item.category}
-                                item={item.asset_name}
-                                avail={item.avail_quantity}
-                                user={item.user_name}
-                                date={item.request_date}
-                                divisi={item.divisi}
-                                date_return={item.return_date}
-                                status={item.status}
-                                time={item.request_date}
-                                request_description={item.description}
-                              />
-                            </div>
-                          )}
+                            </p>
+                          </div>
                         </th>
                       </tr>
                     );
@@ -184,7 +153,7 @@ export default function ManagerBeranda() {
         <div className="col-md-3 primeCol">
           <div className="blur shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 noSpace font-weight-bold">Peminjaman Aset</p>
-            <img className="noSpace img" src={ImgModel} />
+            <img className="noSpace img" src={ImgModel} alt="Peminjaman Aset" />
           </div>
         </div>
       </div>

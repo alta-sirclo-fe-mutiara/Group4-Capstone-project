@@ -5,6 +5,7 @@ import axios from "axios";
 interface Props {
   show: boolean;
   closeModal: any;
+  fetch?: any;
 }
 export default function RequestAssetModal(props: Props) {
   const [categoryData, setCategoryData] = useState([]);
@@ -58,7 +59,9 @@ export default function RequestAssetModal(props: Props) {
       })
       .catch((e) => {
         alert(e);
-      });
+      }).finally(()=>{
+        props.fetch()
+      })
   };
 
   return (

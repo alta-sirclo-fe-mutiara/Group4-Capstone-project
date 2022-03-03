@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import RequestAssetModal from "../Modal/RequestAssetModal";
+import axios from 'axios';
+import { FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 
 type Props = {
   photo?: string;
@@ -14,14 +18,47 @@ type Props = {
   time?: String;
   manager?: String;
   request_description: String;
+  id_status?:number;
+  id?:number;
+  fetch?:any;
 };
 
 const ModalPermohonanManager = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+
+  const changeStatus4 = () =>{
+    axios
+    .put(`requests/${props.id}`, {id_status:4})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    }).finally(()=>{
+      props.fetch()
+    })
+  }
+
+  const changeStatus3 = () =>{
+    axios
+    .put(`requests/${props.id}`, {id_status:3})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    }).finally(()=>{
+      props.fetch()
+    })
+  }
+  
   return (
     <>
+    {
+      props.id_status === 2 ? <><p className="curs" onClick={()=>{changeStatus3()}}><FaCheckCircle className="mr-1" />Terima Permohonan</p> <p className="curs" onClick={()=>changeStatus4()}><FaTimesCircle className="mr-1" />Tolak Permohonan</p> </>: <></>
+    }
       <p onClick={handleShow} className="curs mb-0">
         Lihat Detail
       </p>
@@ -64,9 +101,9 @@ const ModalPermohonanManager = (props: Props) => {
               </div>
             </div>
             <div className="row">
-              {props.status === "Disetujui" ||
-              props.status === "Ditolak" ||
-              props.status === "Dikembalikan" ? (
+              {props.id_status === 4 ||
+              props.id_status === 3 ||
+              props.id_status === 8 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Status</h6>
@@ -103,9 +140,9 @@ const ModalPermohonanManager = (props: Props) => {
           </div>
         </Modal.Body>
         <Modal.Footer className="border-0">
-          {props.status === "Disetujui" ||
-          props.status === "Ditolak" ||
-          props.status === "Dikembalikan" ? (
+          {props.id_status === 3 ||
+          props.id_status === 4 ||
+          props.id_status === 8 ? (
             <Button
               className="btn-detail py-2 ms-3 border-0"
               onClick={handleClose}
@@ -114,12 +151,12 @@ const ModalPermohonanManager = (props: Props) => {
             </Button>
           ) : (
             <>
-              <p className="curs" onClick={handleClose}>
+              <p className="curs" onClick={()=>{handleClose(); changeStatus4()}}>
                 Tolak
               </p>
               <Button
                 className="btn-detail py-2 ms-3 border-0"
-                onClick={handleClose}
+                onClick={()=>{handleClose(); changeStatus3()}}
               >
                 Terima Permohonan
               </Button>
@@ -131,12 +168,32 @@ const ModalPermohonanManager = (props: Props) => {
   );
 };
 
+
 const ModalPermohonanEmployee = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const [isRequestOpen, setIsRequestOpen] = useState(false);
+
+  const changeStatus8 = () =>{
+    axios
+    .put(`requests/${props.id}`, {id_status:8})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    }).finally(()=>{
+      props.fetch()
+    })
+  }
+
   return (
     <>
+     {
+      props.id_status === 4 || props.id_status === 5 || props.id_status === 8 ? <p className="curs primeCol" onClick={() => setIsRequestOpen(true)}>Ajukan Peminjaman Ulang </p> 
+      : props.id_status === 6 || props.id_status === 7 ? <p className="curs" onClick={()=>changeStatus8()}>Kembalikan</p> : <></>
+    }
       <p onClick={handleShow} className="curs mb-0">
         Lihat Detail
       </p>
@@ -157,7 +214,7 @@ const ModalPermohonanEmployee = (props: Props) => {
               <div className="col-10 col-md-6">
                 <p className="title mb-1"> {props.category} </p>
                 <h5 className=""> {props.item} </h5>
-                {props.status === "menunggu persetujuan" ? (
+                {props.id_status === 2 ? (
                   <p className="title mb-1"> {props.avail} item tersedia</p>
                 ) : (
                   <></>
@@ -165,7 +222,7 @@ const ModalPermohonanEmployee = (props: Props) => {
               </div>
             </div>
             <div className="row mt-3">
-              {props.status === "disetujui" || props.status === "tolak" ? (
+              {props.id_status === 3 || props.id_status === 4 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Status</h6>
@@ -202,45 +259,46 @@ const ModalPermohonanEmployee = (props: Props) => {
           </div>
         </Modal.Body>
         <Modal.Footer className="border-0">
-          {props.status === "menunggu persetujuan" ? (
+          {props.id_status === 4 || props.id_status === 5 || props.id_status === 8 ? (
             <>
               <p className="curs" onClick={handleClose}>
-                Batalkan Pengajuan
+                Kembali
               </p>
               <Button
                 className="btn-detail py-2 ms-3 border-0"
-                onClick={handleClose}
+                onClick={() => {handleClose(); setIsRequestOpen(true) }}
               >
-                Kembali
+                Ajukan Peminjaman Ulang
               </Button>
             </>
-          ) : props.status === "disetujui" ? (
+          ) : props.id_status === 6 || props.id_status === 7  ? (
             <>
               <p className="curs" onClick={handleClose}>
                 Kembali
               </p>
               <Button
                 className="btn-detail py-2 ms-3 border-0"
-                onClick={handleClose}
+                onClick={()=>{handleClose(); changeStatus8()}}
               >
                 Ajukan Pengembalian
               </Button>
             </>
           ) : (
             <>
-              <p className="curs" onClick={handleClose}>
-                Kembali
-              </p>
               <Button
                 className="btn-detail py-2 ms-3 border-0"
                 onClick={handleClose}
               >
-                Ajukan Peminjaman Ulang
+                Kembali
               </Button>
             </>
           )}
         </Modal.Footer>
       </Modal>
+      <RequestAssetModal
+        show={isRequestOpen}
+        closeModal={() => setIsRequestOpen(false)}
+      />
     </>
   );
 };
@@ -249,15 +307,72 @@ const ModalPermohonanAset = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+
+  const changeStatus2 = () =>{
+    axios
+    .put(`requests/${props.id}`, {id_status:2})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    }).finally(()=>{
+      props.fetch()
+    })
+  }
+
+  const changeStatus5 = () =>{
+    axios
+    .put(`requests/${props.id}`, {id_status:5})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    }).finally(()=>{
+      props.fetch()
+    })
+  }
+  
+  const changeStatus6 = () =>{
+    axios
+    .put(`requests/${props.id}`, {id_status:6})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    }).finally(()=>{
+      props.fetch()
+    })
+  }
+
+  const changeStatus7 = () =>{
+    axios
+    .put(`requests/${props.id}`, {id_status:7})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    }).finally(()=>{
+      props.fetch()
+    })
+  }
   return (
     <>
+    {
+      props.id_status === 1 ? <p className="curs primeCol" onClick={changeStatus2}>Minta Persetujuan Manajer </p> 
+      : props.id_status === 3 ? <><p className="curs" onClick={()=>changeStatus6()}><FaCheckCircle className="mr-1" />Terima Permohonan</p> <p className="curs" onClick={()=>changeStatus5()}><FaTimesCircle className="mr-1" />Tolak Permohonan</p></> 
+      : props.id_status === 6 ? <p className="curs" onClick={changeStatus7}>Ajukan Pengembalian</p> : <></>
+    }
       <p onClick={handleShow} className="curs mb-0">
         Lihat Detail
       </p>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton className="border-0">
           <Modal.Title className="modal-title">
-            Detail Permohonan Aset
+            Detail Permohonan Aset 
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -273,8 +388,7 @@ const ModalPermohonanAset = (props: Props) => {
               <div className="col-10 col-md-8">
                 <p className="title mb-1"> {props.category} </p>
                 <h5 className=""> {props.item} </h5>
-                {props.status === "Menunggu Persetujuan" ||
-                props.status === "Permohonan Baru" ? (
+                {props.id_status === 1 || props.id_status === 2 ? (
                   <p className="title mb-1"> {props.avail} item tersedia</p>
                 ) : (
                   <></>
@@ -294,7 +408,7 @@ const ModalPermohonanAset = (props: Props) => {
                 <h6 className="title">Divisi</h6>
                 <p className="content">{props.divisi}</p>
               </div>
-              {props.status === "Menunggu Persetujuan" ? (
+              {props.id_status === 2 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
@@ -311,8 +425,7 @@ const ModalPermohonanAset = (props: Props) => {
                     <p className="content">-</p>
                   </div>
                 </>
-              ) : props.status === "Permohonan Baru" ||
-                props.status === "Minta Persetujuan" ? (
+              ) : props.id_status === 1 || props.id_status === 3 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
@@ -329,7 +442,7 @@ const ModalPermohonanAset = (props: Props) => {
                     <p className="content"></p>
                   </div>
                 </>
-              ) : props.status === "Digunakan" ? (
+              ) : props.id_status === 6 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
@@ -346,7 +459,7 @@ const ModalPermohonanAset = (props: Props) => {
                     <p className="content">-</p>
                   </div>
                 </>
-              ) : props.status === "Ditolak" ? (
+              ) : props.id_status === 4 || props.id_status === 5 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
@@ -363,7 +476,7 @@ const ModalPermohonanAset = (props: Props) => {
                     <p className="content">-</p>
                   </div>
                 </>
-              ) : props.status === "Dikembalikan" ? (
+              ) : props.id_status === 8 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
@@ -380,7 +493,7 @@ const ModalPermohonanAset = (props: Props) => {
                     <p className="content">-</p>
                   </div>
                 </>
-              ) : props.status === "Minta Dikembalikan" ? (
+              ) : props.id_status === 7 ? (
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
@@ -413,13 +526,12 @@ const ModalPermohonanAset = (props: Props) => {
                 <p className="content">{props.manager}</p>
               </div>
               <div className="col-10 col-md-6">
-                {props.status === "Permohonan Baru" ||
-                props.status === "menunggu persetujuan" ? (
-                  <h6 className="request curs">Minta Persetujuan</h6>
-                ) : props.status === "Ditolak" ? (
-                  <h6 className="request">{props.status}</h6>
-                ) : props.status === "Menunggu Persetujuan" ? (
-                  <h6 className="request">{props.status}</h6>
+                {props.id_status === 1  ? (
+                  <h6 className="request curs" onClick={()=>changeStatus2()}>Minta Persetujuan</h6>
+                ) : props.id_status === 2  ? (
+                  <h6 className="request curs">Menunggu Persetujuan</h6>
+                ) : props.id_status === 4 || props.id_status === 5 ? (
+                  <h6 className="request">Ditolak</h6>
                 ) : (
                   <h6 className="request">Disetujui</h6>
                 )}
@@ -428,41 +540,28 @@ const ModalPermohonanAset = (props: Props) => {
           </div>
         </Modal.Body>
         <Modal.Footer className="border-0">
-          {props.status === "Permohonan Baru" ||
-          props.status === "Minta Persetujuan" ? (
+          {props.id_status === 4? (
             <>
-              <p className="curs" onClick={handleClose}>
+              <p className="curs" onClick={()=>{handleClose(); changeStatus5()}}>
                 Tolak
               </p>
               <Button
                 className="btn-detail py-2 ms-3 border-0"
-                onClick={handleClose}
+                onClick={()=>{handleClose(); changeStatus6()}}
               >
                 Terima Pengajuan
               </Button>
             </>
-          ) : props.status === "Digunakan" ? (
+          ) : props.id_status === 6 ? (
             <>
               <p className="curs" onClick={handleClose}>
                 Kembali
               </p>
               <Button
                 className="btn-detail py-2 ms-3 border-0"
-                onClick={handleClose}
+                onClick={()=>{handleClose(); changeStatus7()}}
               >
                 Ajukan Pengembalian
-              </Button>
-            </>
-          ) : props.status === "Digunakan" ? (
-            <>
-              <p className="curs" onClick={handleClose}>
-                Kembali
-              </p>
-              <Button
-                className="btn-detail py-2 ms-3 border-0"
-                onClick={handleClose}
-              >
-                Ajukan Peminjaman Ulang
               </Button>
             </>
           ) : (

@@ -17,7 +17,7 @@ export default function AssignAssetModal(props: Props) {
   const [description, setDescription] = useState("");
   const id_user = parseInt(user);
   const id_asset = parseInt(asset);
-  console.log(user, asset, description, return_date);
+  
   useEffect(() => {
     fetchData();
   }, []);

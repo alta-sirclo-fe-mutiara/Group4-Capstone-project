@@ -1,5 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
+import RequestAssetModal from "../Modal/RequestAssetModal";
 
 type Props = {
   photo: string;
@@ -15,6 +16,7 @@ const ModalDetailPenggunaan = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const [isRequestOpen, setIsRequestOpen] = useState(false);
 
   return (
     <>
@@ -71,12 +73,16 @@ const ModalDetailPenggunaan = (props: Props) => {
           </p>
           <Button
             className="btn-detail py-2 ms-3 border-0"
-            onClick={handleClose}
+            onClick={() => {handleClose(); setIsRequestOpen(true) }}
           >
             Ajukan Peminjaman Ulang
           </Button>
         </Modal.Footer>
       </Modal>
+      <RequestAssetModal
+        show={isRequestOpen}
+        closeModal={() => setIsRequestOpen(false)}
+      />
     </>
   );
 };

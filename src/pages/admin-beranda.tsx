@@ -21,7 +21,11 @@ export default function AdminBeranda() {
     axios
       .get(`/requests?status=new`)
       .then((res) => {
-        setData(res.data.data.data);
+        if (!res.data.data.data) {
+          setData([]);
+        } else {
+          setData(res.data.data.data);
+        }
         console.log(data);
       })
       .catch((err) => {
@@ -29,7 +33,7 @@ export default function AdminBeranda() {
       });
   };
 
-  const perPage = 3;
+  const perPage = 5;
   let [recentPage, setRecentPage] = useState(1);
   const [tip, setTip] = useState(0);
 
@@ -82,7 +86,7 @@ export default function AdminBeranda() {
                         <th className="position-relative">
                           <p
                             onClick={() => {
-                              if (tip != pageNumber) {
+                              if (tip !== pageNumber) {
                                 setTip(pageNumber);
                               } else {
                                 setTip(0);
@@ -95,7 +99,7 @@ export default function AdminBeranda() {
                           <div
                             className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
                             style={
-                              tip == pageNumber
+                              tip === pageNumber
                                 ? { display: "block" }
                                 : { display: "none" }
                             }
@@ -112,6 +116,9 @@ export default function AdminBeranda() {
                                 divisi={"tech"}
                                 request_description={item.description}
                                 manager={"Ultramen"}
+                                id_status={item.id_status}
+                                id={item.id}
+                                fetch={fetchData}
                               />
                             </p>
                           </div>
@@ -132,14 +139,14 @@ export default function AdminBeranda() {
               return (
                 <div key={index}>
                   <p
-                    className={pageMod == 0 ? "py-2 px-3" : ""}
+                    className={pageMod === 0 ? "py-2 px-3" : ""}
                     style={
-                      pageDiv == recentPage
+                      pageDiv === recentPage
                         ? { color: "white", backgroundColor: "#2c7a75" }
                         : { color: "rgb(12,13,54)" }
                     }
                   >
-                    {pageMod == 0 ? pageDiv : null}
+                    {pageMod === 0 ? pageDiv : null}
                   </p>
                 </div>
               );
@@ -155,7 +162,7 @@ export default function AdminBeranda() {
             onClick={() => setIsAddAssetOpen(true)}
           >
             <p className="w-50 m-0 p-0 font-weight-bold">Tambah Aset Baru</p>
-            <img className="noSpace img" src={ImgModel1} />
+            <img className="noSpace img" src={ImgModel1} alt="tambah aset baru"/>
           </div>
           <div
             className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between"
@@ -164,7 +171,7 @@ export default function AdminBeranda() {
             <p className="w-50 m-0 p-0 font-weight-bold">
               Assign Aset Ke Karyawan
             </p>
-            <img className="noSpace img" src={ImgModel2} />
+            <img className="noSpace img" src={ImgModel2} alt="assign aset ke karyawan"/>
           </div>
         </div>
       </div>
