@@ -11,6 +11,7 @@ type Props = {
   name: string;
   description: string;
   id: number;
+  initial: number
 };
 
 const CardAsset = (props: Props) => {
@@ -62,7 +63,7 @@ const CardAssetAdmin = (props: Props) => {
       <div className="card-body">
         <div className="row mt-3">
           <img
-            src={require(`../assets/img/` + `${props.photo}` + `.png`)}
+            src={props.photo}
             alt=""
             className="rounded-3 img-asset"
           />
@@ -84,7 +85,7 @@ const CardAssetAdmin = (props: Props) => {
             <FaUserCircle className="ico-user w-100" />
           </div>
           <div className="col-10" onClick={() => setIsUsageOpen(true)}>
-            <p className="count-user px-0 curs">3 pengguna</p>
+            <p className="count-user px-0 curs">{props.initial - props.avail} pengguna</p>
           </div>
         </div>
         <div className="row pinjam justify-content-center mt-2">
@@ -103,7 +104,7 @@ const CardAssetAdmin = (props: Props) => {
         name={props.name}
         description={props.description}
         id_category={props.category}
-        initial_quantity={props.avail.toString()}
+        initial_quantity={props.avail}
         is_maintenance={false}
         id={props.id}
       />
