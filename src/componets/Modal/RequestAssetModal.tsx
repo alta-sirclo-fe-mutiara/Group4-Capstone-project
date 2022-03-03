@@ -5,17 +5,18 @@ import axios from "axios";
 interface Props {
   show: boolean;
   closeModal: any;
-  fetch?: any;
+  fetch?:any
 }
 export default function RequestAssetModal(props: Props) {
   const [categoryData, setCategoryData] = useState([]);
-  const [category, setCategory] = useState<string>("laptop");
+  const [category, setCategory] = useState<string>("1");
   const [assetData, setAssetData] = useState<any>([]);
   const [asset, setAsset] = useState<string>("1");
   const [description, setDescription] = useState("");
+  const [newCategory, setNewCategory] = useState(false)
   const user = localStorage.getItem("id");
   const id_user = user ? parseInt(user) : 0;
-  const id_asset = parseInt(asset);
+  const id_asset = newCategory ? parseInt(assetData[0]?.id) : parseInt(asset);
 
   useEffect(() => {
     fetchAssetData();
@@ -31,7 +32,7 @@ export default function RequestAssetModal(props: Props) {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
   };
 
   const fetchCategoryData = () => {
@@ -59,7 +60,8 @@ export default function RequestAssetModal(props: Props) {
       })
       .catch((e) => {
         alert(e);
-      }).finally(()=>{
+      })
+      .finally(()=>{
         props.fetch()
       })
   };
@@ -76,7 +78,7 @@ export default function RequestAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e) => {setCategory(e.target.value);setNewCategory(true)}}
         >
           {categoryData?.map((item: any) => {
             return <option value={item.id}>{item.description}</option>;
@@ -88,11 +90,8 @@ export default function RequestAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          onChange={(e) => setAsset(e.target.value)}
+          onChange={(e) => {setAsset(e.target.value);setNewCategory(false)}}
         >
-          <option value="" selected>
-            --Pilih--
-          </option>
           {assetData?.map((item: any) => {
             return (
               <option value={item.id}>
