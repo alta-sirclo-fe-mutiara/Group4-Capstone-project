@@ -3,11 +3,13 @@ import axios from "axios";
 
 import ImgModel from "../assets/img/img-login.png";
 import Logo from "../assets/img/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isInvalid, setIsInvalid] = useState(false);
+  const navigate = useNavigate()
 
   const loginHandle = () => {
     axios
@@ -27,7 +29,9 @@ export default function Login() {
       .catch((err) => {
         console.log(err);
         setIsInvalid(true);
-      });
+      }).finally(()=>{
+        navigate('/')
+      })
   };
   return (
     <>

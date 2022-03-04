@@ -159,7 +159,6 @@ const AdminAssets = () => {
 									photo={item.photo !== "" ? item.photo : `${ImgDummy}`}
 									category={item.category}
 									avail={item.avail_quantity}
-									// user={user(`${index}`) !== "" ? user.length(`${index}`) : ""}
 									description={item.description}
 									initial={item.initial_quantity}
 									id={item.id}

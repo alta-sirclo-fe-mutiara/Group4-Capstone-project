@@ -10,7 +10,7 @@ type item = {
 	name: string;
 	avail_quantity: number;
 	description: string;
-	initial:number;
+	initial_quantity:number;
 	id:number
 };
 
