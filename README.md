@@ -26,7 +26,7 @@ Access our site at https://eassets.vercel.app/
 - User: Employee, Admin, and Manager 
 - Category Asset: All, Laptop, Monitor, Printer, Proyektor, Speaker, Headset, Keyboard and Mouse
 - Available Status Asset: Tersedia and Digunakan
-- Request Status: Menunggu Persetujuan Admin, Menunggu Persetujuan Manager, Disetujui Manager, Ditolak manager, Diterima, Minta Dikembalikan, and Berhasil Dikembalikan
+- Request Status: Menunggu Persetujuan Admin, Menunggu Persetujuan Manager, Disetujui Manager, Ditolak Manager, Ditolak Admin, Diterima, Minta Dikembalikan, and Berhasil Dikembalikan
 - Approval Status: Semua, Butuh Persetujuan, Disetujui, Ditolak, Dikembalikan
 
 **Employee Activity:**
@@ -56,6 +56,7 @@ Access our site at https://eassets.vercel.app/
 - React Bootstrap
 - React Icons
 - React Datepicker
+- React Router Dom
 - Axios
 - SCSS
 
