@@ -11,7 +11,9 @@ const Navbar = () => {
 
 	const logoutHandle = () =>{
 		localStorage.clear();
-		navigate("login")
+		navigate("login");
+		window.location.reload();
+
 	}
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light shadow-sm">

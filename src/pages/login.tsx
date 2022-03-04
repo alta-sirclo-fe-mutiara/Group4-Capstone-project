@@ -31,6 +31,7 @@ export default function Login() {
         setIsInvalid(true);
       }).finally(()=>{
         navigate('/')
+        window.location.reload();
       })
   };
   return (
