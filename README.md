@@ -1,46 +1,93 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# E-Assets
 
-## Available Scripts
+![Logo](https://cdn.freelogodesign.org/files/508cd32b6e024b2cb3681aa96cf1afad/thumb/logo_200x200.png?v=637819523170000000)
 
-In the project directory, you can run:
 
-### `npm start`
+About E-Assets is an Employee Assets Management created for make it easier for users to request and monitor the employee assets and the purpose of study in Sirclo Tech Academy.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##  Demo
 
-### `npm test`
+Access our site at https://eassets.vercel.app/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Login and Logout User
+- Check Availability of The Assets
+- Request to Use The Assets
+- Return The Assets
+- Check Usage History Each Assets
+- Approve Request for Approval Each Assets
+- Request New Asset
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Scope of Problem:**
+- User: Employee, Admin, and Manager 
+- Category Asset: All, Laptop, Monitor, Printer, Proyektor, Speaker, Headset, Keyboard and Mouse
+- Available Status Asset: Tersedia and Digunakan
+- Request Status: Menunggu Persetujuan Admin, Menunggu Persetujuan Manager, Disetujui Manager, Ditolak manager, Diterima, Minta Dikembalikan, and Berhasil Dikembalikan
+- Approval Status: Semua, Butuh Persetujuan, Disetujui, Ditolak, Dikembalikan
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Employee Activity:**
+- Check and Organize Company Assets List Filtered by Asset Categories and Availability
+- Request to Use Available Assets
+- Request to Return Assets
+- Check Request Status
 
-### `npm run eject`
+**Admin Activity:**
+- Add and Update Company Assets
+- Check The Assigned/Unassigned Employee Company Assets
+- See and Update Employee Request
+- Filter The Request List Based on Status
+- Ask/Request for Manager Approval for Following Each Employee Request Status
+- Ask Employee to Return Assets
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Manager Activity:**
+- See List of Ask /Request for Approval
+- Organize Request List Filtered by Approval status
+- Approve The Request
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 💻 Built With
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React.js
+- TypeScript
+- Bootstrap v5
+- React Bootstrap
+- React Icons
+- React Datepicker
+- Axios
+- SCSS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Prototype:** [Figma](https://www.figma.com/file/SDAqY0zgggzCASzzbHQjvZ/Capstone---E-Assets?node-id=0%3A1)
 
-## Learn More
+## 🚀 Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Clone this repo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  git https://github.com/alta-sirclo-fe-mutiara/Group4-Capstone-project.git
+
+```
+
+Install E-Assets with npm
+
+```bash
+  cd Group4-Capstone-project
+  npm install
+```
+
+Runs the app in the development mode.
+
+```bash
+  npm run dev
+```
+
+## Credits
+
+List of contributors:
+
+👨‍💻 [Dhaifan Dito Adrian](https://github.com/dhaifandito)
+
+👩‍💻 [Mutiara A'yun](https://github.com/mayun19)
+
