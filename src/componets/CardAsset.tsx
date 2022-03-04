@@ -21,7 +21,7 @@ const CardAsset = (props: Props) => {
       <div className="card-body">
         <div className="row mt-3">
           <img
-            src={require(`../assets/img/` + `${props.photo}` + `.png`)}
+            src={props.photo}
             alt=""
             className="rounded-3 img-asset"
           />
