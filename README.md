@@ -9,8 +9,7 @@ About E-Assets is an Employee Assets Management created for make it easier for u
 
 ##  Demo
 
-Access our site at https://eassets.vercel.app/
-
+Access our site at https://e-assets.vercel.app/
 
 ## Features
 
