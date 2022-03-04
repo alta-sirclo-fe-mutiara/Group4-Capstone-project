@@ -27,7 +27,7 @@ const AdminAssets = () => {
 
 	const available = [
 		{ id: 1, name: "tersedia", value: "yes" },
-		{ id: 2, name: "pemeliharaan", value: "no" },
+		{ id: 2, name: "digunakan", value: "no" },
 	];
 
 	const [asset, setAsset] = useState([]);
@@ -42,7 +42,7 @@ const AdminAssets = () => {
 
 	const fetchData = async () => {
 		await axios
-			.get("/assets?maintenance=no&limit=4&offset=0")
+			.get("/assets?avail=yes")
 			.then((res) => {
 				const { data } = res;
 				setAsset(data.data.data);
