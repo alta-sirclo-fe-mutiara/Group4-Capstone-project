@@ -3,10 +3,10 @@ import axios from "axios";
 import { HiDotsHorizontal } from "react-icons/hi";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/request-aset.png";
-import Statistik from "../componets/statistik";
-import ModalDetailPenggunaan from "../componets/Modal/ModalDetailPenggunaan";
-import { ModalPermohonanEmployee } from "../componets/Modal/ModalPermohonan";
-import RequestAssetModal from "../componets/Modal/RequestAssetModal";
+import Statistik from "../components/statistik";
+import ModalDetailPenggunaan from "../components/Modal/ModalDetailPenggunaan";
+import { ModalPermohonanEmployee } from "../components/Modal/ModalPermohonan";
+import RequestAssetModal from "../components/Modal/RequestAssetModal";
 
 export default function EmployeeBeranda() {
   const [isRequestOpen, setIsRequestOpen] = useState(false);

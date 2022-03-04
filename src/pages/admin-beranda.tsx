@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { ModalPermohonanAset } from "../componets/Modal/ModalPermohonan";
+import { ModalPermohonanAset } from "../components/Modal/ModalPermohonan";
 import { HiDotsHorizontal } from "react-icons/hi";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/assign to employee.png";
-import AddAssetModal from "../componets/Modal/AddAssetModal";
-import AssignAssetModal from "../componets/Modal/AssignAssetModal";
-import Statistik from "../componets/statistik";
+import AddAssetModal from "../components/Modal/AddAssetModal";
+import AssignAssetModal from "../components/Modal/AssignAssetModal";
+import Statistik from "../components/statistik";
 import axios from "axios";
 
 export default function AdminBeranda() {

@@ -1,5 +1,5 @@
 import { HiDotsHorizontal } from "react-icons/hi";
-import { ModalPermohonanEmployee } from "../componets/Modal/ModalPermohonan";
+import { ModalPermohonanEmployee } from "./Modal/ModalPermohonan";
 interface Props {
 	name: string;
 	status: string;

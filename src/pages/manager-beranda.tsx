@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import ImgModel from "../assets/img/peminjaman.png";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { ModalPermohonanManager } from "../componets/Modal/ModalPermohonan";
-import Statistik from "../componets/statistik";
+import { ModalPermohonanManager } from "../components/Modal/ModalPermohonan";
+import Statistik from "../components/statistik";
 import axios from "axios";
 
 export default function ManagerBeranda() {

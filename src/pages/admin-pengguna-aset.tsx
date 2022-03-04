@@ -1,4 +1,4 @@
-import { ModalPermohonanAset } from "../componets/Modal/ModalPermohonan";
+import { ModalPermohonanAset } from "../components/Modal/ModalPermohonan";
 import { useEffect, useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import axios from "axios";

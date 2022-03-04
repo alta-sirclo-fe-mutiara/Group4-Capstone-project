@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { ModalPermohonanManager } from "../componets/Modal/ModalPermohonan";
+import { ModalPermohonanManager } from "../components/Modal/ModalPermohonan";
 import axios from "axios";
 
 export default function PermohonanPersetujuan() {
