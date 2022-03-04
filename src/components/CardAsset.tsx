@@ -16,6 +16,7 @@ type Props = {
   
   const CardAsset = (props: Props) => {
     const [isRequestOpen, setIsRequestOpen] = useState(false);
+    const [isUsageOpen, setIsUsageOpen] = useState(false);
     return (
       <div className="card card-asset mb-3">
         <div className="card-body">
@@ -38,6 +39,14 @@ type Props = {
                 : props.description}
             </p>
           </div>
+          <div className="row mt-2 d-flex justify-content-start aset-user">
+            <div className="col-2 text-center px-0">
+              <FaUserCircle className="ico-user w-100" />
+            </div>
+            <div className="col-10" onClick={() => setIsUsageOpen(true)}>
+              <p className="count-user px-0 curs">{props.initial - props.avail} pengguna</p>
+            </div>
+          </div>
           <div className="row pinjam justify-content-center mt-3">
             <button
               className="btn col-10 col-xl-11 btn-aset"
@@ -50,6 +59,11 @@ type Props = {
         <RequestAssetModal
           show={isRequestOpen}
           closeModal={() => setIsRequestOpen(false)}
+        />
+        <UsageHistoryModal
+          show={isUsageOpen}
+          closeModal={() => setIsUsageOpen(false)}
+          id={props.id}
         />
       </div>
     );
@@ -104,7 +118,7 @@ type Props = {
           name={props.name}
           description={props.description}
           id_category={props.category}
-          initial_quantity={props.avail}
+          initial_quantity={props.initial}
           is_maintenance={false}
           id={props.id}
         />

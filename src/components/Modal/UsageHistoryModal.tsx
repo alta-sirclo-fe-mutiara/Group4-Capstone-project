@@ -32,7 +32,7 @@ export default function UsageHistoryModal(props: Props) {
         console.log(err);
       });
   };
-  console.log(history);
+  console.log(history, props.id);
   return (
     <Modal show={props.show}>
       <Modal.Header>
@@ -43,7 +43,7 @@ export default function UsageHistoryModal(props: Props) {
         <div>
           <div className="row d-flex justify-content-center">
             <div className="col-10 col-md-6">
-              <img src={photo} alt="" className="rounded-3 img-detail-aset" />
+              <img src={photo} alt="" className="rounded-3 img-detail-aset w-100 h-100" />
             </div>
             <div className="col-10 col-md-6">
               <p className="title mb-1"> {category} </p>

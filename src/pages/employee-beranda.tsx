@@ -245,7 +245,7 @@ export default function EmployeeBeranda() {
             className=" curs shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between"
             onClick={() => setIsRequestOpen(true)}
           >
-            <p className="w-50 m-0 p-0 font-weight-bold">Peminjaman Aset</p>
+            <p className="w-50 m-0 p-0 font-weight-bold curs">Peminjaman Aset</p>
             <img className="noSpace img" src={ImgModel1} alt="peminjaman aset"/>
           </div>
           <div className=" blur shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">

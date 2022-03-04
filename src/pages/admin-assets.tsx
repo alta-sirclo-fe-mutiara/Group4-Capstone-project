@@ -39,7 +39,6 @@ const AdminAssets = () => {
 
 	useEffect(() => {
 		fetchData();
-		listUsage(1);
 	}, []);
 
 	const fetchData = async () => {
@@ -54,21 +53,6 @@ const AdminAssets = () => {
 			});
 	};
 
-	const listUsage = (id: number) => {
-		axios
-			.get(`https://dipssyman.space/assets/usage/${id}`)
-			.then((res) => {
-				const { data } = res;
-				axios.defaults.headers.common[
-					"Authorization"
-				] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6InBvb0BtYWlsLmNvbSIsImV4cCI6MTY0NjMyMTU0MywiaWQiOjIsImlkX3JvbGUiOjF9.aSKKCKrAEiQnHUqk3YgBIfR9endVxl6RJpaY13-ZgwM`;
-				console.log(data.data);
-				setUser(data.data.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
 
 	const filterCategory = async (id: number) => {
 		setGetCategory(id);

@@ -1,5 +1,11 @@
 $prime-color: #2c7a75;
-
+.App{
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	justify-content: space-between;
+  }
+  
 .primeCol {
 	color: $prime-color;
 }
