@@ -2,43 +2,43 @@ import { Form } from "react-bootstrap";
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import ImgModel from "../assets/img/img-login.png";
 import Logo from "../assets/img/logo.svg";
 
-type credential = {
-	email: string;
-	password: string;
-};
+// type credential = {
+// 	email: string;
+// 	password: string;
+// };
 
 const Login = () => {
 	document.title = "E-Assets - Login ";
-	const [data, setData] = useState<any>();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [name, setName] = useState<string>("");
 	const [isInvalid, setIsInvalid] = useState(false);
 	const Navigate = useNavigate();
 
-	const handleSubmit = async (e: FormEvent<HTMLElement>) => {
-		e.preventDefault();
-		await LoginUser({
-			email: email,
-			password: password,
-		});
-	};
+	// const handleSubmit = async (e: FormEvent<HTMLElement>) => {
+	// 	e.preventDefault();
+	// 	await LoginUser({
+	// 		email: email,
+	// 		password: password,
+	// 	});
+	// };
 
-	const LoginUser = async (credential: credential) => {
+	const handleSubmit = async () => {
 		axios
-			.post("/login", credential)
+			.post("/login", { email, password })
 			.then((res) => {
 				const { data } = res;
-				localStorage.setItem("token", JSON.stringify(data.Data));
-				// localStorage.setItem("user_id", data.user_id);
-				// localStorage.setItem("isAuthenticated", "true");
-				axios.defaults.headers.common[
-					"Authorization"
-				] = `Bearer ${data.Data.token}`;
+				console.log(data);
+				localStorage.setItem("token", data.token);
+				// localStorage.setItem("token", JSON.stringify(data.Data));
+				localStorage.setItem("id_role", data.id_role);
+				localStorage.setItem("name", data.name);
+				localStorage.setItem("isAuthenticated", "true");
+				// axios.defaults.headers.common[
+				// 	"Authorization"
+				// ] = `Bearer ${data.Data.token}`;
 			})
 			.catch((err) => {
 				setIsInvalid(true);
@@ -46,6 +46,8 @@ const Login = () => {
 			});
 	};
 
+	console.log(email);
+	console.log(password);
 	// useEffect(() => {
 	// 	fetchData();
 	// }, []);

@@ -1,4 +1,4 @@
-import { ModalPermohonanAset } from "../componets/Modal/ModalPermohonan";
+import { ModalPermohonanAset } from "../components/Modal/ModalPermohonan";
 import { useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { FaCheckCircle } from "react-icons/fa";

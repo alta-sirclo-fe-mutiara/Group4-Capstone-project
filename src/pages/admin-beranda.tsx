@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ModalPermohonanAset } from "../componets/Modal/ModalPermohonan";
+import { ModalPermohonanAset } from "../components/Modal/ModalPermohonan";
 import { HiDotsHorizontal } from "react-icons/hi";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/assign to employee.png";

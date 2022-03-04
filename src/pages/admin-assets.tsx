@@ -1,9 +1,20 @@
-import { useState } from "react";
-import { CardAssetAdmin } from "../componets/CardAsset";
-// import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Form } from "react-bootstrap";
+import { CardAssetAdmin } from "../components/CardAsset";
+import ImgDummy from "../assets/img/dummy-asset.png";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
+type item = {
+	photo: string;
+	category: string;
+	name: string;
+	avail_quantity: number;
+	description: string;
+};
 
 const AdminAssets = () => {
-	const [category, setCategory] = useState([
+	const category = [
 		{ id: 1, name: "laptop" },
 		{ id: 2, name: "monitor" },
 		{ id: 3, name: "printer" },
@@ -12,48 +23,87 @@ const AdminAssets = () => {
 		{ id: 6, name: "headset" },
 		{ id: 7, name: "keybord" },
 		{ id: 8, name: "mouse" },
-	]);
+	];
 
-	const [available, setAvailable] = useState([
-		{ id: 1, name: "tersedia" },
-		{ id: 2, name: "digunakan" },
-		{ id: 3, name: "pemeliharaan" },
-	]);
+	const available = [
+		{ id: 1, name: "tersedia", value: "yes" },
+		{ id: 2, name: "digunakan", value: "no" },
+	];
 
-	const [asset, setAsset] = useState([
-		{
-			id: 1,
-			photo: "image 4",
-			category: "Laptop",
-			avail: 5,
-			name: "Apple Macbook Air 13 2020 - Gold",
-			description: "Apple M1-8GB-SSD 512GB-MacOS",
-		},
-		{
-			id: 2,
-			photo: "image 5",
-			category: "Monitor",
-			avail: 7,
-			name: "Monitor LG LED 22",
-			description: "22MK600M",
-		},
-		{
-			id: 3,
-			photo: "image 6",
-			category: "Printer",
-			avail: 9,
-			name: "Printer Epson L3210 ink Tank",
-			description: "(Print, Scan, Copy) Fast Printing",
-		},
-		{
-			id: 4,
-			photo: "image 6",
-			category: "Printer",
-			avail: 9,
-			name: "Printer Epson L3210 ink Tank",
-			description: "(Print, Scan, Copy) Fast Printing",
-		},
-	]);
+	const [asset, setAsset] = useState([]);
+	const [user, setUser] = useState([]);
+	const [getCategory, setGetCategory] = useState<number>(0);
+	const [getAvailable, setGetAvailable] = useState<string>("yes");
+
+	useEffect(() => {
+		fetchData();
+		listUsage(1);
+	}, []);
+
+	const fetchData = async () => {
+		await axios
+			.get("/assets?avail=yes")
+			.then((res) => {
+				const { data } = res;
+				setAsset(data.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const listUsage = (id: number) => {
+		axios
+			.get(`https://dipssyman.space/assets/usage/${id}`)
+			.then((res) => {
+				const { data } = res;
+				axios.defaults.headers.common[
+					"Authorization"
+				] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6InBvb0BtYWlsLmNvbSIsImV4cCI6MTY0NjMyMTU0MywiaWQiOjIsImlkX3JvbGUiOjF9.aSKKCKrAEiQnHUqk3YgBIfR9endVxl6RJpaY13-ZgwM`;
+				console.log(data.data);
+				setUser(data.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const filterCategory = async (id: number) => {
+		setGetCategory(id);
+		await axios
+			.get(`/assets?category=${id}&avail=${getAvailable}`)
+			.then((res) => {
+				const { data } = res;
+				setAsset(data.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const filterAvailable = async (value: string) => {
+		setGetAvailable(value);
+		await axios
+			.get(`/assets?category=${getCategory}&avail=${value}`)
+			.then((res) => {
+				const { data } = res;
+				console.log(data.data);
+				setAsset(data.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// const perPage = 4;
+	// let [recentPage, setRecentPage] = useState(1);
+	// const [tip, setTip] = useState(0);
+	// const nextPage = () => {
+	// 	setRecentPage((recentPage += 1));
+	// };
+	// const prevPage = () => {
+	// 	setRecentPage((recentPage -= 1));
+	// };
 
 	return (
 		<div className="container">
@@ -62,66 +112,62 @@ const AdminAssets = () => {
 				<p className="sub">berikut merupakan daftar aset yang tersedia</p>
 			</div>
 			<div className="row justify-content-between filter mx-0 my-5">
-				<div className="col-6 col-lg-2">
-					<div className="dropdown">
-						<div
-							className="btn btn-status dropdown-toggle "
-							role="button"
-							id="dropdownMenuLink"
-							data-bs-toggle="dropdown"
-							aria-expanded="false"
-						>
-							Filter Ketegori
-						</div>
-						<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							{category.map((item) => {
-								return (
-									<li key={item.id}>
-										<button className="dropdown-item text-capitalize">{item.name}</button>
-									</li>
-								);
-							})}
-						</ul>
-					</div>
+				<div className="col-6 d-flex flex-row">
+					<Form.Select
+						className="col-8 col-lg-4 text-capitalize btn-status text-wrap mr-3"
+						aria-label="Default select example"
+						onChange={(e: any) => filterCategory(e.target.value)}
+					>
+						<option>Filter Ketegori</option>
+						{category.map((item: any, index: number) => (
+							<option key={index} value={item.id}>
+								{item.name}
+							</option>
+						))}
+					</Form.Select>
+					<button
+						className="col-4 col-lg-2 btn btn-status"
+						onClick={() => fetchData()}
+					>
+						All
+					</button>
 				</div>
 				<div className="col-4 col-lg-2 text-end">
-					<div className="dropdown">
-						<div
-							className="btn btn-status dropdown-toggle "
-							role="button"
-							id="dropdownMenuLink"
-							data-bs-toggle="dropdown"
-							aria-expanded="false"
-						>
-							Status Aset
-						</div>
-						<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							{available.map((item, index) => {
-								return (
-									<li key={index}>
-										<button className="dropdown-item text-capitalize">{item.name}</button>
-									</li>
-								);
-							})}
-						</ul>
-					</div>
+					<Form.Select
+						className="text-capitalize btn-status text-wrap mr-3"
+						aria-label="Default select example"
+						onChange={(e: any) => filterAvailable(e.target.value)}
+					>
+						<option>Status Aset</option>
+						{available.map((item: any, index: number) => (
+							<option key={index} value={item.value}>
+								{item.name}
+							</option>
+						))}
+					</Form.Select>
 				</div>
 			</div>
 			<div className="row d-flex justify-content-center my-4">
-				{asset.map((item, index) => {
-					return (
-						<div className="col-10 col-md-6 col-lg-3" key={index}>
-							<CardAssetAdmin
-								photo={item.photo}
-								category={item.category}
-								avail={item.avail}
-								name={item.name}
-								description={item.description}
-							/>
-						</div>
-					);
-				})}
+				{asset ? (
+					asset.map((item: item, index) => {
+						return (
+							<div className="col-10 col-md-6 col-lg-3" key={index}>
+								<CardAssetAdmin
+									name={item.name}
+									photo={item.photo !== "" ? item.photo : `${ImgDummy}`}
+									category={item.category}
+									avail={item.avail_quantity}
+									// user={user(`${index}`) !== "" ? user.length(`${index}`) : ""}
+									description={item.description}
+								/>
+							</div>
+						);
+					})
+				) : (
+					<div className="text-center">Asset Tidak Tersedia...</div>
+				)}
 			</div>
+			<div className="my-5 d-flex justify-content-center align-items-center"></div>
 		</div>
 	);
 };

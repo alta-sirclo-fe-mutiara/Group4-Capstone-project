@@ -3,7 +3,7 @@ import ImgModel from "../assets/img/peminjaman.png";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { ModalPermohonanManager } from "../componets/Modal/ModalPermohonan";
+import { ModalPermohonanManager } from "../components/Modal/ModalPermohonan";
 
 export default function ManagerBeranda() {
 	const [data, setData] = useState([
@@ -99,6 +99,7 @@ export default function ManagerBeranda() {
 			divisi: "Tech",
 		},
 	]);
+
 	const perPage = 3;
 	let [recentPage, setRecentPage] = useState(1);
 	const [tip, setTip] = useState(0);
