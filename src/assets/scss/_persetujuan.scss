@@ -47,6 +47,10 @@
       }
     }
   }
+
+  p div {
+    border: red 1px solid
+  }
 @media (max-width: 767px) {
     .statusFilter{
         display: none;

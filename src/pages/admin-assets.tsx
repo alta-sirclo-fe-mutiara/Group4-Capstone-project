@@ -11,6 +11,8 @@ type item = {
 	name: string;
 	avail_quantity: number;
 	description: string;
+	id: number;
+	initial_quantity: number;
 };
 
 const AdminAssets = () => {
@@ -37,7 +39,6 @@ const AdminAssets = () => {
 
 	useEffect(() => {
 		fetchData();
-		listUsage(1);
 	}, []);
 
 	const fetchData = async () => {
@@ -52,21 +53,6 @@ const AdminAssets = () => {
 			});
 	};
 
-	const listUsage = (id: number) => {
-		axios
-			.get(`https://dipssyman.space/assets/usage/${id}`)
-			.then((res) => {
-				const { data } = res;
-				axios.defaults.headers.common[
-					"Authorization"
-				] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6InBvb0BtYWlsLmNvbSIsImV4cCI6MTY0NjMyMTU0MywiaWQiOjIsImlkX3JvbGUiOjF9.aSKKCKrAEiQnHUqk3YgBIfR9endVxl6RJpaY13-ZgwM`;
-				console.log(data.data);
-				setUser(data.data.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
 
 	const filterCategory = async (id: number) => {
 		setGetCategory(id);
@@ -157,8 +143,9 @@ const AdminAssets = () => {
 									photo={item.photo !== "" ? item.photo : `${ImgDummy}`}
 									category={item.category}
 									avail={item.avail_quantity}
-									// user={user(`${index}`) !== "" ? user.length(`${index}`) : ""}
 									description={item.description}
+									initial={item.initial_quantity}
+									id={item.id}
 								/>
 							</div>
 						);

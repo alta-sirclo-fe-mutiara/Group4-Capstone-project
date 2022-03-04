@@ -8,7 +8,9 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 
 axios.defaults.baseURL = "https://dipssyman.space";
-
+axios.defaults.headers.common["Authorization"] =
+  `Bearer ${localStorage.getItem("token")}`;
+  
 ReactDOM.render(
 	<React.StrictMode>
 		<Routes />

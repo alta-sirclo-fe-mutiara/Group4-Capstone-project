@@ -10,6 +10,8 @@ type item = {
 	name: string;
 	avail_quantity: number;
 	description: string;
+	initial_quantity:number;
+	id:number
 };
 
 const EmployeeAssets = () => {
@@ -91,6 +93,8 @@ const EmployeeAssets = () => {
 								category={item.category}
 								avail={item.avail_quantity}
 								description={item.description}
+								initial={item.initial_quantity}
+								id={item.id}
 							/>
 						</div>
 					))
