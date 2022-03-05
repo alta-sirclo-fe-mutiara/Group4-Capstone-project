@@ -14,7 +14,7 @@ type item = {
 	id: number;
 	initial_quantity: number;
 	is_maintenance: boolean;
-	id_category: string
+	id_category: number
 };
 
 const AdminAssets = () => {
@@ -83,16 +83,7 @@ const AdminAssets = () => {
 			});
 	};
 	console.log(asset)
-	// const perPage = 4;
-	// let [recentPage, setRecentPage] = useState(1);
-	// const [tip, setTip] = useState(0);
-	// const nextPage = () => {
-	// 	setRecentPage((recentPage += 1));
-	// };
-	// const prevPage = () => {
-	// 	setRecentPage((recentPage -= 1));
-	// };
-
+	
 	return (
 		<div className="container">
 			<div className="row my-3 text-center heading">

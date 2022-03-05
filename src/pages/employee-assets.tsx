@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
-import { CardAsset } from "../components/CardAsset";
+import { CardAssetEmployee } from "../components/CardAsset";
 import ImgDummy from "../assets/img/dummy-asset.png";
 
 type item = {
@@ -13,7 +13,7 @@ type item = {
 	initial_quantity:number;
 	id:number
 	is_maintenance: boolean;
-	id_category: string
+	id_category: number
 };
 
 const EmployeeAssets = () => {
@@ -57,7 +57,7 @@ const EmployeeAssets = () => {
 				console.log(err);
 			});
 	};
-
+	console.log(asset, "tes")
 	return (
 		<div className="container">
 			<div className="row my-3 text-center heading">
@@ -89,7 +89,7 @@ const EmployeeAssets = () => {
 				{asset ? (
 					asset.map((item: item, index: number) => (
 						<div className="col-10 col-md-6 col-lg-3" key={index}>
-							<CardAsset
+							<CardAssetEmployee
 								name={item.name}
 								photo={item.photo !== "" ? item.photo : `${ImgDummy}`}
 								category={item.category}
@@ -98,7 +98,7 @@ const EmployeeAssets = () => {
 								initial={item.initial_quantity}
 								id={item.id}
 								is_maintenance={item.is_maintenance}
-								id_category={item.id_category.toString()}
+								id_category={item.id_category}
 							/>
 						</div>
 					))

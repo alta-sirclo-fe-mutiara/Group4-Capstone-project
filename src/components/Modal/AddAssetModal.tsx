@@ -12,19 +12,19 @@ interface Props {
   photo?: any;
   is_maintenance?: boolean;
   id?: number;
-  id_category?:string
+  id_category?:number
 }
 
 export default function AddAssetModal(props: Props) {
   const initialName = props.name ? props.name : "";
   const initialDescription = props.description ? props.description : "";
-  const initialCategory = props.id_category ? props.id_category : "1";
+  const initialCategory = props.id_category ? props.id_category : 1;
   const initialQuantity = props.initial_quantity ? props.initial_quantity : "";
   const initialPhoto = props.photo ? props.photo : "";
   const initialMaintenanceStatus = props.is_maintenance ? props.is_maintenance : false;
   const [name, setName] = useState<string>(initialName);
   const [description, setDescription] = useState<string>(initialDescription);
-  const [id_category, setIDCategory] = useState<string>(initialCategory);
+  const [id_category, setIDCategory] = useState<number>(initialCategory);
   const [initial_quantity, setQuantity] = useState(initialQuantity);
   const [photo, setPhoto] = useState<any>(initialPhoto);
   const [previewPhoto, setPreviewPhoto] = useState<any>();
@@ -47,13 +47,13 @@ export default function AddAssetModal(props: Props) {
         console.log(err);
       });
   };
-
+console.log(categoryData, "fuy")
   const addAssetHandle = () => {
     let formData = new FormData();
     formData.append("photo", photo, photo.name);
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("id_category", id_category);
+    formData.append("id_category", id_category.toString());
     formData.append("initial_quantity", initial_quantity.toString());
     formData.append("is_maintenance", is_maintenance.toString());
     axios
@@ -76,7 +76,7 @@ export default function AddAssetModal(props: Props) {
     formData.append("photo", photo, photo.name);
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("id_category", id_category);
+    formData.append("id_category", id_category.toString());
     formData.append("initial_quantity", initial_quantity.toString());
     formData.append("is_maintenance", is_maintenance.toString());
     axios
@@ -142,7 +142,7 @@ export default function AddAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          onChange={(e) => setIDCategory(e.target.value)}
+          onChange={(e) => setIDCategory(parseInt(e.target.value))}
           
         >
           {categoryData?.map((item: any) => {
@@ -226,7 +226,7 @@ export default function AddAssetModal(props: Props) {
           name="category"
           aria-label="Default select example"
           value={id_category}
-          onChange={(e) => setIDCategory(e.target.value)}
+          onChange={(e) => setIDCategory(parseInt(e.target.value))}
         >
           {categoryData?.map((item: any) => {
             return <option value={item.id}>{item.description}</option>;

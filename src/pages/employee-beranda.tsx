@@ -36,7 +36,7 @@ export default function EmployeeBeranda() {
         console.log(err);
       });
   };
-
+  
   const fetchHistoryData = () => {
     axios
       .get(`/employee/history`)
@@ -112,29 +112,18 @@ export default function EmployeeBeranda() {
                       <HiDotsHorizontal />
                     </p>
                     <div
-                      className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
+                      className="tiptool activTip border border-1 shadow rounded-3 bg-white px-3 py-2"
                       style={
                         activTip === pageNumber
                           ? { display: "block" }
                           : { display: "none" }
                       }
                     >
-                      <div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2 d-block">
-                        {item.status === "disetujui" ? (
-                          <p className="curs mb-0 ajukan border">
-                            Ajukan Pengembalian
-                          </p>
-                        ) : item.status === "tolak" ? (
-                          <p className="curs mb-0 ajukan">
-                            Ajukan Peminjaman Ulang
-                          </p>
-                        ) : (
-                          <></>
-                        )}
+                         <p onClick={() => setActivTip(0)} className="curs mb-0">
                         <ModalPermohonanEmployee
                           photo={item.photo}
                           category={item.category}
-                          item={item.asset_name}
+                          asset_name={item.asset_name}
                           avail={item.avail_quantity}
                           request_date={item.request_date}
                           return_date={item.return_date}
@@ -142,9 +131,10 @@ export default function EmployeeBeranda() {
                           request_description={item.description}
                           id_status={item.id_status}
                           id={item.id}
+                          id_asset={item.id_asset}
                           fetch={fetchActivityData}
                         />
-                      </div>
+                        </p>
                     </div>
                   </div>
                 </div>
@@ -173,7 +163,7 @@ export default function EmployeeBeranda() {
                         {perPage * (recentPage - 1) + (index + 1)}
                       </th>
                       <th>{item.request_date}</th>
-                      <th>Peminjaman Barang</th>
+                      <th>Peminjaman Barang </th>
                       <th>{item.category}</th>
                       <th>{item.asset_name}</th>
                       <th className="position-relative">
@@ -197,6 +187,7 @@ export default function EmployeeBeranda() {
                               : { display: "none" }
                           }
                         >
+                           <p onClick={() => setTip(0)} className="curs mb-0">
                           <ModalDetailPenggunaan
                             photo={item.photo}
                             category={item.category}
@@ -205,7 +196,7 @@ export default function EmployeeBeranda() {
                             date={item.request_date}
                             date_return={item.return_date}
                             request_description={item.description}
-                          />
+                          /></p>
                         </div>
                       </th>
                     </tr>

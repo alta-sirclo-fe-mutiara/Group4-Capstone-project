@@ -134,7 +134,7 @@ export default function PenggunaAset() {
                               <ModalPermohonanAset
                                 photo={item.photo}
                                 category={item.category}
-                                item={item.asset_name}
+                                asset_name={item.asset_name}
                                 avail={item.avail_quantity}
                                 user={item.user_name}
                                 request_date={item.request_date}

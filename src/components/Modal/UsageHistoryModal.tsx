@@ -35,7 +35,7 @@ export default function UsageHistoryModal(props: Props) {
         console.log(err);
       });
   };
-  console.log(history, name, props.id, "history");
+  
   return (
     <Modal show={props.show}>
       <Modal.Header>

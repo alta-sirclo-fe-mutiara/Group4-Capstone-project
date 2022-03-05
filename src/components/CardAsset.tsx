@@ -13,10 +13,10 @@ type Props = {
     id: number;
     initial: number
     is_maintenance: boolean
-    id_category: string
+    id_category: number
   };
   
-  const CardAsset = (props: Props) => {
+  const CardAssetEmployee = (props: Props) => {
     const [isRequestOpen, setIsRequestOpen] = useState(false);
     const [isUsageOpen, setIsUsageOpen] = useState(false);
     return (
@@ -61,6 +61,8 @@ type Props = {
         <RequestAssetModal
           show={isRequestOpen}
           closeModal={() => setIsRequestOpen(false)}
+          id_category={props.id_category}
+          id_asset={props.id}
         />
         <UsageHistoryModal
           show={isUsageOpen}
@@ -77,6 +79,7 @@ type Props = {
   const CardAssetAdmin = (props: Props) => {
     const [isDetailOpen, setIsDetailOpen] = useState(false);
     const [isUsageOpen, setIsUsageOpen] = useState(false);
+
     return (
       <div className="card card-asset admin mb-3">
         <div className="card-body">
@@ -141,4 +144,4 @@ type Props = {
     );
 };
 
-export { CardAsset, CardAssetAdmin };
+export { CardAssetEmployee, CardAssetAdmin };

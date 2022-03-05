@@ -8,8 +8,8 @@ import moment from "moment";
 
 type Props = {
   photo?: string;
-  category: String;
-  item?: String;
+  category: string;
+  asset_name?: string;
   avail?: number;
   user?: String;
   request_date: String;
@@ -22,6 +22,7 @@ type Props = {
   id_status?:number;
   id?:number;
   fetch?:any;
+  id_asset?:number;
 };
 
 
@@ -53,7 +54,7 @@ const ModalPermohonanManager = (props: Props) => {
     .catch((err) => {
       console.log(err);
     }).finally(()=>{
-      props.fetch()
+      props.fetch() 
     })
   }
   
@@ -81,7 +82,7 @@ const ModalPermohonanManager = (props: Props) => {
               </div>
               <div className="col-10 col-md-6">
                 <p className="title mb-1"> {props.category} </p>
-                <h5 className=""> {props.item} </h5>
+                <h5 className=""> {props.asset_name} </h5>
                 <p className="title mb-1"> {props.avail} item tersedia</p>
               </div>
             </div>
@@ -211,12 +212,12 @@ const ModalPermohonanEmployee = (props: Props) => {
                 <img
                   src={props.photo}
                   alt=""
-                  className="rounded-3 img-detail-aset"
+                  className="rounded-3 img-detail-aset w-100 h-100"
                 />
               </div>
               <div className="col-10 col-md-6">
                 <p className="title mb-1"> {props.category} </p>
-                <h5 className=""> {props.item} </h5>
+                <h5 className=""> {props.asset_name} </h5>
                 {props.id_status === 2 ? (
                   <p className="title mb-1"> {props.avail} item tersedia</p>
                 ) : (
@@ -301,6 +302,7 @@ const ModalPermohonanEmployee = (props: Props) => {
       <RequestAssetModal
         show={isRequestOpen}
         closeModal={() => setIsRequestOpen(false)}
+        id_asset={props.id_asset}
       />
     </>
   );
@@ -391,7 +393,7 @@ const ModalPermohonanAset = (props: Props) => {
               </div>
               <div className="col-10 col-md-8">
                 <p className="title mb-1"> {props.category} </p>
-                <h5 className=""> {props.item} </h5>
+                <h5 className=""> {props.asset_name} </h5>
                 {props.id_status === 1 || props.id_status === 2 ? (
                   <p className="title mb-1"> {props.avail} item tersedia</p>
                 ) : (
