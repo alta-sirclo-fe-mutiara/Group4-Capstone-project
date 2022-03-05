@@ -46,11 +46,11 @@ export default function PermohonanPersetujuan() {
         <p>Berikut merupakan daftar persetujuan peminjaman aset karyawan</p>
         <div className="my-4 statusFilter">
           <ul className="d-flex">
-            <li onClick={()=>setStatus("all")}>Semua</li>
-            <li onClick={()=>setStatus("new")}>Butuh Persetujuan</li>
-            <li onClick={()=>setStatus("using")}>Disetujui</li>
-            <li onClick={()=>setStatus("reject")}>Ditolak</li>
-            <li onClick={()=>setStatus("returned")}>Dikembalikan</li>
+          <li onClick={()=>setStatus("all")} className={status === "all" ? "statusCheck" : ""}>Semua</li>
+            <li onClick={()=>setStatus("new")} className={status === "new" ? "statusCheck" : ""}>Butuh Persetujuan</li>
+            <li onClick={()=>setStatus("using")} className={status === "using" ? "statusCheck" : ""}>Disetujui</li>
+            <li onClick={()=>setStatus("reject")} className={status === "reject" ? "statusCheck" : ""}>Ditolak</li>
+            <li onClick={()=>setStatus("returned")} className={status === "returned" ? "statusCheck" : ""}>Dikembalikan</li>
           </ul>
         </div>
         <div className="statusFilterDrop">
