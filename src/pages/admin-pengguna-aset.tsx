@@ -6,14 +6,17 @@ import moment from "moment";
 
 export default function PenggunaAset() {
   const [data, setData] = useState([]);
+  const [request, setRequest] = useState("")
+  const [status, setStatus] = useState("all")
+  const [filterDate, setFilterDate] = useState("") 
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [status, request, filterDate]);
 
   const fetchData = () => {
     axios
-      .get(`/requests`)
+    .get(`/requests?request_date=${request}&status=${status}&filter_date=${filterDate}`)
       .then((res) => {
         setData(res.data.data.data);
         console.log(data);
@@ -40,11 +43,11 @@ export default function PenggunaAset() {
         <p>Berikut merupakan daftar pengajuan peminjaman aset karyawan</p>
         <div className="my-4 statusFilter">
           <ul className="d-flex">
-            <li>Semua</li>
-            <li>Butuh Persetujuan</li>
-            <li>Disetujui</li>
-            <li>Ditolak</li>
-            <li>Dikembalikan</li>
+          <li onClick={()=>setStatus("all")} className={status === "all" ? "statusCheck" : ""}>Semua</li>
+            <li onClick={()=>setStatus("new")} className={status === "new" ? "statusCheck" : ""}>Butuh Persetujuan</li>
+            <li onClick={()=>setStatus("using")} className={status === "using" ? "statusCheck" : ""}>Disetujui</li>
+            <li onClick={()=>setStatus("reject")} className={status === "reject" ? "statusCheck" : ""}>Ditolak</li>
+            <li onClick={()=>setStatus("returned")} className={status === "returned" ? "statusCheck" : ""}>Dikembalikan</li>
           </ul>
         </div>
         <div className="statusFilterDrop">
@@ -53,7 +56,7 @@ export default function PenggunaAset() {
             name="category"
             aria-label="Default select example"
           >
-            <option value="default">Semua</option>
+            <option value="default" >Semua</option>
             <option value="default">Butuh Persetujuan</option>
             <option value="default">Disetujui</option>
             <option value="default">Ditolak</option>
@@ -66,14 +69,20 @@ export default function PenggunaAset() {
           <p className="noSpace font-weight-bold">Semua Pengguna</p>
           <p>{data.length} Pemohon</p>
         </div>
-        <input type="date" className="date" />
+        <input type="date" className="date" value={filterDate} onChange={(e)=>setFilterDate(e.target.value)}/>
       </div>
       <div className="scrTablP">
         <table className="text-left tablP">
           <thead>
             <tr className="trow tCol">
               <th className="text-center">No</th>
-              <th>Tanggal</th>
+              <th><div className="d-flex align-items-center">
+                Tanggal
+                <div className="d-flex flex-column ml-2">
+                  <i className="bi bi-caret-up-fill curs" onClick={()=>setRequest("latest")} style={{height:"15px", fontSize:"15px"}}></i>
+                  <i className="bi bi-caret-down-fill curs" onClick={()=>setRequest("oldest")}  style={{fontSize:"15px"}}></i>
+                </div></div>
+              </th>
               <th>Pemohon</th>
               <th>Jenis Aktivitas</th>
               <th>Kategori Aset</th>

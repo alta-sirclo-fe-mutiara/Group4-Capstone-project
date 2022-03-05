@@ -8,7 +8,7 @@ export default function PermohonanPersetujuan() {
   const [data, setData] = useState([]);
   const [request, setRequest] = useState("")
   const [status, setStatus] = useState("all")
-  const [filterDate, setFilterDate] = useState("")
+  const [filterDate, setFilterDate] = useState("") 
 
   useEffect(() => {
     fetchData();
