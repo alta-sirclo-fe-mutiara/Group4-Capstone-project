@@ -22,7 +22,7 @@ export default function PenggunaAset() {
       });
   };
 
-  const perPage = 4;
+  const perPage = 5;
   let [recentPage, setRecentPage] = useState(1);
   const [tip, setTip] = useState(0);
   const nextPage = () => {
@@ -144,9 +144,9 @@ export default function PenggunaAset() {
         </table>
       </div>
       <div className="my-5 d-flex justify-content-center align-items-center">
-        <p onClick={() => prevPage()} className="mx-3 curs">
-          <i className="bi bi-chevron-left"></i>
-        </p>
+      <button onClick={() => prevPage()} className="mx-3 curs btnNone" disabled={recentPage === 1}>
+              <i className="bi bi-chevron-left"></i>
+            </button>
         {data.map((item, index) => {
           const pageMod = data.indexOf(item) % perPage;
           const pageDiv = data.indexOf(item) / perPage + 1;
@@ -165,9 +165,9 @@ export default function PenggunaAset() {
             </div>
           );
         })}
-        <p onClick={() => nextPage()} className="mx-3 curs">
-          <i className="bi bi-chevron-right"></i>
-        </p>
+        <button onClick={() => nextPage()} className="mx-3 curs btnNone" disabled={Math.ceil(data.length/perPage) === recentPage}>
+              <i className="bi bi-chevron-right"></i>
+            </button>
       </div>
     </div>
   );

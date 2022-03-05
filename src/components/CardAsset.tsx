@@ -12,6 +12,8 @@ type Props = {
     description: string;
     id: number;
     initial: number
+    is_maintenance: boolean
+    id_category: string
   };
   
   const CardAsset = (props: Props) => {
@@ -64,6 +66,9 @@ type Props = {
           show={isUsageOpen}
           closeModal={() => setIsUsageOpen(false)}
           id={props.id}
+          photo={props.photo}
+          name={props.name}
+          category={props.category}
         />
       </div>
     );
@@ -99,7 +104,8 @@ type Props = {
               <FaUserCircle className="ico-user w-100" />
             </div>
             <div className="col-10" onClick={() => setIsUsageOpen(true)}>
-              <p className="count-user px-0 curs">{props.initial - props.avail} pengguna</p>
+              {props.is_maintenance ? <p className="count-user px-0 curs">In Maintenance</p> :
+              <p className="count-user px-0 curs">{props.initial - props.avail} pengguna</p>}
             </div>
           </div>
           <div className="row pinjam justify-content-center mt-2">
@@ -117,15 +123,19 @@ type Props = {
           closeModal={() => setIsDetailOpen(false)}
           name={props.name}
           description={props.description}
-          id_category={props.category}
+          category={props.category}
           initial_quantity={props.initial}
-          is_maintenance={false}
+          is_maintenance={props.is_maintenance}
           id={props.id}
+          id_category={props.id_category}
         />
         <UsageHistoryModal
           show={isUsageOpen}
           closeModal={() => setIsUsageOpen(false)}
           id={props.id}
+          photo={props.photo}
+          name={props.name}
+          category={props.category}
         />
       </div>
     );

@@ -6,6 +6,9 @@ interface Props {
   show: boolean;
   closeModal: any;
   id: number;
+  photo: string;
+  name: string;
+  category:string;
 }
 
 export default function UsageHistoryModal(props: Props) {
@@ -32,22 +35,22 @@ export default function UsageHistoryModal(props: Props) {
         console.log(err);
       });
   };
-  console.log(history, props.id);
+  console.log(history, name, props.id, "history");
   return (
     <Modal show={props.show}>
       <Modal.Header>
-        <Modal.Title className="primeCol">Hostori Aset</Modal.Title>
+        <Modal.Title className="primeCol">Histori Aset</Modal.Title>
         <i className="bi bi-x-lg curs" onClick={props.closeModal}></i>
       </Modal.Header>
       <Modal.Body className="ModalForm">
         <div>
           <div className="row d-flex justify-content-center">
             <div className="col-10 col-md-6">
-              <img src={photo} alt="" className="rounded-3 img-detail-aset w-100 h-100" />
+              <img src={props.photo} alt="" className="rounded-3 img-detail-aset w-100 h-100" />
             </div>
             <div className="col-10 col-md-6">
-              <p className="title mb-1"> {category} </p>
-              <h5 className=""> {name} </h5>
+              <p className="title mb-1"> {props.category} </p>
+              <h5 className=""> {props.name} </h5>
             </div>
           </div>
           <div className="scrTabl">

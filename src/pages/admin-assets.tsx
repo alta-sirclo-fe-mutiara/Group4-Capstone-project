@@ -13,6 +13,8 @@ type item = {
 	description: string;
 	id: number;
 	initial_quantity: number;
+	is_maintenance: boolean;
+	id_category: string
 };
 
 const AdminAssets = () => {
@@ -43,7 +45,7 @@ const AdminAssets = () => {
 
 	const fetchData = async () => {
 		await axios
-			.get("/assets?avail=yes")
+			.get("/assets")
 			.then((res) => {
 				const { data } = res;
 				setAsset(data.data.data);
@@ -80,7 +82,7 @@ const AdminAssets = () => {
 				console.log(err);
 			});
 	};
-
+	console.log(asset)
 	// const perPage = 4;
 	// let [recentPage, setRecentPage] = useState(1);
 	// const [tip, setTip] = useState(0);
@@ -146,6 +148,8 @@ const AdminAssets = () => {
 									description={item.description}
 									initial={item.initial_quantity}
 									id={item.id}
+									is_maintenance={item.is_maintenance}
+									id_category={item.id_category}
 								/>
 							</div>
 						);

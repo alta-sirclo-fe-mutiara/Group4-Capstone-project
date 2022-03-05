@@ -5,24 +5,30 @@ import axios from "axios";
 
 export default function PermohonanPersetujuan() {
   const [data, setData] = useState([]);
+  const [request, setRequest] = useState("")
+  const [status, setStatus] = useState("all")
+  const [filterDate, setFilterDate] = useState("")
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [status, request, filterDate]);
 
   const fetchData = () => {
     axios
-      .get(`/requests`)
+      .get(`/requests?request_date=${request}&status=${status}&filter_date=${filterDate}`)
       .then((res) => {
-        setData(res.data.data.data);
-        console.log(data);
+        if (!res.data.data.data) {
+          setData([]);
+        } else {
+          setData(res.data.data.data);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const perPage = 4;
+  const perPage = 5;
   let [recentPage, setRecentPage] = useState(1);
   const [tip, setTip] = useState(0);
   const nextPage = () => {
@@ -31,7 +37,7 @@ export default function PermohonanPersetujuan() {
   const prevPage = () => {
     setRecentPage((recentPage -= 1));
   };
-
+  console.log(Date.now())
   return (
     <div className="container">
       <div className="d-flex flex-column align-items-center w-screen text-center">
@@ -39,11 +45,11 @@ export default function PermohonanPersetujuan() {
         <p>Berikut merupakan daftar persetujuan peminjaman aset karyawan</p>
         <div className="my-4 statusFilter">
           <ul className="d-flex">
-            <li>Semua</li>
-            <li>Butuh Persetujuan</li>
-            <li>Disetujui</li>
-            <li>Ditolak</li>
-            <li>Dikembalikan</li>
+            <li onClick={()=>setStatus("all")}>Semua</li>
+            <li onClick={()=>setStatus("new")}>Butuh Persetujuan</li>
+            <li onClick={()=>setStatus("using")}>Disetujui</li>
+            <li onClick={()=>setStatus("reject")}>Ditolak</li>
+            <li onClick={()=>setStatus("returned")}>Dikembalikan</li>
           </ul>
         </div>
         <div className="statusFilterDrop">
@@ -65,14 +71,20 @@ export default function PermohonanPersetujuan() {
           <p className="noSpace font-weight-bold">Semua Pengguna</p>
           <p>{data.length} Pemohon</p>
         </div>
-        <input type="date" className="date" />
+        <input type="date" className="date" value={filterDate} onChange={(e)=>setFilterDate(e.target.value)}/>
       </div>
       <div className="scrTablP">
         <table className="text-left tablP">
           <thead>
             <tr className="trow tCol">
               <th className="text-center">No</th>
-              <th>Tanggal</th>
+              <th><div className="d-flex align-items-center">
+                Tanggal
+                <div className="d-flex flex-column ml-2">
+                  <i className="bi bi-caret-up-fill curs" onClick={()=>setRequest("latest")} style={{height:"15px", fontSize:"15px"}}></i>
+                  <i className="bi bi-caret-down-fill curs" onClick={()=>setRequest("oldest")}  style={{fontSize:"15px"}}></i>
+                </div></div>
+              </th>
               <th>Pemohon</th>
               <th>Jenis Aktivitas</th>
               <th>Kategori Aset</th>
@@ -144,9 +156,9 @@ export default function PermohonanPersetujuan() {
         </table>
       </div>
       <div className="my-5 d-flex justify-content-center align-items-center">
-        <p onClick={() => prevPage()} className="mx-3 curs">
-          <i className="bi bi-chevron-left"></i>
-        </p>
+      <button onClick={() => prevPage()} className="mx-3 curs btnNone" disabled={recentPage === 1}>
+              <i className="bi bi-chevron-left"></i>
+            </button>
         {data.map((item, index) => {
           const pageMod = data.indexOf(item) % perPage;
           const pageDiv = data.indexOf(item) / perPage + 1;
@@ -165,9 +177,9 @@ export default function PermohonanPersetujuan() {
             </div>
           );
         })}
-        <p onClick={() => nextPage()} className="mx-3 curs">
-          <i className="bi bi-chevron-right"></i>
-        </p>
+        <button onClick={() => nextPage()} className="mx-3 curs btnNone" disabled={Math.ceil(data.length/perPage) === recentPage}>
+              <i className="bi bi-chevron-right"></i>
+            </button>
       </div>
     </div>
   );

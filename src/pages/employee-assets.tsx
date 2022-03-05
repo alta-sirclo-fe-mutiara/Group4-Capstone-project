@@ -12,6 +12,8 @@ type item = {
 	description: string;
 	initial_quantity:number;
 	id:number
+	is_maintenance: boolean;
+	id_category: string
 };
 
 const EmployeeAssets = () => {
@@ -95,6 +97,8 @@ const EmployeeAssets = () => {
 								description={item.description}
 								initial={item.initial_quantity}
 								id={item.id}
+								is_maintenance={item.is_maintenance}
+								id_category={item.id_category.toString()}
 							/>
 						</div>
 					))

@@ -27,7 +27,7 @@ export default function AssignAssetModal(props: Props) {
 
   const fetchData = () => {
     axios
-      .get(`/assets`)
+      .get(`/assets?&avail=yes`)
       .then((res) => {
         setAssetData(res.data.data.data);
         console.log(assetData);

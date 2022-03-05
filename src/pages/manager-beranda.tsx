@@ -124,9 +124,9 @@ export default function ManagerBeranda() {
             </table>
           </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
-            <p onClick={() => prevPage()} className="mx-3 curs">
+          <button onClick={() => prevPage()} className="mx-3 curs btnNone" disabled={recentPage === 1}>
               <i className="bi bi-chevron-left"></i>
-            </p>
+            </button>
             {data.map((item, index) => {
               const pageMod = data.indexOf(item) % perPage;
               const pageDiv = data.indexOf(item) / perPage + 1;
@@ -145,9 +145,9 @@ export default function ManagerBeranda() {
                 </div>
               );
             })}
-            <p onClick={() => nextPage()} className="mx-3 curs">
+           <button onClick={() => nextPage()} className="mx-3 curs btnNone" disabled={Math.ceil(data.length/perPage) === recentPage}>
               <i className="bi bi-chevron-right"></i>
-            </p>
+            </button>
           </div>
         </div>
         <div className="col-md-3 primeCol">

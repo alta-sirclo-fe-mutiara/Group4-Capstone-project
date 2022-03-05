@@ -25,7 +25,7 @@ export default function RequestAssetModal(props: Props) {
 
   const fetchAssetData = () => {
     axios
-      .get(`/assets?category=${category}`)
+      .get(`/assets?category=${category}&avail=yes`)
       .then((res) => {
         setAssetData(res.data.data.data);
         console.log(assetData);
