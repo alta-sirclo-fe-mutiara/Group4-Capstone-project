@@ -12,7 +12,7 @@ interface Props {
   photo?: any;
   is_maintenance?: boolean;
   id?: number;
-  id_category?:number
+  id_category?: number;
 }
 
 export default function AddAssetModal(props: Props) {
@@ -21,16 +21,19 @@ export default function AddAssetModal(props: Props) {
   const initialCategory = props.id_category ? props.id_category : 1;
   const initialQuantity = props.initial_quantity ? props.initial_quantity : "";
   const initialPhoto = props.photo ? props.photo : "";
-  const initialMaintenanceStatus = props.is_maintenance ? props.is_maintenance : false;
+  const initialMaintenanceStatus = props.is_maintenance
+    ? props.is_maintenance
+    : false;
   const [name, setName] = useState<string>(initialName);
   const [description, setDescription] = useState<string>(initialDescription);
   const [id_category, setIDCategory] = useState<number>(initialCategory);
   const [initial_quantity, setQuantity] = useState(initialQuantity);
   const [photo, setPhoto] = useState<any>(initialPhoto);
   const [previewPhoto, setPreviewPhoto] = useState<any>();
-  const [categoryData, setCategoryData] = useState([])
-  const [is_maintenance, setIsMaintenance] = useState<boolean>(initialMaintenanceStatus);
-  console.log(is_maintenance, name, id_category, props.is_maintenance, initialMaintenanceStatus)
+  const [categoryData, setCategoryData] = useState([]);
+  const [is_maintenance, setIsMaintenance] = useState<boolean>(
+    initialMaintenanceStatus
+  );
 
   useEffect(() => {
     fetchCategoryData();
@@ -47,7 +50,7 @@ export default function AddAssetModal(props: Props) {
         console.log(err);
       });
   };
-console.log(categoryData, "fuy")
+
   const addAssetHandle = () => {
     let formData = new FormData();
     formData.append("photo", photo, photo.name);
@@ -93,7 +96,7 @@ console.log(categoryData, "fuy")
         console.log(err.message);
       });
   };
-  
+
   if (!props.name) {
     return (
       <Modal show={props.show}>
@@ -139,17 +142,16 @@ console.log(categoryData, "fuy")
           />
           <p>Kategori Aset</p>
           <select
-          className="form-select"
-          name="category"
-          aria-label="Default select example"
-          onChange={(e) => setIDCategory(parseInt(e.target.value))}
-          
-        >
-          {categoryData?.map((item: any) => {
-            return <option value={item.id}>{item.description}</option>;
-          })}
-          );
-        </select>
+            className="form-select"
+            name="category"
+            aria-label="Default select example"
+            onChange={(e) => setIDCategory(parseInt(e.target.value))}
+          >
+            {categoryData?.map((item: any) => {
+              return <option value={item.id}>{item.description}</option>;
+            })}
+            );
+          </select>
           <p>Total Jumlah Aset</p>
           <input
             type="number"
@@ -222,17 +224,17 @@ console.log(categoryData, "fuy")
           />
           <p>Kategori Aset</p>
           <select
-          className="form-select"
-          name="category"
-          aria-label="Default select example"
-          value={id_category}
-          onChange={(e) => setIDCategory(parseInt(e.target.value))}
-        >
-          {categoryData?.map((item: any) => {
-            return <option value={item.id}>{item.description}</option>;
-          })}
-          );
-        </select>
+            className="form-select"
+            name="category"
+            aria-label="Default select example"
+            value={id_category}
+            onChange={(e) => setIDCategory(parseInt(e.target.value))}
+          >
+            {categoryData?.map((item: any) => {
+              return <option value={item.id}>{item.description}</option>;
+            })}
+            );
+          </select>
           <p>Total Jumlah Aset</p>
           <input
             type="number"

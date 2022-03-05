@@ -16,7 +16,7 @@ export default function EmployeeBeranda() {
   useEffect(() => {
     fetchHistoryData();
   }, []);
-  
+
   useEffect(() => {
     fetchActivityData();
   }, []);
@@ -36,7 +36,7 @@ export default function EmployeeBeranda() {
         console.log(err);
       });
   };
-  
+
   const fetchHistoryData = () => {
     axios
       .get(`/employee/history`)
@@ -88,7 +88,11 @@ export default function EmployeeBeranda() {
                   key={index}
                 >
                   <div className="row p-3">
-                    <img src={item.photo} className="col-5" alt={item.asset_name}/>
+                    <img
+                      src={item.photo}
+                      className="col-5"
+                      alt={item.asset_name}
+                    />
                     <div className="col-7">
                       <p className="actDate noSpace">{item.request_date}</p>
                       <p className="font-weight-bold noSpace">
@@ -119,7 +123,7 @@ export default function EmployeeBeranda() {
                           : { display: "none" }
                       }
                     >
-                         <p onClick={() => setActivTip(0)} className="curs mb-0">
+                      <p onClick={() => setActivTip(0)} className="curs mb-0">
                         <ModalPermohonanEmployee
                           photo={item.photo}
                           category={item.category}
@@ -134,7 +138,7 @@ export default function EmployeeBeranda() {
                           id_asset={item.id_asset}
                           fetch={fetchActivityData}
                         />
-                        </p>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -187,16 +191,17 @@ export default function EmployeeBeranda() {
                               : { display: "none" }
                           }
                         >
-                           <p onClick={() => setTip(0)} className="curs mb-0">
-                          <ModalDetailPenggunaan
-                            photo={item.photo}
-                            category={item.category}
-                            status={item.status}
-                            item={item.asset_name}
-                            date={item.request_date}
-                            date_return={item.return_date}
-                            request_description={item.description}
-                          /></p>
+                          <p onClick={() => setTip(0)} className="curs mb-0">
+                            <ModalDetailPenggunaan
+                              photo={item.photo}
+                              category={item.category}
+                              status={item.status}
+                              item={item.asset_name}
+                              date={item.request_date}
+                              date_return={item.return_date}
+                              request_description={item.description}
+                            />
+                          </p>
                         </div>
                       </th>
                     </tr>
@@ -206,7 +211,11 @@ export default function EmployeeBeranda() {
             </table>
           </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
-          <button onClick={() => prevPage()} className="mx-3 curs btnNone" disabled={recentPage === 1}>
+            <button
+              onClick={() => prevPage()}
+              className="mx-3 curs btnNone"
+              disabled={recentPage === 1}
+            >
               <i className="bi bi-chevron-left"></i>
             </button>
             {historyData.map((item, index) => {
@@ -227,7 +236,11 @@ export default function EmployeeBeranda() {
                 </div>
               );
             })}
-          <button onClick={() => nextPage()} className="mx-3 curs btnNone" disabled={Math.ceil(historyData.length/perPage) === recentPage}>
+            <button
+              onClick={() => nextPage()}
+              className="mx-3 curs btnNone"
+              disabled={Math.ceil(historyData.length / perPage) === recentPage}
+            >
               <i className="bi bi-chevron-right"></i>
             </button>
           </div>
@@ -237,12 +250,22 @@ export default function EmployeeBeranda() {
             className=" curs shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between"
             onClick={() => setIsRequestOpen(true)}
           >
-            <p className="w-50 m-0 p-0 font-weight-bold curs">Peminjaman Aset</p>
-            <img className="noSpace img" src={ImgModel1} alt="peminjaman aset"/>
+            <p className="w-50 m-0 p-0 font-weight-bold curs">
+              Peminjaman Aset
+            </p>
+            <img
+              className="noSpace img"
+              src={ImgModel1}
+              alt="peminjaman aset"
+            />
           </div>
           <div className=" blur shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 m-0 p-0 font-weight-bold">Pengajuan Aset Baru</p>
-            <img className="noSpace img" src={ImgModel2} alt="pengajuan aset baru"/>
+            <img
+              className="noSpace img"
+              src={ImgModel2}
+              alt="pengajuan aset baru"
+            />
           </div>
         </div>
       </div>

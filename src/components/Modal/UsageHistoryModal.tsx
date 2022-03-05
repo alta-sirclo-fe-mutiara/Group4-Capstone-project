@@ -8,7 +8,7 @@ interface Props {
   id: number;
   photo: string;
   name: string;
-  category:string;
+  category: string;
 }
 
 export default function UsageHistoryModal(props: Props) {
@@ -35,7 +35,7 @@ export default function UsageHistoryModal(props: Props) {
         console.log(err);
       });
   };
-  
+
   return (
     <Modal show={props.show}>
       <Modal.Header>
@@ -46,7 +46,11 @@ export default function UsageHistoryModal(props: Props) {
         <div>
           <div className="row d-flex justify-content-center">
             <div className="col-10 col-md-6">
-              <img src={props.photo} alt="" className="rounded-3 img-detail-aset w-100 h-100" />
+              <img
+                src={props.photo}
+                alt=""
+                className="rounded-3 img-detail-aset w-100 h-100"
+              />
             </div>
             <div className="col-10 col-md-6">
               <p className="title mb-1"> {props.category} </p>

@@ -130,7 +130,11 @@ export default function AdminBeranda() {
             </table>
           </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
-            <button onClick={() => prevPage()} className="mx-3 curs btnNone" disabled={recentPage === 1}>
+            <button
+              onClick={() => prevPage()}
+              className="mx-3 curs btnNone"
+              disabled={recentPage === 1}
+            >
               <i className="bi bi-chevron-left"></i>
             </button>
             {data.map((item, index) => {
@@ -151,7 +155,11 @@ export default function AdminBeranda() {
                 </div>
               );
             })}
-            <button onClick={() => nextPage()} className="mx-3 curs btnNone" disabled={Math.ceil(data.length/perPage) === recentPage}>
+            <button
+              onClick={() => nextPage()}
+              className="mx-3 curs btnNone"
+              disabled={Math.ceil(data.length / perPage) === recentPage}
+            >
               <i className="bi bi-chevron-right"></i>
             </button>
           </div>
@@ -162,7 +170,11 @@ export default function AdminBeranda() {
             onClick={() => setIsAddAssetOpen(true)}
           >
             <p className="w-50 m-0 p-0 font-weight-bold">Tambah Aset Baru</p>
-            <img className="noSpace img" src={ImgModel1} alt="tambah aset baru"/>
+            <img
+              className="noSpace img"
+              src={ImgModel1}
+              alt="tambah aset baru"
+            />
           </div>
           <div
             className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between"
@@ -171,7 +183,11 @@ export default function AdminBeranda() {
             <p className="w-50 m-0 p-0 font-weight-bold">
               Assign Aset Ke Karyawan
             </p>
-            <img className="noSpace img" src={ImgModel2} alt="assign aset ke karyawan"/>
+            <img
+              className="noSpace img"
+              src={ImgModel2}
+              alt="assign aset ke karyawan"
+            />
           </div>
         </div>
       </div>

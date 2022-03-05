@@ -17,7 +17,7 @@ export default function AssignAssetModal(props: Props) {
   const [description, setDescription] = useState("");
   const id_user = parseInt(user);
   const id_asset = parseInt(asset);
-  
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -50,39 +50,38 @@ export default function AssignAssetModal(props: Props) {
   };
 
   const assignHandle = () => {
-    if(isChecked){
+    if (isChecked) {
       axios
-      .post(`/requests`, {
-        id_asset,
-        id_user,
-        description,
-        return_date,
-      })
-      .then((e) => {
-        alert("Assign Aset berhasil dilakukan !");
-        console.log(e);
-      })
-      .catch((e) => {
-        alert(e);
-      });
-    }else{
+        .post(`/requests`, {
+          id_asset,
+          id_user,
+          description,
+          return_date,
+        })
+        .then((e) => {
+          alert("Assign Aset berhasil dilakukan !");
+          console.log(e);
+        })
+        .catch((e) => {
+          alert(e);
+        });
+    } else {
       axios
-      .post(`/requests`, {
-        id_asset,
-        id_user,
-        description
-      })
-      .then((e) => {
-        alert("Assign Aset berhasil dilakukan !");
-        console.log(e);
-      })
-      .catch((e) => {
-        alert(e);
-      });
+        .post(`/requests`, {
+          id_asset,
+          id_user,
+          description,
+        })
+        .then((e) => {
+          alert("Assign Aset berhasil dilakukan !");
+          console.log(e);
+        })
+        .catch((e) => {
+          alert(e);
+        });
     }
-    
   };
-console.log(isChecked, "mannn", id_asset, id_user, description, return_date)
+
   return (
     <Modal show={props.show}>
       <Modal.Header>
