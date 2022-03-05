@@ -109,6 +109,7 @@ const CardAssetAdmin = (props: Props) => {
 			</div>
 			{/*MODAL*/}
 			<AddAssetModal
+				key={props.id}
 				show={isDetailOpen}
 				closeModal={() => setIsDetailOpen(false)}
 				name={props.name}
