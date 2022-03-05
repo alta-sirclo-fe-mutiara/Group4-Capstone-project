@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { ModalPermohonanManager } from "../components/Modal/ModalPermohonan";
 import axios from "axios";
+import moment from "moment";
 
 export default function PermohonanPersetujuan() {
   const [data, setData] = useState([]);
@@ -37,7 +38,7 @@ export default function PermohonanPersetujuan() {
   const prevPage = () => {
     setRecentPage((recentPage -= 1));
   };
-  console.log(Date.now())
+
   return (
     <div className="container">
       <div className="d-flex flex-column align-items-center w-screen text-center">
@@ -107,7 +108,9 @@ export default function PermohonanPersetujuan() {
                     <th>Peminjaman Barang</th>
                     <th>{item.category}</th>
                     <th>{item.asset_name}</th>
-                    <th>{item.return_date}</th>
+                    <th>{item.return_date === "0000-00-00 00:00:00" || item.id_status === 4 || item.id_status === 5 || item.id_status === 8 ? <p>-</p> : 
+                      <p style={moment(item.return_date) <= moment() ? {color:"red"} : {}}>{moment(item.return_date).fromNow()}</p>
+                      }</th>
                     <th>{item.status}</th>
                     <th className="position-relative">
                       <p
@@ -137,7 +140,8 @@ export default function PermohonanPersetujuan() {
                             item={item.asset_name}
                             avail={item.avail_quantity}
                             user={item.user_name}
-                            date={item.request_date}
+                            request_date={item.request_date}
+                            return_date={item.return_date}
                             status={item.status}
                             divisi={"tech"}
                             request_description={item.description}

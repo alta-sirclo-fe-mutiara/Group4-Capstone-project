@@ -4,6 +4,7 @@ import RequestAssetModal from "../Modal/RequestAssetModal";
 import axios from 'axios';
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
+import moment from "moment";
 
 type Props = {
   photo?: string;
@@ -11,9 +12,9 @@ type Props = {
   item?: String;
   avail?: number;
   user?: String;
-  date: String;
+  request_date: String;
   divisi?: String;
-  date_return?: String;
+  return_date?: string;
   status: String;
   time?: String;
   manager?: String;
@@ -23,10 +24,12 @@ type Props = {
   fetch?:any;
 };
 
+
 const ModalPermohonanManager = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const timeRemaining = moment(props.return_date).fromNow()
 
   const changeStatus4 = () =>{
     axios
@@ -89,7 +92,7 @@ const ModalPermohonanManager = (props: Props) => {
               </div>
               <div className="col-10 col-md-6">
                 <h6 className="title">Waktu Pengajuan</h6>
-                <p className="content">{props.date}</p>
+                <p className="content">{props.request_date}</p>
               </div>
               <div className="col-10 col-md-6 mb-2">
                 <h6 className="title">Divisi</h6>
@@ -97,7 +100,7 @@ const ModalPermohonanManager = (props: Props) => {
               </div>
               <div className="col-10 col-md-6 mb-2">
                 <h6 className="title">Waktu Pengembalian</h6>
-                <p className="content">{props.date_return}</p>
+                <p className="content">{props.return_date}</p>
               </div>
             </div>
             <div className="row">
@@ -113,7 +116,7 @@ const ModalPermohonanManager = (props: Props) => {
                   </div>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Sisa Waktu </h6>
-                    <p className="content">{props.time}</p>
+                    <p className="content">{props.return_date === "0000-00-00 00:00:00" ? <p>-</p> : <p>{timeRemaining}</p>}</p>
                   </div>
                 </>
               ) : (
@@ -126,7 +129,7 @@ const ModalPermohonanManager = (props: Props) => {
                   </div>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Sisa Waktu </h6>
-                    <p className="content">{props.time}</p>
+                    <p className="content">{props.return_date === "0000-00-00 00:00:00" ? <p>-</p> : <p>{timeRemaining}</p>}</p>
                   </div>
                 </>
               )}
@@ -232,7 +235,7 @@ const ModalPermohonanEmployee = (props: Props) => {
                   </div>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengajuan</h6>
-                    <p className="content">{props.date}</p>
+                    <p className="content">{props.request_date}</p>
                   </div>
                 </>
               ) : (
@@ -245,7 +248,7 @@ const ModalPermohonanEmployee = (props: Props) => {
                   </div>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengajuan</h6>
-                    <p className="content">{props.date}</p>
+                    <p className="content">{props.request_date}</p>
                   </div>
                 </>
               )}
@@ -307,6 +310,7 @@ const ModalPermohonanAset = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const timeRemaining = moment(props.return_date).fromNow()
 
   const changeStatus2 = () =>{
     axios
@@ -402,7 +406,7 @@ const ModalPermohonanAset = (props: Props) => {
               </div>
               <div className="col-10 col-md-6 mb-2">
                 <h6 className="title">Waktu Pengajuan</h6>
-                <p className="content">{props.date}</p>
+                <p className="content">{props.request_date}</p>
               </div>
               <div className="col-10 col-md-6 mb-2">
                 <h6 className="title">Divisi</h6>
@@ -412,7 +416,7 @@ const ModalPermohonanAset = (props: Props) => {
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
-                    <p className="content">{props.date_return}</p>
+                    <p className="content">{props.return_date}</p>
                   </div>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Status</h6>
@@ -429,7 +433,7 @@ const ModalPermohonanAset = (props: Props) => {
                 <>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Waktu Pengembalian</h6>
-                    <p className="content">{props.date_return}</p>
+                    <p className="content">{props.return_date}</p>
                   </div>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Status</h6>
@@ -507,7 +511,7 @@ const ModalPermohonanAset = (props: Props) => {
                   </div>
                   <div className="col-10 col-md-6 mb-2">
                     <h6 className="title">Sisa Waktu</h6>
-                    <p className="content">{props.time}</p>
+                    <p className="content">{props.return_date === "0000-00-00 00:00:00" ? <p>-</p> : <p>{timeRemaining}</p>}</p>
                   </div>
                 </>
               ) : (

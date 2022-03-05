@@ -136,7 +136,8 @@ export default function EmployeeBeranda() {
                           category={item.category}
                           item={item.asset_name}
                           avail={item.avail_quantity}
-                          date={item.request_date}
+                          request_date={item.request_date}
+                          return_date={item.return_date}
                           status={item.status}
                           request_description={item.description}
                           id_status={item.id_status}

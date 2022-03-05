@@ -110,7 +110,8 @@ export default function AdminBeranda() {
                                 item={item.asset_name}
                                 avail={item.avail_quantity}
                                 user={item.user_name}
-                                date={item.request_date}
+                                request_date={item.request_date}
+                                return_date={item.return_date}
                                 status={item.status}
                                 divisi={"tech"}
                                 request_description={item.description}
