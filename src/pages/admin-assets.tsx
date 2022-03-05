@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { CardAssetAdmin } from "../components/CardAsset";
 import ImgDummy from "../assets/img/dummy-asset.png";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+// import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 type item = {
 	photo: string;
@@ -33,7 +33,6 @@ const AdminAssets = () => {
 	];
 
 	const [asset, setAsset] = useState([]);
-	const [user, setUser] = useState([]);
 	const [getCategory, setGetCategory] = useState<number>(0);
 	const [getAvailable, setGetAvailable] = useState<string>("yes");
 
@@ -52,7 +51,6 @@ const AdminAssets = () => {
 				console.log(err);
 			});
 	};
-
 
 	const filterCategory = async (id: number) => {
 		setGetCategory(id);
@@ -73,23 +71,12 @@ const AdminAssets = () => {
 			.get(`/assets?category=${getCategory}&avail=${value}`)
 			.then((res) => {
 				const { data } = res;
-				console.log(data.data);
 				setAsset(data.data.data);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
-
-	// const perPage = 4;
-	// let [recentPage, setRecentPage] = useState(1);
-	// const [tip, setTip] = useState(0);
-	// const nextPage = () => {
-	// 	setRecentPage((recentPage += 1));
-	// };
-	// const prevPage = () => {
-	// 	setRecentPage((recentPage -= 1));
-	// };
 
 	return (
 		<div className="container">

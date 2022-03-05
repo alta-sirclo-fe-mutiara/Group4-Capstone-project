@@ -13,24 +13,55 @@ import ProtectedRoute from "./ProtectedRoute";
 import NotFound from "../pages/notFound";
 
 const Index = () => {
-	const [role, setRole] = useState(localStorage.getItem('role') ? localStorage.getItem('role') : "");
+	const [role, setRole] = useState(
+		localStorage.getItem("role") ? localStorage.getItem("role") : ""
+	);
 
 	return (
 		<BrowserRouter>
-            <Routes>
-                <Route path="/" element={role === "1" || role === "2" || role === "3" ? <App /> : <Login />}>
-                    <Route path="login" element={<Login />} />
+			<Routes>
+				<Route
+					path="/"
+					element={
+						role === "1" || role === "2" || role === "3" ? <App /> : <Login />
+					}
+				>
+					<Route path="login" element={<Login />} />
 					<Route element={<ProtectedRoute />}>
-					<Route path="/" element={role === "1" ? <AdminBeranda /> : role === "2" ? <EmployeeBeranda /> : role === "3" ? <ManagerBeranda /> : <Login />} />
-					<Route path="/admin/asset" element={role === "1" ?  <AdminAssets /> : <NotFound />} />
-					<Route path="/admin/pengguna_aset" element={role === "1" ?  <PenggunaAset /> : <NotFound />} />
-					<Route path="/employee/asset" element={role === "2" ?  <EmployeeAssets /> : <NotFound />} />
-					<Route path="/manager/permohonan_persetujuan" element={role === "3" ?  <PermohonanPersetujuan /> : <NotFound />} />
-                    </Route>
-                </Route>
-            </Routes>
-        </BrowserRouter>
-
+						<Route
+							path="/"
+							element={
+								role === "1" ? (
+									<AdminBeranda />
+								) : role === "2" ? (
+									<EmployeeBeranda />
+								) : role === "3" ? (
+									<ManagerBeranda />
+								) : (
+									<Login />
+								)
+							}
+						/>
+						<Route
+							path="/admin/asset"
+							element={role === "1" ? <AdminAssets /> : <NotFound />}
+						/>
+						<Route
+							path="/admin/pengguna_aset"
+							element={role === "1" ? <PenggunaAset /> : <NotFound />}
+						/>
+						<Route
+							path="/employee/asset"
+							element={role === "2" ? <EmployeeAssets /> : <NotFound />}
+						/>
+						<Route
+							path="/manager/permohonan_persetujuan"
+							element={role === "3" ? <PermohonanPersetujuan /> : <NotFound />}
+						/>
+					</Route>
+				</Route>
+			</Routes>
+		</BrowserRouter>
 	);
 };
 

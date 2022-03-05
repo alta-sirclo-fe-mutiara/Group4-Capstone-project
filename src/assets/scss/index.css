@@ -86,12 +86,36 @@ button.btn-aset {
   border-radius: 7px !important;
 }
 
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .primeCol {
   color: #2c7a75;
 }
 
 .primeBCol {
   background-color: #2c7a75;
+}
+
+.modalBtn {
+  color: white;
+  padding: 1em;
+  background-color: #2c7a75;
+}
+
+.modalBtn:hover {
+  background-color: #235f5b;
 }
 
 .imgHold {
@@ -216,6 +240,70 @@ button.btn-aset {
   right: 0%;
 }
 
+.previewphoto {
+  height: 100px;
+  width: auto;
+}
+
+.toggleOff {
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #2c7a75;
+  border-radius: 20px;
+  width: 40px;
+  height: 20px;
+  margin-right: 1em;
+}
+
+.toggleOff .toggleBtn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #2c7a75;
+  margin-left: 2px;
+  -webkit-transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
+  transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
+}
+
+.toggleOn {
+  background-color: #2c7a75;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #2c7a75;
+  border-radius: 20px;
+  width: 40px;
+  height: 20px;
+  margin-right: 1em;
+}
+
+.toggleOn .toggleBtn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 22px;
+  -webkit-transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
+  transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
+}
+
+.ModalForm p {
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+
+.ModalForm input, .ModalForm textarea {
+  border-radius: 5px;
+}
+
 @media (max-width: 767px) {
   .stats {
     font-size: 16px;
@@ -292,6 +380,10 @@ button.btn-aset {
   font-weight: normal;
 }
 
+p div {
+  border: red 1px solid;
+}
+
 @media (max-width: 767px) {
   .statusFilter {
     display: none;
@@ -328,7 +420,7 @@ button.btn-aset {
   font-weight: 600;
 }
 
-.card-asset.card {
+.card.card-asset.card {
   height: 65vh !important;
 }
 
@@ -352,42 +444,21 @@ img.img-asset {
   height: 20px;
 }
 
-@media (max-width: 325px) {
-  .card-asset.card {
-    height: 65vh !important;
-  }
-}
-
-@media (min-width: 325px) and (max-width: 768px) {
-  .card.card-asset-admin {
-    height: 78vh !important;
-  }
-}
-
-@media (min-width: 375px) and (max-width: 768px) {
-  .card-asset.card {
-    height: 70vh !important;
-  }
-  img.img-asset {
-    height: 25vh !important;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1199.98px) {
-  .card-asset.card {
-    height: 73vh !important;
-  }
-  .card.card-asset-admin {
+@media (max-width: 768px) {
+  .card.card-asset.card {
     height: 75vh !important;
   }
 }
 
-@media (min-width: 1120px) {
-  .card-asset.card {
-    height: 60vh !important;
+@media (min-width: 769px) and (max-width: 1199.98px) {
+  .card.card-asset.card {
+    height: 78vh !important;
   }
-  .card.card-asset-admin {
-    height: 67vh !important;
+}
+
+@media (min-width: 1120px) {
+  .card.card-asset.card {
+    height: 70vh !important;
   }
 }
 

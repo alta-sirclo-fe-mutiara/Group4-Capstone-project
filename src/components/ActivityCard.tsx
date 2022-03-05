@@ -1,5 +1,4 @@
 import { HiDotsHorizontal } from "react-icons/hi";
-import { ModalPermohonanEmployee } from "./Modal/ModalPermohonan";
 interface Props {
 	name: string;
 	status: string;
@@ -12,7 +11,7 @@ export default function ActivityCard(props: Props) {
 	return (
 		<div className="shadow bg-white rounded text-left m-3 scrChi d-flex flex-column justify-content-between">
 			<div className="row p-3">
-				<img src={props.image} className="col-5" />
+				<img src={props.image} className="col-5" alt="activity img" />
 				<div className="col-7">
 					<p className="actDate noSpace">{props.date}</p>
 					<p className="font-weight-bold noSpace">{props.name}</p>
