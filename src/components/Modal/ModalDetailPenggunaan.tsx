@@ -73,7 +73,10 @@ const ModalDetailPenggunaan = (props: Props) => {
           </p>
           <Button
             className="btn-detail py-2 ms-3 border-0"
-            onClick={() => {handleClose(); setIsRequestOpen(true) }}
+            onClick={() => {
+              handleClose();
+              setIsRequestOpen(true);
+            }}
           >
             Ajukan Peminjaman Ulang
           </Button>

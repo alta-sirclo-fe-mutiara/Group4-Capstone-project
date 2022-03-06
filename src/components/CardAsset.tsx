@@ -12,9 +12,11 @@ type Props = {
 	description: string;
 	id: number;
 	initial: number;
+	is_maintenance: boolean;
+	id_category: number;
 };
 
-const CardAsset = (props: Props) => {
+const CardAssetEmployee = (props: Props) => {
 	const [isRequestOpen, setIsRequestOpen] = useState(false);
 	const [isUsageOpen, setIsUsageOpen] = useState(false);
 	return (
@@ -24,8 +26,8 @@ const CardAsset = (props: Props) => {
 					<img src={props.photo} alt="" className="rounded-3 img-asset" />
 				</div>
 				<div className="row mt-3 asset-info justify-content-between">
-					<div className="col-5">{props.category}</div>
-					<div className="col-7 text-end">{props.avail} item tersedia</div>
+					<div className="col-6">{props.category}</div>
+					<div className="col-6 text-end">{props.avail} item tersedia</div>
 				</div>
 				<div className="row mt-3 asset-content">
 					<h5 className="card-title"> {props.name} </h5>
@@ -57,11 +59,16 @@ const CardAsset = (props: Props) => {
 			<RequestAssetModal
 				show={isRequestOpen}
 				closeModal={() => setIsRequestOpen(false)}
+				id_category={props.id_category}
+				id_asset={props.id}
 			/>
 			<UsageHistoryModal
 				show={isUsageOpen}
 				closeModal={() => setIsUsageOpen(false)}
 				id={props.id}
+				photo={props.photo}
+				name={props.name}
+				category={props.category}
 			/>
 		</div>
 	);
@@ -70,32 +77,37 @@ const CardAsset = (props: Props) => {
 const CardAssetAdmin = (props: Props) => {
 	const [isDetailOpen, setIsDetailOpen] = useState(false);
 	const [isUsageOpen, setIsUsageOpen] = useState(false);
+
 	return (
-		<div className="card card-asset mb-4">
+		<div className="card card-asset admin mb-3">
 			<div className="card-body">
 				<div className="row mt-3">
 					<img src={props.photo} alt="" className="rounded-3 img-asset" />
 				</div>
 				<div className="row mt-3 asset-info justify-content-between">
-					<div className="col-5">{props.category}</div>
-					<div className="col-7 text-end">{props.avail} item tersedia</div>
+					<div className="col-6">{props.category}</div>
+					<div className="col-6 text-end">{props.avail} item tersedia</div>
 				</div>
 				<div className="row mt-3 asset-content">
 					<h5 className="card-title mb-0"> {props.name} </h5>
 					<p className="card-text">
-						{props.description.length > 30
-							? `${props.description.substring(0, 30)} ...`
+						{props.description.length > 20
+							? `${props.description.substring(0, 20)} ...`
 							: props.description}
 					</p>
 				</div>
-				<div className="row mt-3 d-flex justify-content-center aset-user">
+				<div className="row mt-2 d-flex justify-content-start aset-user">
 					<div className="col-2 text-center px-0">
 						<FaUserCircle className="ico-user w-100" />
 					</div>
-					<div className="col-10 ps-0" onClick={() => setIsUsageOpen(true)}>
-						<p className="count-user px-0 curs">
-							{props.initial - props.avail} pengguna
-						</p>
+					<div className="col-10" onClick={() => setIsUsageOpen(true)}>
+						{props.is_maintenance ? (
+							<p className="count-user px-0 curs">In Maintenance</p>
+						) : (
+							<p className="count-user px-0 curs">
+								{props.initial - props.avail} pengguna
+							</p>
+						)}
 					</div>
 				</div>
 				<div className="row pinjam justify-content-center mt-2">
@@ -109,23 +121,26 @@ const CardAssetAdmin = (props: Props) => {
 			</div>
 			{/*MODAL*/}
 			<AddAssetModal
-				key={props.id}
 				show={isDetailOpen}
 				closeModal={() => setIsDetailOpen(false)}
 				name={props.name}
 				description={props.description}
-				id_category={props.category}
+				category={props.category}
 				initial_quantity={props.initial}
-				is_maintenance={false}
+				is_maintenance={props.is_maintenance}
 				id={props.id}
+				id_category={props.id_category}
 			/>
 			<UsageHistoryModal
 				show={isUsageOpen}
 				closeModal={() => setIsUsageOpen(false)}
 				id={props.id}
+				photo={props.photo}
+				name={props.name}
+				category={props.category}
 			/>
 		</div>
 	);
 };
 
-export { CardAsset, CardAssetAdmin };
+export { CardAssetEmployee, CardAssetAdmin };

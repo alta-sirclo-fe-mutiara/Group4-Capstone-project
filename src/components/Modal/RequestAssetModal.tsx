@@ -5,18 +5,22 @@ import axios from "axios";
 interface Props {
   show: boolean;
   closeModal: any;
-  fetch?:any
+  fetch?: any;
+  id_category?: number;
+  id_asset?: number;
 }
 export default function RequestAssetModal(props: Props) {
+  const initialCategory = props.id_category ? props.id_category : 1;
+  const initialAsset = props.id_asset ? props.id_asset : 1;
   const [categoryData, setCategoryData] = useState([]);
-  const [category, setCategory] = useState<string>("1");
+  const [category, setCategory] = useState<number>(initialCategory);
   const [assetData, setAssetData] = useState<any>([]);
-  const [asset, setAsset] = useState<string>("1");
+  const [asset, setAsset] = useState<number>(initialAsset);
   const [description, setDescription] = useState("");
-  const [newCategory, setNewCategory] = useState(false)
+  const [newCategory, setNewCategory] = useState(false);
   const user = localStorage.getItem("id");
   const id_user = user ? parseInt(user) : 0;
-  const id_asset = newCategory ? parseInt(assetData[0]?.id) : parseInt(asset);
+  const id_asset = newCategory ? parseInt(assetData[0]?.id) : asset;
 
   useEffect(() => {
     fetchAssetData();
@@ -25,14 +29,14 @@ export default function RequestAssetModal(props: Props) {
 
   const fetchAssetData = () => {
     axios
-      .get(`/assets?category=${category}`)
+      .get(`/assets?category=${category}&avail=yes`)
       .then((res) => {
         setAssetData(res.data.data.data);
         console.log(assetData);
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   const fetchCategoryData = () => {
@@ -59,11 +63,11 @@ export default function RequestAssetModal(props: Props) {
         console.log(e);
       })
       .catch((e) => {
-        alert(e);
+        console.log(e);
       })
-      .finally(()=>{
-        props.fetch()
-      })
+      .finally(() => {
+        props.fetch();
+      });
   };
 
   return (
@@ -78,10 +82,18 @@ export default function RequestAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          onChange={(e) => {setCategory(e.target.value);setNewCategory(true)}}
+          value={category}
+          onChange={(e) => {
+            setCategory(parseInt(e.target.value));
+            setNewCategory(true);
+          }}
         >
-          {categoryData?.map((item: any) => {
-            return <option value={item.id}>{item.description}</option>;
+          {categoryData?.map((item: any, index) => {
+            return (
+              <option value={item.id} key={index}>
+                {item.description}
+              </option>
+            );
           })}
           );
         </select>
@@ -90,11 +102,15 @@ export default function RequestAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          onChange={(e) => {setAsset(e.target.value);setNewCategory(false)}}
+          value={id_asset}
+          onChange={(e) => {
+            setAsset(parseInt(e.target.value));
+            setNewCategory(false);
+          }}
         >
-          {assetData?.map((item: any) => {
+          {assetData?.map((item: any, index: number) => {
             return (
-              <option value={item.id}>
+              <option value={item.id} key={index}>
                 {item.name}-{item.category}
               </option>
             );

@@ -11,7 +11,7 @@ export default function ActivityCard(props: Props) {
 	return (
 		<div className="shadow bg-white rounded text-left m-3 scrChi d-flex flex-column justify-content-between">
 			<div className="row p-3">
-				<img src={props.image} className="col-5" alt="activity img" />
+				<img src={props.image} className="col-5" />
 				<div className="col-7">
 					<p className="actDate noSpace">{props.date}</p>
 					<p className="font-weight-bold noSpace">{props.name}</p>

@@ -13,6 +13,8 @@ type item = {
 	description: string;
 	id: number;
 	initial_quantity: number;
+	is_maintenance: boolean;
+	id_category: number;
 };
 
 const AdminAssets = () => {
@@ -33,6 +35,7 @@ const AdminAssets = () => {
 	];
 
 	const [asset, setAsset] = useState([]);
+	const [user, setUser] = useState([]);
 	const [getCategory, setGetCategory] = useState<number>(0);
 	const [getAvailable, setGetAvailable] = useState<string>("yes");
 
@@ -42,7 +45,7 @@ const AdminAssets = () => {
 
 	const fetchData = async () => {
 		await axios
-			.get("/assets?avail=yes")
+			.get("/assets")
 			.then((res) => {
 				const { data } = res;
 				setAsset(data.data.data);
@@ -71,6 +74,7 @@ const AdminAssets = () => {
 			.get(`/assets?category=${getCategory}&avail=${value}`)
 			.then((res) => {
 				const { data } = res;
+				console.log(data.data);
 				setAsset(data.data.data);
 			})
 			.catch((err) => {
@@ -133,6 +137,8 @@ const AdminAssets = () => {
 									description={item.description}
 									initial={item.initial_quantity}
 									id={item.id}
+									is_maintenance={item.is_maintenance}
+									id_category={item.id_category}
 								/>
 							</div>
 						);

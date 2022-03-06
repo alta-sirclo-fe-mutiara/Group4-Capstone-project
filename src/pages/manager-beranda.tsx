@@ -78,7 +78,7 @@ export default function ManagerBeranda() {
                         <th>{item.asset_name}</th>
                         <th>{item.status}</th>
                         <th className="position-relative">
-                        <p
+                          <p
                             onClick={() => {
                               if (tip !== pageNumber) {
                                 setTip(pageNumber);
@@ -102,16 +102,17 @@ export default function ManagerBeranda() {
                               <ModalPermohonanManager
                                 photo={item.photo}
                                 category={item.category}
-                                item={item.asset_name}
+                                asset_name={item.asset_name}
                                 avail={item.avail_quantity}
                                 user={item.user_name}
-                                date={item.request_date}
+                                request_date={item.request_date}
+                                return_date={item.return_date}
                                 status={item.status}
                                 divisi={"tech"}
                                 request_description={item.description}
                                 manager={"Ultramen"}
                                 id_status={item.id_status}
-							                	id={item.id}
+                                id={item.id}
                                 fetch={fetchData}
                               />
                             </p>
@@ -124,9 +125,13 @@ export default function ManagerBeranda() {
             </table>
           </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
-            <p onClick={() => prevPage()} className="mx-3 curs">
+            <button
+              onClick={() => prevPage()}
+              className="mx-3 curs btnNone"
+              disabled={recentPage === 1}
+            >
               <i className="bi bi-chevron-left"></i>
-            </p>
+            </button>
             {data.map((item, index) => {
               const pageMod = data.indexOf(item) % perPage;
               const pageDiv = data.indexOf(item) / perPage + 1;
@@ -145,9 +150,13 @@ export default function ManagerBeranda() {
                 </div>
               );
             })}
-            <p onClick={() => nextPage()} className="mx-3 curs">
+            <button
+              onClick={() => nextPage()}
+              className="mx-3 curs btnNone"
+              disabled={Math.ceil(data.length / perPage) === recentPage}
+            >
               <i className="bi bi-chevron-right"></i>
-            </p>
+            </button>
           </div>
         </div>
         <div className="col-md-3 primeCol">
