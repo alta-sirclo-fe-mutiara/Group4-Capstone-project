@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
 interface Props {
@@ -107,7 +107,7 @@ export default function RequestAssetModal(props: Props) {
 				</select>
 				<p>Deskripsi Aset</p>
 				<textarea
-					className="w-100"
+					className="form-control w-100"
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
 				/>
@@ -116,9 +116,12 @@ export default function RequestAssetModal(props: Props) {
 				<p onClick={props.closeModal} className="curs">
 					Kembali
 				</p>
-				<p className="modalBtn curs" onClick={() => requestHandle()}>
+				<Button
+					className="btn-detail py-2 ms-3 border-0 curs"
+					onClick={() => requestHandle()}
+				>
 					Request Aset
-				</p>
+				</Button>
 			</Modal.Footer>
 		</Modal>
 	);
