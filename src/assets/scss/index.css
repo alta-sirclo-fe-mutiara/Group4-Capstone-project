@@ -36,11 +36,14 @@ button.btn-sign-in:hover {
 }
 
 input.form-control,
-.form-select,
-textarea.form-control {
+.form-select {
   background-color: #f3f3f3;
   border: 1px solid #ffffff;
   border-radius: 8px !important;
+}
+
+input.w-100 {
+  border: 1px solid #ced4da;
 }
 
 .avatar {
@@ -500,6 +503,10 @@ p.ajukan {
 
 .request {
   color: #3dada6;
+}
+
+img.img-detail-aset {
+  height: 20vh;
 }
 
 body {

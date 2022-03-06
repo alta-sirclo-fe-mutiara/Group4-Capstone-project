@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
 interface Props {
@@ -105,7 +105,7 @@ export default function AddAssetModal(props: Props) {
 					<i className="bi bi-x-lg curs" onClick={props.closeModal}></i>
 				</Modal.Header>
 				<Modal.Body className="ModalForm">
-					<div>
+					<div className="container">
 						<p>Gambar Aset</p>
 						<div className="d-flex align-items-end">
 							<img src={previewPhoto} className="previewphoto" />
@@ -129,20 +129,20 @@ export default function AddAssetModal(props: Props) {
 					<p>Nama Aset</p>
 					<input
 						type="text"
-						className="w-100"
+						className="form-control w-100"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
 					<p>Deskripsi Aset</p>
 					<input
 						type="textarea"
-						className="w-100"
+						className="w-100 form-control"
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 					<p>Kategori Aset</p>
 					<select
-						className="form-select"
+						className="form-select text-capitalize"
 						name="category"
 						aria-label="Default select example"
 						onChange={(e) => setIDCategory(parseInt(e.target.value))}
@@ -155,7 +155,7 @@ export default function AddAssetModal(props: Props) {
 					<p>Total Jumlah Aset</p>
 					<input
 						type="number"
-						className="w-100"
+						className="w-100 form-control"
 						value={initial_quantity}
 						onChange={(e) => setQuantity(parseInt(e.target.value))}
 					/>
@@ -173,9 +173,12 @@ export default function AddAssetModal(props: Props) {
 					<p onClick={props.closeModal} className="curs">
 						Kembali
 					</p>
-					<p className="modalBtn curs" onClick={() => addAssetHandle()}>
+					<Button
+						className="btn-detail  py-2 ms-3 border-0 curs"
+						onClick={() => addAssetHandle()}
+					>
 						Tambahkan Aset
-					</p>
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		);
@@ -187,7 +190,7 @@ export default function AddAssetModal(props: Props) {
 					<i className="bi bi-x-lg curs" onClick={props.closeModal}></i>
 				</Modal.Header>
 				<Modal.Body className="ModalForm">
-					<div>
+					<div className="container">
 						<p>Gambar Aset</p>
 						<div className="d-flex align-items-end">
 							<img src={previewPhoto} className="previewphoto" />
@@ -211,20 +214,20 @@ export default function AddAssetModal(props: Props) {
 					<p>Nama Aset</p>
 					<input
 						type="text"
-						className="w-100"
+						className="w-100 form-control"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
 					<p>Deskripsi Aset</p>
 					<input
 						type="textarea"
-						className="w-100"
+						className="w-100 form-control"
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 					<p>Kategori Aset</p>
 					<select
-						className="form-select"
+						className="form-select text-capitalize"
 						name="category"
 						aria-label="Default select example"
 						value={id_category}
@@ -238,7 +241,7 @@ export default function AddAssetModal(props: Props) {
 					<p>Total Jumlah Aset</p>
 					<input
 						type="number"
-						className="w-100"
+						className="w-100 form-control"
 						value={initial_quantity}
 						onChange={(e) => setQuantity(parseInt(e.target.value))}
 					/>
@@ -256,9 +259,12 @@ export default function AddAssetModal(props: Props) {
 					<p onClick={props.closeModal} className="curs">
 						Kembali
 					</p>
-					<p className="modalBtn curs" onClick={() => UpdateAssetHandle()}>
+					<Button
+						className="btn-detail border-0 curs"
+						onClick={() => UpdateAssetHandle()}
+					>
 						Perbarui Aset
-					</p>
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		);
