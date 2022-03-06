@@ -7,17 +7,18 @@ interface Props {
   closeModal: any;
   name?: string;
   description?: string;
-  id_category?: string;
+  category?: string;
   initial_quantity?: number;
   photo?: any;
   is_maintenance?: boolean;
   id?: number;
+  id_category?: number;
 }
 
 export default function AddAssetModal(props: Props) {
   const initialName = props.name ? props.name : "";
   const initialDescription = props.description ? props.description : "";
-  const initialCategory = props.id_category ? props.id_category : "1";
+  const initialCategory = props.id_category ? props.id_category : 1;
   const initialQuantity = props.initial_quantity ? props.initial_quantity : "";
   const initialPhoto = props.photo ? props.photo : "";
   const initialMaintenanceStatus = props.is_maintenance
@@ -25,12 +26,11 @@ export default function AddAssetModal(props: Props) {
     : false;
   const [name, setName] = useState<string>(initialName);
   const [description, setDescription] = useState<string>(initialDescription);
-  const [id_category, setIDCategory] = useState<string>(initialCategory);
+  const [id_category, setIDCategory] = useState<number>(initialCategory);
   const [initial_quantity, setQuantity] = useState(initialQuantity);
   const [photo, setPhoto] = useState<any>(initialPhoto);
   const [previewPhoto, setPreviewPhoto] = useState<any>();
-  const [categoryData, setCategoryData] = useState([])
-  const [category, setCategory] = useState<string>("1");
+  const [categoryData, setCategoryData] = useState([]);
   const [is_maintenance, setIsMaintenance] = useState<boolean>(
     initialMaintenanceStatus
   );
@@ -56,7 +56,7 @@ export default function AddAssetModal(props: Props) {
     formData.append("photo", photo, photo.name);
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("id_category", id_category);
+    formData.append("id_category", id_category.toString());
     formData.append("initial_quantity", initial_quantity.toString());
     formData.append("is_maintenance", is_maintenance.toString());
     axios
@@ -79,7 +79,7 @@ export default function AddAssetModal(props: Props) {
     formData.append("photo", photo, photo.name);
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("id_category", id_category);
+    formData.append("id_category", id_category.toString());
     formData.append("initial_quantity", initial_quantity.toString());
     formData.append("is_maintenance", is_maintenance.toString());
     axios
@@ -142,16 +142,16 @@ export default function AddAssetModal(props: Props) {
           />
           <p>Kategori Aset</p>
           <select
-          className="form-select"
-          name="category"
-          aria-label="Default select example"
-          onChange={(e) => setIDCategory(e.target.value)}
-        >
-          {categoryData?.map((item: any) => {
-            return <option value={item.id}>{item.description}</option>;
-          })}
-          );
-        </select>
+            className="form-select"
+            name="category"
+            aria-label="Default select example"
+            onChange={(e) => setIDCategory(parseInt(e.target.value))}
+          >
+            {categoryData?.map((item: any) => {
+              return <option value={item.id}>{item.description}</option>;
+            })}
+            );
+          </select>
           <p>Total Jumlah Aset</p>
           <input
             type="number"
@@ -224,16 +224,17 @@ export default function AddAssetModal(props: Props) {
           />
           <p>Kategori Aset</p>
           <select
-          className="form-select"
-          name="category"
-          aria-label="Default select example"
-          onChange={(e) => setIDCategory(e.target.value)}
-        >
-          {categoryData?.map((item: any) => {
-            return <option value={item.id}>{item.description}</option>;
-          })}
-          );
-        </select>
+            className="form-select"
+            name="category"
+            aria-label="Default select example"
+            value={id_category}
+            onChange={(e) => setIDCategory(parseInt(e.target.value))}
+          >
+            {categoryData?.map((item: any) => {
+              return <option value={item.id}>{item.description}</option>;
+            })}
+            );
+          </select>
           <p>Total Jumlah Aset</p>
           <input
             type="number"

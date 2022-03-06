@@ -43,7 +43,6 @@ export default function AdminBeranda() {
   const prevPage = () => {
     setRecentPage((recentPage -= 1));
   };
-
   return (
     <div className="container">
       <div className="row mt-3 primeCol">
@@ -108,10 +107,11 @@ export default function AdminBeranda() {
                               <ModalPermohonanAset
                                 photo={item.photo}
                                 category={item.category}
-                                item={item.asset_name}
+                                asset_name={item.asset_name}
                                 avail={item.avail_quantity}
                                 user={item.user_name}
-                                date={item.request_date}
+                                request_date={item.request_date}
+                                return_date={item.return_date}
                                 status={item.status}
                                 divisi={"tech"}
                                 request_description={item.description}
@@ -130,9 +130,13 @@ export default function AdminBeranda() {
             </table>
           </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
-            <p onClick={() => prevPage()} className="mx-3 curs">
+            <button
+              onClick={() => prevPage()}
+              className="mx-3 curs btnNone"
+              disabled={recentPage === 1}
+            >
               <i className="bi bi-chevron-left"></i>
-            </p>
+            </button>
             {data.map((item, index) => {
               const pageMod = data.indexOf(item) % perPage;
               const pageDiv = data.indexOf(item) / perPage + 1;
@@ -151,9 +155,13 @@ export default function AdminBeranda() {
                 </div>
               );
             })}
-            <p onClick={() => nextPage()} className="mx-3 curs">
+            <button
+              onClick={() => nextPage()}
+              className="mx-3 curs btnNone"
+              disabled={Math.ceil(data.length / perPage) === recentPage}
+            >
               <i className="bi bi-chevron-right"></i>
-            </p>
+            </button>
           </div>
         </div>
         <div className="col-md-3 primeCol">
@@ -162,7 +170,11 @@ export default function AdminBeranda() {
             onClick={() => setIsAddAssetOpen(true)}
           >
             <p className="w-50 m-0 p-0 font-weight-bold">Tambah Aset Baru</p>
-            <img className="noSpace img" src={ImgModel1} alt="tambah aset baru"/>
+            <img
+              className="noSpace img"
+              src={ImgModel1}
+              alt="tambah aset baru"
+            />
           </div>
           <div
             className="shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between"
@@ -171,7 +183,11 @@ export default function AdminBeranda() {
             <p className="w-50 m-0 p-0 font-weight-bold">
               Assign Aset Ke Karyawan
             </p>
-            <img className="noSpace img" src={ImgModel2} alt="assign aset ke karyawan"/>
+            <img
+              className="noSpace img"
+              src={ImgModel2}
+              alt="assign aset ke karyawan"
+            />
           </div>
         </div>
       </div>
