@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { CardAssetAdmin } from "../components/CardAsset";
 import ImgDummy from "../assets/img/dummy-asset.png";
-// import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 type item = {
 	photo: string;
@@ -82,7 +81,7 @@ const AdminAssets = () => {
 		<div className="container">
 			<div className="row my-3 text-center heading">
 				<h1>Daftar Aset</h1>
-				<p className="sub">berikut merupakan daftar aset yang tersedia</p>
+				<p className="sub">Berikut merupakan daftar aset yang tersedia</p>
 			</div>
 			<div className="row justify-content-between filter mx-0 my-5">
 				<div className="col-6 d-flex flex-row">

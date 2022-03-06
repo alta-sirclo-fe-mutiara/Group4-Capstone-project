@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
+import ImgDummy from "../../assets/img/dummy-asset.png";
 
 interface Props {
 	show: boolean;
@@ -26,7 +27,6 @@ export default function UsageHistoryModal(props: Props) {
 				setName(res.data.data.name);
 				setCategory(res.data.data.category);
 				setPhoto(res.data.data.photo);
-				console.log(res.data.data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -41,10 +41,10 @@ export default function UsageHistoryModal(props: Props) {
 			</Modal.Header>
 			<Modal.Body className="ModalForm">
 				<div>
-					<div className="row d-flex justify-content-center">
+					<div className="row d-flex justify-content-center my-2">
 						<div className="col-10 col-md-6">
 							<img
-								src={photo}
+								src={photo !== "" ? photo : `${ImgDummy}`}
 								alt=""
 								className="rounded-3 img-detail-aset w-100 h-100"
 							/>
@@ -82,9 +82,9 @@ export default function UsageHistoryModal(props: Props) {
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
-				<p className="modalBtn curs" onClick={props.closeModal}>
+				<Button className="btn-detail border-0 curs" onClick={props.closeModal}>
 					Tutup
-				</p>
+				</Button>
 			</Modal.Footer>
 		</Modal>
 	);
