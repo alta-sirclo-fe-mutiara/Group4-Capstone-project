@@ -9,7 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isInvalid, setIsInvalid] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const loginHandle = () => {
     axios
@@ -29,11 +29,10 @@ export default function Login() {
       .catch((err) => {
         console.log(err);
         setIsInvalid(true);
-      })
-      .finally(() => {
-        navigate("/");
+      }).finally(()=>{
+        navigate('/')
         window.location.reload();
-      });
+      })
   };
   return (
     <>

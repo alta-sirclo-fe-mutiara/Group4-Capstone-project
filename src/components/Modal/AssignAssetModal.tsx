@@ -17,7 +17,7 @@ export default function AssignAssetModal(props: Props) {
   const [description, setDescription] = useState("");
   const id_user = parseInt(user);
   const id_asset = parseInt(asset);
-
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -27,7 +27,7 @@ export default function AssignAssetModal(props: Props) {
 
   const fetchData = () => {
     axios
-      .get(`/assets?&avail=yes`)
+      .get(`/assets`)
       .then((res) => {
         setAssetData(res.data.data.data);
         console.log(assetData);
@@ -50,36 +50,20 @@ export default function AssignAssetModal(props: Props) {
   };
 
   const assignHandle = () => {
-    if (isChecked) {
-      axios
-        .post(`/requests`, {
-          id_asset,
-          id_user,
-          description,
-          return_date,
-        })
-        .then((e) => {
-          alert("Assign Aset berhasil dilakukan !");
-          console.log(e);
-        })
-        .catch((e) => {
-          alert(e);
-        });
-    } else {
-      axios
-        .post(`/requests`, {
-          id_asset,
-          id_user,
-          description,
-        })
-        .then((e) => {
-          alert("Assign Aset berhasil dilakukan !");
-          console.log(e);
-        })
-        .catch((e) => {
-          alert(e);
-        });
-    }
+    axios
+      .post(`/requests`, {
+        id_asset,
+        id_user,
+        description,
+        return_date,
+      })
+      .then((e) => {
+        alert("Assign Aset berhasil dilakukan !");
+        console.log(e);
+      })
+      .catch((e) => {
+        alert(e);
+      });
   };
 
   return (
@@ -94,7 +78,6 @@ export default function AssignAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          value={asset}
           onChange={(e) => setAsset(e.target.value)}
         >
           {assetData?.map((item: any) => {
@@ -110,7 +93,6 @@ export default function AssignAssetModal(props: Props) {
           className="form-select"
           name="category"
           aria-label="Default select example"
-          value={user}
           onChange={(e) => setUser(e.target.value)}
         >
           {userData?.map((item: any) => {

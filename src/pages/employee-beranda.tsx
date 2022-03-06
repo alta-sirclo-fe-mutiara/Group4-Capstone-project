@@ -16,7 +16,7 @@ export default function EmployeeBeranda() {
   useEffect(() => {
     fetchHistoryData();
   }, []);
-
+  
   useEffect(() => {
     fetchActivityData();
   }, []);
@@ -88,11 +88,7 @@ export default function EmployeeBeranda() {
                   key={index}
                 >
                   <div className="row p-3">
-                    <img
-                      src={item.photo}
-                      className="col-5"
-                      alt={item.asset_name}
-                    />
+                    <img src={item.photo} className="col-5" alt={item.asset_name}/>
                     <div className="col-7">
                       <p className="actDate noSpace">{item.request_date}</p>
                       <p className="font-weight-bold noSpace">
@@ -116,29 +112,38 @@ export default function EmployeeBeranda() {
                       <HiDotsHorizontal />
                     </p>
                     <div
-                      className="tiptool activTip border border-1 shadow rounded-3 bg-white px-3 py-2"
+                      className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2"
                       style={
                         activTip === pageNumber
                           ? { display: "block" }
                           : { display: "none" }
                       }
                     >
-                      <p onClick={() => setActivTip(0)} className="curs mb-0">
+                      <div className="tiptool tip1 border border-1 shadow rounded-3 bg-white px-3 py-2 d-block">
+                        {item.status === "disetujui" ? (
+                          <p className="curs mb-0 ajukan border">
+                            Ajukan Pengembalian
+                          </p>
+                        ) : item.status === "tolak" ? (
+                          <p className="curs mb-0 ajukan">
+                            Ajukan Peminjaman Ulang
+                          </p>
+                        ) : (
+                          <></>
+                        )}
                         <ModalPermohonanEmployee
                           photo={item.photo}
                           category={item.category}
-                          asset_name={item.asset_name}
+                          item={item.asset_name}
                           avail={item.avail_quantity}
-                          request_date={item.request_date}
-                          return_date={item.return_date}
+                          date={item.request_date}
                           status={item.status}
                           request_description={item.description}
                           id_status={item.id_status}
                           id={item.id}
-                          id_asset={item.id_asset}
                           fetch={fetchActivityData}
                         />
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -167,7 +172,7 @@ export default function EmployeeBeranda() {
                         {perPage * (recentPage - 1) + (index + 1)}
                       </th>
                       <th>{item.request_date}</th>
-                      <th>Peminjaman Barang </th>
+                      <th>Peminjaman Barang</th>
                       <th>{item.category}</th>
                       <th>{item.asset_name}</th>
                       <th className="position-relative">
@@ -191,17 +196,15 @@ export default function EmployeeBeranda() {
                               : { display: "none" }
                           }
                         >
-                          <p onClick={() => setTip(0)} className="curs mb-0">
-                            <ModalDetailPenggunaan
-                              photo={item.photo}
-                              category={item.category}
-                              status={item.status}
-                              item={item.asset_name}
-                              date={item.request_date}
-                              date_return={item.return_date}
-                              request_description={item.description}
-                            />
-                          </p>
+                          <ModalDetailPenggunaan
+                            photo={item.photo}
+                            category={item.category}
+                            status={item.status}
+                            item={item.asset_name}
+                            date={item.request_date}
+                            date_return={item.return_date}
+                            request_description={item.description}
+                          />
                         </div>
                       </th>
                     </tr>
@@ -211,13 +214,9 @@ export default function EmployeeBeranda() {
             </table>
           </div>
           <div className="my-5 d-flex justify-content-center align-items-center">
-            <button
-              onClick={() => prevPage()}
-              className="mx-3 curs btnNone"
-              disabled={recentPage === 1}
-            >
+            <p onClick={() => prevPage()} className="mx-3 curs">
               <i className="bi bi-chevron-left"></i>
-            </button>
+            </p>
             {historyData.map((item, index) => {
               const pageMod = historyData.indexOf(item) % perPage;
               const pageDiv = historyData.indexOf(item) / perPage + 1;
@@ -236,13 +235,9 @@ export default function EmployeeBeranda() {
                 </div>
               );
             })}
-            <button
-              onClick={() => nextPage()}
-              className="mx-3 curs btnNone"
-              disabled={Math.ceil(historyData.length / perPage) === recentPage}
-            >
+            <p onClick={() => nextPage()} className="mx-3 curs">
               <i className="bi bi-chevron-right"></i>
-            </button>
+            </p>
           </div>
         </div>
         <div className="col-md-3 primeCol">
@@ -250,22 +245,12 @@ export default function EmployeeBeranda() {
             className=" curs shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between"
             onClick={() => setIsRequestOpen(true)}
           >
-            <p className="w-50 m-0 p-0 font-weight-bold curs">
-              Peminjaman Aset
-            </p>
-            <img
-              className="noSpace img"
-              src={ImgModel1}
-              alt="peminjaman aset"
-            />
+            <p className="w-50 m-0 p-0 font-weight-bold curs">Peminjaman Aset</p>
+            <img className="noSpace img" src={ImgModel1} alt="peminjaman aset"/>
           </div>
           <div className=" blur shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
             <p className="w-50 m-0 p-0 font-weight-bold">Pengajuan Aset Baru</p>
-            <img
-              className="noSpace img"
-              src={ImgModel2}
-              alt="pengajuan aset baru"
-            />
+            <img className="noSpace img" src={ImgModel2} alt="pengajuan aset baru"/>
           </div>
         </div>
       </div>

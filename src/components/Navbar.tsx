@@ -129,7 +129,7 @@ const Navbar = () => {
 				</NavLink>
 			</li>
 			<li className="nav-item mr-3">
-				<NavLink className="nav-link" aria-current="page" to="/manager/permohonan_persetujuan">
+				<NavLink className="nav-link" aria-current="page" to="/manager/pemohonan_persetujuan">
 					Permohonan Persetujuan
 				</NavLink>
 			</li>
