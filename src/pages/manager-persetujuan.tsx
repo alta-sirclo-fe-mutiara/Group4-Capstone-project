@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
+import { Form } from "react-bootstrap";
 import { ModalPermohonanManager } from "../components/Modal/ModalPermohonan";
 import axios from "axios";
 import moment from "moment";
@@ -85,17 +86,18 @@ export default function PermohonanPersetujuan() {
 					</ul>
 				</div>
 				<div className="statusFilterDrop">
-					<select
+					<Form.Select
 						className="form-select"
 						name="category"
+						onChange={(e: any) => setStatus(e.target.value)}
 						aria-label="Default select example"
 					>
-						<option value="default">Semua</option>
-						<option value="default">Butuh Persetujuan</option>
-						<option value="default">Disetujui</option>
-						<option value="default">Ditolak</option>
-						<option value="default">Dikembalikan</option>
-					</select>
+						<option value="all">Semua</option>
+						<option value="new">Butuh Persetujuan</option>
+						<option value="using">Disetujui</option>
+						<option value="reject">Ditolak</option>
+						<option value="returned">Dikembalikan</option>
+					</Form.Select>
 				</div>
 			</div>
 			<div className="dateFilter ">
@@ -105,7 +107,7 @@ export default function PermohonanPersetujuan() {
 				</div>
 				<input
 					type="date"
-					className="date"
+					className="date px-1"
 					value={filterDate}
 					onChange={(e) => setFilterDate(e.target.value)}
 				/>
