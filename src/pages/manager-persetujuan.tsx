@@ -201,7 +201,7 @@ export default function PenggunaAset() {
 										<th>{item.category}</th>
 										<th>{item.return_date}</th>
 										<th>
-											{item.return_date === "0000-00-00 00:00:00"? (
+											{item.return_date === "0000-00-00 00:00:00" || item.id_status === 4 || item.id_status === 5 || item.id_status === 8? (
 												<p>-</p>
 											) : (
 												<p
