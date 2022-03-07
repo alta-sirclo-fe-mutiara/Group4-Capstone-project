@@ -127,15 +127,14 @@ export default function AssignAssetModal(props: Props) {
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
 				/>
-				<div className="d-flex">
-					<div className="d-flex align-items-center">
-						<input
-							type="checkbox"
-							defaultChecked={isChecked}
-							onChange={() => setIsChecked(!isChecked)}
-						></input>
-					</div>
-					<p>Gunakan Tanggal Pengembalian</p>
+				<div className="form-check mt-1">
+					<input
+						className="form-check-input"
+						type="checkbox"
+						defaultChecked={isChecked}
+						onChange={() => setIsChecked(!isChecked)}
+					></input>
+					<label className="form-check-label">Gunakan Tanggal Pengembalian</label>
 				</div>
 				<p>Tanggal Pengembalian</p>
 				<input
@@ -150,9 +149,12 @@ export default function AssignAssetModal(props: Props) {
 				<p onClick={props.closeModal} className="curs">
 					Kembali
 				</p>
-				<p className="modalBtn curs" onClick={() => assignHandle()}>
+				<Button
+					className="btn-detail py-2 ms-3 border-0 curs"
+					onClick={() => assignHandle()}
+				>
 					Assign Ke Karyawan
-				</p>
+				</Button>
 			</Modal.Footer>
 		</Modal>
 	);

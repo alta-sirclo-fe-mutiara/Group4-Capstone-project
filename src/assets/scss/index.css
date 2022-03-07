@@ -42,6 +42,10 @@ input.form-control,
   border-radius: 8px !important;
 }
 
+.statusCheck {
+  background-color: #dbd9d9 !important;
+}
+
 input.w-100 {
   border: 1px solid #ced4da;
 }
@@ -115,6 +119,16 @@ button.btn-aset {
   color: white;
   padding: 1em;
   background-color: #2c7a75;
+}
+
+.btnNone {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .modalBtn:hover {
@@ -233,12 +247,7 @@ button.btn-aset {
   right: 0%;
 }
 
-.tip2 {
-  bottom: 0%;
-  right: 0%;
-}
-
-.tip3 {
+.activTip {
   bottom: 0%;
   right: 0%;
 }
@@ -455,13 +464,13 @@ img.img-asset {
 
 @media (min-width: 769px) and (max-width: 1199.98px) {
   .card.card-asset.card {
-    height: 78vh !important;
+    height: 76vh !important;
   }
 }
 
 @media (min-width: 1120px) {
   .card.card-asset.card {
-    height: 70vh !important;
+    height: 65vh !important;
   }
 }
 
