@@ -1,11 +1,11 @@
 $prime-color: #2c7a75;
-.App{
+.App {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
 	justify-content: space-between;
-  }
-  
+}
+
 .primeCol {
 	color: $prime-color;
 }
@@ -14,11 +14,11 @@ $prime-color: #2c7a75;
 	background-color: $prime-color;
 }
 .modalBtn {
-  color: white;
-  padding: 1em;
-  background-color: $prime-color;
+	color: white;
+	padding: 1em;
+	background-color: $prime-color;
 }
-.btnNone{
+.btnNone {
 	background: none;
 	color: inherit;
 	border: none;
@@ -28,7 +28,7 @@ $prime-color: #2c7a75;
 	outline: inherit;
 }
 .modalBtn:hover {
-  background-color: #235f5b;
+	background-color: #235f5b;
 }
 .imgHold {
 	background-image: url("../img/img-banner.jpg");
@@ -121,62 +121,63 @@ $prime-color: #2c7a75;
 	top: 0%;
 	right: 0%;
 }
-.activTip{
+.activTip {
 	bottom: 0%;
-	right:0%;
+	right: 0%;
 }
 
 .previewphoto {
-  height: 100px;
-  width: auto;
+	height: 100px;
+	width: auto;
 }
 .toggleOff {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  border: 1px solid $prime-color;
-  border-radius: 20px;
-  width: 40px;
-  height: 20px;
-  margin-right: 1em;;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	border: 1px solid $prime-color;
+	border-radius: 20px;
+	width: 40px;
+	height: 20px;
+	margin-right: 1em;
 
-  .toggleBtn {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: $prime-color;
-    margin-left: 2px;
-    transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
-  }
+	.toggleBtn {
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background-color: $prime-color;
+		margin-left: 2px;
+		transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
+	}
 }
 
-  .toggleOn {
-    background-color: $prime-color;
-    display: flex;
-    align-items: center;
-    border: 1px solid $prime-color;
-    border-radius: 20px;
-    width: 40px;
-    height: 20px;
-    margin-right: 1em;;
-  
-    .toggleBtn {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: white;
-      margin-left: 22px;
-      transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
-    }
+.toggleOn {
+	background-color: $prime-color;
+	display: flex;
+	align-items: center;
+	border: 1px solid $prime-color;
+	border-radius: 20px;
+	width: 40px;
+	height: 20px;
+	margin-right: 1em;
+
+	.toggleBtn {
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background-color: white;
+		margin-left: 22px;
+		transition: margin-left 0.3s ease-in, background-color 0.2s ease-in;
+	}
 }
-.ModalForm{
-  p{
-    margin:1em 0 0 0;
-    padding:0;
-  }
-  input, textarea{
-    border-radius: 5px;
-  }
+.ModalForm {
+	p {
+		margin: 1em 0 0 0;
+		padding: 0;
+	}
+	input,
+	textarea {
+		border-radius: 5px;
+	}
 }
 @media (max-width: 767px) {
 	.stats {

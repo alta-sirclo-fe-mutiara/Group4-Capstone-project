@@ -312,7 +312,8 @@ button.btn-aset {
   padding: 0;
 }
 
-.ModalForm input, .ModalForm textarea {
+.ModalForm input,
+.ModalForm textarea {
   border-radius: 5px;
 }
 

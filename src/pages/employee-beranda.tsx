@@ -3,7 +3,7 @@ import axios from "axios";
 import { HiDotsHorizontal } from "react-icons/hi";
 import ImgModel1 from "../assets/img/peminjaman.png";
 import ImgModel2 from "../assets/img/request-aset.png";
-import Statistik from "../components/statistik";
+import Statistik from "../components/Statistik";
 import ModalDetailPenggunaan from "../components/Modal/ModalDetailPenggunaan";
 import { ModalPermohonanEmployee } from "../components/Modal/ModalPermohonan";
 import RequestAssetModal from "../components/Modal/RequestAssetModal";
@@ -235,15 +235,17 @@ export default function EmployeeBeranda() {
 						</button>
 					</div>
 				</div>
-				<div className="col-md-3 primeCol">
+				<div className="col-md-3 mt-1 mt-lg-0 mt-md-5 primeCol">
 					<div
-						className=" curs shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between"
+						className=" curs shadow bg-white boRad text-left m-3 p-4 p-md-3 p-lg-4 d-flex flex-md-column flex-lg-row justify-content-between"
 						onClick={() => setIsRequestOpen(true)}
 					>
-						<p className="w-50 m-0 p-0 font-weight-bold curs">Peminjaman Aset</p>
+						<p className="w-50 m-0 p-0 p-md-0 font-weight-bold curs">
+							Peminjaman Aset
+						</p>
 						<img className="noSpace img" src={ImgModel1} alt="peminjaman aset" />
 					</div>
-					<div className=" blur shadow bg-white boRad text-left m-3 p-4 d-flex justify-content-between">
+					<div className=" blur shadow bg-white boRad text-left m-3 p-4 p-md-3 p-lg-4 d-flex flex-md-column flex-lg-row justify-content-between">
 						<p className="w-50 m-0 p-0 font-weight-bold">Pengajuan Aset Baru</p>
 						<img className="noSpace img" src={ImgModel2} alt="pengajuan aset baru" />
 					</div>
