@@ -72,7 +72,7 @@ const Navbar = () => {
 								</NavLink>
 								<NavLink
 									to="#"
-									className="text-decoration-none text-dark ms-2 dropdown-toggle"
+									className="text-decoration-none text-capitalize text-dark ms-2 dropdown-toggle"
 									id="navbarDropdown"
 									role="button"
 									data-bs-toggle="dropdown"
@@ -115,7 +115,7 @@ const Navbar = () => {
 								</NavLink>
 								<NavLink
 									to="#"
-									className="text-decoration-none text-dark ms-2 dropdown-toggle"
+									className="text-decoration-none text-capitalize text-dark ms-2 dropdown-toggle"
 									id="navbarDropdown"
 									role="button"
 									data-bs-toggle="dropdown"
@@ -162,7 +162,7 @@ const Navbar = () => {
 								</NavLink>
 								<NavLink
 									to="#"
-									className="text-decoration-none text-dark ms-2 dropdown-toggle"
+									className="text-decoration-none text-dark text-capitalize ms-2 dropdown-toggle"
 									id="navbarDropdown"
 									role="button"
 									data-bs-toggle="dropdown"

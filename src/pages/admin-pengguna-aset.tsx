@@ -40,7 +40,7 @@ export default function PenggunaAset() {
 
 	return (
 		<div className="container">
-			<div className="my-3 d-flex flex-column align-items-center w-screen text-cente">
+			<div className="my-3 d-flex flex-column align-items-center w-screen text-center">
 				<div className="row text-center heading">
 					<h1>Pengguna Aset</h1>
 					<p className="sub">
