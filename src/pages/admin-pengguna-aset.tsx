@@ -40,9 +40,13 @@ export default function PenggunaAset() {
 
 	return (
 		<div className="container">
-			<div className="d-flex flex-column align-items-center w-screen text-center">
-				<h2 className="primeCol">Pengguna Aset</h2>
-				<p>Berikut merupakan daftar pengajuan peminjaman aset karyawan</p>
+			<div className="my-3 d-flex flex-column align-items-center w-screen text-cente">
+				<div className="row text-center heading">
+					<h1>Pengguna Aset</h1>
+					<p className="sub">
+						Berikut merupakan daftar pengajuan peminjaman aset karyawan
+					</p>
+				</div>
 				<div className="my-4 statusFilter">
 					<ul className="d-flex">
 						<li
