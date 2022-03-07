@@ -55,7 +55,7 @@ export default function PenggunaAset() {
 	const prevPage = () => {
 		setRecentPage((recentPage -= 1));
 	};
-	console.log(returnDate)
+	console.log(returnDate);
 	return (
 		<div className="container">
 			<div className="my-3 d-flex flex-column align-items-center w-screen text-center">
@@ -151,12 +151,18 @@ export default function PenggunaAset() {
 									<div className="d-flex flex-column ml-2">
 										<i
 											className="bi bi-caret-up-fill curs"
-											onClick={() => {setRequest("latest"); setReturnDate("")}}
+											onClick={() => {
+												setRequest("latest");
+												setReturnDate("");
+											}}
 											style={{ height: "15px", fontSize: "15px" }}
 										></i>
 										<i
 											className="bi bi-caret-down-fill curs"
-											onClick={() => {setRequest("oldest"); setReturnDate("")}}
+											onClick={() => {
+												setRequest("oldest");
+												setReturnDate("");
+											}}
 											style={{ fontSize: "15px" }}
 										></i>
 									</div>
@@ -172,12 +178,18 @@ export default function PenggunaAset() {
 									<div className="d-flex flex-column ml-2">
 										<i
 											className="bi bi-caret-up-fill curs"
-											onClick={() => {setReturnDate("longest"); setRequest("")}}
+											onClick={() => {
+												setReturnDate("longest");
+												setRequest("");
+											}}
 											style={{ height: "15px", fontSize: "15px" }}
 										></i>
 										<i
 											className="bi bi-caret-down-fill curs"
-											onClick={() => {setReturnDate("shortest"); setRequest("")}}
+											onClick={() => {
+												setReturnDate("shortest");
+												setRequest("");
+											}}
 											style={{ fontSize: "15px" }}
 										></i>
 									</div>
@@ -199,9 +211,12 @@ export default function PenggunaAset() {
 										<th>{item.user_name}</th>
 										<th>Peminjaman Barang</th>
 										<th>{item.category}</th>
-										<th>{item.return_date}</th>
+										<th>{item.asset_name}</th>
 										<th>
-											{item.return_date === "0000-00-00 00:00:00" || item.id_status === 4 || item.id_status === 5 || item.id_status === 8? (
+											{item.return_date === "0000-00-00 00:00:00" ||
+											item.id_status === 4 ||
+											item.id_status === 5 ||
+											item.id_status === 8 ? (
 												<p>-</p>
 											) : (
 												<p
