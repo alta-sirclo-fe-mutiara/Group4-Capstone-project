@@ -1,24 +1,37 @@
-import { useState, useEffect } from "react";
+import { ModalPermohonanAset } from "../components/Modal/ModalPermohonan";
+import { useEffect, useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { Form } from "react-bootstrap";
-import { ModalPermohonanManager } from "../components/Modal/ModalPermohonan";
 import axios from "axios";
 import moment from "moment";
 
-export default function PermohonanPersetujuan() {
+export default function PenggunaAset() {
 	const [data, setData] = useState([]);
 	const [request, setRequest] = useState("");
+	const [returnDate, setReturnDate] = useState("");
 	const [status, setStatus] = useState("all");
 	const [filterDate, setFilterDate] = useState("");
+	const [category, setCategory] = useState("");
+
+	const itemCategory = [
+		{ id: 1, name: "laptop" },
+		{ id: 2, name: "monitor" },
+		{ id: 3, name: "printer" },
+		{ id: 4, name: "proyektor" },
+		{ id: 5, name: "speaker" },
+		{ id: 6, name: "headset" },
+		{ id: 7, name: "keybord" },
+		{ id: 8, name: "mouse" },
+	];
 
 	useEffect(() => {
 		fetchData();
-	}, [status, request, filterDate]);
+	}, [status, request, filterDate, category, returnDate]);
 
 	const fetchData = () => {
 		axios
 			.get(
-				`/requests?request_date=${request}&status=${status}&filter_date=${filterDate}`
+				`/requests?request_date=${request}&category=${category}&status=${status}&filter_date=${filterDate}&return_date=${returnDate}`
 			)
 			.then((res) => {
 				if (!res.data.data.data) {
@@ -26,6 +39,7 @@ export default function PermohonanPersetujuan() {
 				} else {
 					setData(res.data.data.data);
 				}
+				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -41,14 +55,14 @@ export default function PermohonanPersetujuan() {
 	const prevPage = () => {
 		setRecentPage((recentPage -= 1));
 	};
-
+	console.log(returnDate)
 	return (
 		<div className="container">
 			<div className="my-3 d-flex flex-column align-items-center w-screen text-center">
 				<div className="row text-center heading">
-					<h1>Permohonan Persetujuan</h1>
+					<h1>Pengguna Aset</h1>
 					<p className="sub">
-						Berikut merupakan daftar persetujuan peminjaman aset karyawan
+						Berikut merupakan daftar pengajuan peminjaman aset karyawan
 					</p>
 				</div>
 				<div className="my-4 statusFilter">
@@ -69,7 +83,7 @@ export default function PermohonanPersetujuan() {
 							onClick={() => setStatus("using")}
 							className={status === "using" ? "statusCheck" : ""}
 						>
-							Disetujui
+							Diterima
 						</li>
 						<li
 							onClick={() => setStatus("reject")}
@@ -94,23 +108,37 @@ export default function PermohonanPersetujuan() {
 					>
 						<option value="all">Semua</option>
 						<option value="new">Butuh Persetujuan</option>
-						<option value="using">Disetujui</option>
+						<option value="using">Diterima</option>
 						<option value="reject">Ditolak</option>
 						<option value="returned">Dikembalikan</option>
 					</Form.Select>
 				</div>
 			</div>
-			<div className="dateFilter ">
-				<div className="text-left w-100 noSpace">
+			<div className="row dateFilter">
+				<div className="col-6 text-left w-100 noSpace">
 					<p className="noSpace font-weight-bold">Semua Pengguna</p>
 					<p>{data.length} Pemohon</p>
 				</div>
-				<input
-					type="date"
-					className="date px-1"
-					value={filterDate}
-					onChange={(e) => setFilterDate(e.target.value)}
-				/>
+				<div className="col-6 d-flex flex-row">
+					<Form.Select
+						className="col-8 col-lg-4 text-capitalize text-wrap mr-3"
+						aria-label="Default select example"
+						onChange={(e: any) => setCategory(e.target.value)}
+					>
+						<option value={""}>Semua Ketegori</option>
+						{itemCategory.map((item: any, index: number) => (
+							<option key={index} value={item.name}>
+								{item.name}
+							</option>
+						))}
+					</Form.Select>
+					<input
+						type="date"
+						className="date px-1"
+						value={filterDate}
+						onChange={(e) => setFilterDate(e.target.value)}
+					/>
+				</div>
 			</div>
 			<div className="scrTablP">
 				<table className="text-left tablP">
@@ -123,12 +151,12 @@ export default function PermohonanPersetujuan() {
 									<div className="d-flex flex-column ml-2">
 										<i
 											className="bi bi-caret-up-fill curs"
-											onClick={() => setRequest("latest")}
+											onClick={() => {setRequest("latest"); setReturnDate("")}}
 											style={{ height: "15px", fontSize: "15px" }}
 										></i>
 										<i
 											className="bi bi-caret-down-fill curs"
-											onClick={() => setRequest("oldest")}
+											onClick={() => {setRequest("oldest"); setReturnDate("")}}
 											style={{ fontSize: "15px" }}
 										></i>
 									</div>
@@ -138,7 +166,23 @@ export default function PermohonanPersetujuan() {
 							<th>Jenis Aktivitas</th>
 							<th>Kategori Aset</th>
 							<th>Barang</th>
-							<th>Sisa Waktu</th>
+							<th>
+								<div className="d-flex align-items-center">
+									Sisa Waktu
+									<div className="d-flex flex-column ml-2">
+										<i
+											className="bi bi-caret-up-fill curs"
+											onClick={() => {setReturnDate("longest"); setRequest("")}}
+											style={{ height: "15px", fontSize: "15px" }}
+										></i>
+										<i
+											className="bi bi-caret-down-fill curs"
+											onClick={() => {setReturnDate("shortest"); setRequest("")}}
+											style={{ fontSize: "15px" }}
+										></i>
+									</div>
+								</div>
+							</th>
 							<th>Status</th>
 							<th></th>
 						</tr>
@@ -155,12 +199,9 @@ export default function PermohonanPersetujuan() {
 										<th>{item.user_name}</th>
 										<th>Peminjaman Barang</th>
 										<th>{item.category}</th>
-										<th>{item.asset_name}</th>
+										<th>{item.return_date}</th>
 										<th>
-											{item.return_date === "0000-00-00 00:00:00" ||
-											item.id_status === 4 ||
-											item.id_status === 5 ||
-											item.id_status === 8 ? (
+											{item.return_date === "0000-00-00 00:00:00"? (
 												<p>-</p>
 											) : (
 												<p
@@ -193,7 +234,7 @@ export default function PermohonanPersetujuan() {
 												}
 											>
 												<p onClick={() => setTip(0)} className="curs mb-0">
-													<ModalPermohonanManager
+													<ModalPermohonanAset
 														photo={item.photo}
 														category={item.category}
 														asset_name={item.asset_name}

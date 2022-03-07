@@ -8,6 +8,7 @@ import moment from "moment";
 export default function PenggunaAset() {
 	const [data, setData] = useState([]);
 	const [request, setRequest] = useState("");
+	const [returnDate, setReturnDate] = useState("");
 	const [status, setStatus] = useState("all");
 	const [filterDate, setFilterDate] = useState("");
 	const [category, setCategory] = useState("");
@@ -25,15 +26,19 @@ export default function PenggunaAset() {
 
 	useEffect(() => {
 		fetchData();
-	}, [status, request, filterDate, category]);
+	}, [status, request, filterDate, category, returnDate]);
 
 	const fetchData = () => {
 		axios
 			.get(
-				`/requests?request_date=${request}?category=${category}&status=${status}&filter_date=${filterDate}`
+				`/requests?request_date=${request}&category=${category}&status=${status}&filter_date=${filterDate}&return_date=${returnDate}`
 			)
 			.then((res) => {
-				setData(res.data.data.data);
+				if (!res.data.data.data) {
+					setData([]);
+				} else {
+					setData(res.data.data.data);
+				}
 				console.log(data);
 			})
 			.catch((err) => {
@@ -50,7 +55,7 @@ export default function PenggunaAset() {
 	const prevPage = () => {
 		setRecentPage((recentPage -= 1));
 	};
-
+	console.log(returnDate)
 	return (
 		<div className="container">
 			<div className="my-3 d-flex flex-column align-items-center w-screen text-center">
@@ -78,7 +83,7 @@ export default function PenggunaAset() {
 							onClick={() => setStatus("using")}
 							className={status === "using" ? "statusCheck" : ""}
 						>
-							Disetujui
+							Diterima
 						</li>
 						<li
 							onClick={() => setStatus("reject")}
@@ -103,7 +108,7 @@ export default function PenggunaAset() {
 					>
 						<option value="all">Semua</option>
 						<option value="new">Butuh Persetujuan</option>
-						<option value="using">Disetujui</option>
+						<option value="using">Diterima</option>
 						<option value="reject">Ditolak</option>
 						<option value="returned">Dikembalikan</option>
 					</Form.Select>
@@ -120,9 +125,9 @@ export default function PenggunaAset() {
 						aria-label="Default select example"
 						onChange={(e: any) => setCategory(e.target.value)}
 					>
-						<option>Filter Ketegori</option>
+						<option value={""}>Semua Ketegori</option>
 						{itemCategory.map((item: any, index: number) => (
-							<option key={index} value={item.id}>
+							<option key={index} value={item.name}>
 								{item.name}
 							</option>
 						))}
@@ -146,12 +151,12 @@ export default function PenggunaAset() {
 									<div className="d-flex flex-column ml-2">
 										<i
 											className="bi bi-caret-up-fill curs"
-											onClick={() => setRequest("latest")}
+											onClick={() => {setRequest("latest"); setReturnDate("")}}
 											style={{ height: "15px", fontSize: "15px" }}
 										></i>
 										<i
 											className="bi bi-caret-down-fill curs"
-											onClick={() => setRequest("oldest")}
+											onClick={() => {setRequest("oldest"); setReturnDate("")}}
 											style={{ fontSize: "15px" }}
 										></i>
 									</div>
@@ -161,7 +166,23 @@ export default function PenggunaAset() {
 							<th>Jenis Aktivitas</th>
 							<th>Kategori Aset</th>
 							<th>Barang</th>
-							<th>Sisa Waktu</th>
+							<th>
+								<div className="d-flex align-items-center">
+									Sisa Waktu
+									<div className="d-flex flex-column ml-2">
+										<i
+											className="bi bi-caret-up-fill curs"
+											onClick={() => {setReturnDate("longest"); setRequest("")}}
+											style={{ height: "15px", fontSize: "15px" }}
+										></i>
+										<i
+											className="bi bi-caret-down-fill curs"
+											onClick={() => {setReturnDate("shortest"); setRequest("")}}
+											style={{ fontSize: "15px" }}
+										></i>
+									</div>
+								</div>
+							</th>
 							<th>Status</th>
 							<th></th>
 						</tr>
@@ -178,12 +199,9 @@ export default function PenggunaAset() {
 										<th>{item.user_name}</th>
 										<th>Peminjaman Barang</th>
 										<th>{item.category}</th>
-										<th>{item.asset_name}</th>
+										<th>{item.return_date}</th>
 										<th>
-											{item.return_date === "0000-00-00 00:00:00" ||
-											item.id_status === 4 ||
-											item.id_status === 5 ||
-											item.id_status === 8 ? (
+											{item.return_date === "0000-00-00 00:00:00"? (
 												<p>-</p>
 											) : (
 												<p
