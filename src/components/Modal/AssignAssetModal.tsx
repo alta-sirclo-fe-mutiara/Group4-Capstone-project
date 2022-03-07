@@ -37,12 +37,12 @@ export default function AssignAssetModal(props: Props) {
 			});
 	};
 
-	const fetchData = () => {
+	const fetchUserData = () => {
 		axios
-			.get(`/assets`)
+			.get(`/users`)
 			.then((res) => {
-				setAssetData(res.data.data.data);
-				console.log(assetData);
+				setUserData(res.data.data);
+				console.log(userData);
 			})
 			.catch((err) => {
 				console.log(err);

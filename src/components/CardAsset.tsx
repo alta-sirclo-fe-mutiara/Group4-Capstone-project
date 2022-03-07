@@ -26,14 +26,14 @@ const CardAssetEmployee = (props: Props) => {
 					<img src={props.photo} alt="" className="rounded-3 img-asset" />
 				</div>
 				<div className="row mt-3 asset-info justify-content-between">
-					<div className="col-6">{props.category}</div>
-					<div className="col-6 text-end">{props.avail} item tersedia</div>
+					<div className="col-5">{props.category}</div>
+					<div className="col-7 text-end">{props.avail} item tersedia</div>
 				</div>
 				<div className="row mt-3 asset-content">
 					<h5 className="card-title"> {props.name} </h5>
 					<p className="card-text">
-						{props.description.length > 20
-							? `${props.description.substring(0, 20)} ...`
+						{props.description.length > 30
+							? `${props.description.substring(0, 30)} ...`
 							: props.description}
 					</p>
 				</div>
