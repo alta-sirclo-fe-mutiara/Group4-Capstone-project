@@ -10,15 +10,27 @@ export default function PenggunaAset() {
 	const [request, setRequest] = useState("");
 	const [status, setStatus] = useState("all");
 	const [filterDate, setFilterDate] = useState("");
+	const [category, setCategory] = useState("");
+
+	const itemCategory = [
+		{ id: 1, name: "laptop" },
+		{ id: 2, name: "monitor" },
+		{ id: 3, name: "printer" },
+		{ id: 4, name: "proyektor" },
+		{ id: 5, name: "speaker" },
+		{ id: 6, name: "headset" },
+		{ id: 7, name: "keybord" },
+		{ id: 8, name: "mouse" },
+	];
 
 	useEffect(() => {
 		fetchData();
-	}, [status, request, filterDate]);
+	}, [status, request, filterDate, category]);
 
 	const fetchData = () => {
 		axios
 			.get(
-				`/requests?request_date=${request}&status=${status}&filter_date=${filterDate}`
+				`/requests?request_date=${request}?category=${category}&status=${status}&filter_date=${filterDate}`
 			)
 			.then((res) => {
 				setData(res.data.data.data);
@@ -97,17 +109,31 @@ export default function PenggunaAset() {
 					</Form.Select>
 				</div>
 			</div>
-			<div className="dateFilter">
-				<div className="text-left w-100 noSpace">
+			<div className="row dateFilter">
+				<div className="col-6 text-left w-100 noSpace">
 					<p className="noSpace font-weight-bold">Semua Pengguna</p>
 					<p>{data.length} Pemohon</p>
 				</div>
-				<input
-					type="date"
-					className="date px-1"
-					value={filterDate}
-					onChange={(e) => setFilterDate(e.target.value)}
-				/>
+				<div className="col-6 d-flex flex-row">
+					<Form.Select
+						className="col-8 col-lg-4 text-capitalize text-wrap mr-3"
+						aria-label="Default select example"
+						onChange={(e: any) => setCategory(e.target.value)}
+					>
+						<option>Filter Ketegori</option>
+						{itemCategory.map((item: any, index: number) => (
+							<option key={index} value={item.id}>
+								{item.name}
+							</option>
+						))}
+					</Form.Select>
+					<input
+						type="date"
+						className="date px-1"
+						value={filterDate}
+						onChange={(e) => setFilterDate(e.target.value)}
+					/>
+				</div>
 			</div>
 			<div className="scrTablP">
 				<table className="text-left tablP">
