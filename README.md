@@ -60,6 +60,7 @@ Access our site at https://e-assets.vercel.app/
 - Axios
 - SCSS
 - Momen JS
+- Vercel
 </br>
 
 **Prototype:** [Figma](https://www.figma.com/file/SDAqY0zgggzCASzzbHQjvZ/Capstone---E-Assets?node-id=0%3A1)
