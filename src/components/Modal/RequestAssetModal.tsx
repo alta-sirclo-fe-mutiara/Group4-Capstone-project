@@ -25,7 +25,7 @@ export default function RequestAssetModal(props: Props) {
 	useEffect(() => {
 		fetchAssetData();
 		fetchCategoryData();
-	}, [category]);
+	}, [category, asset]);
 
 	const fetchAssetData = () => {
 		axios
@@ -77,7 +77,7 @@ export default function RequestAssetModal(props: Props) {
 				<i className="bi bi-x-lg curs" onClick={props.closeModal}></i>
 			</Modal.Header>
 			<Modal.Body className="ModalForm">
-				<p>Kategori Aset</p>
+				<p>Kategori Aset {category}</p>
 				<select
 					className="form-select"
 					name="category"
@@ -116,7 +116,7 @@ export default function RequestAssetModal(props: Props) {
 						);
 					})}
 				</select>
-				<p>Deskripsi Aset</p>
+				<p>Deskripsi Peminjaman</p>
 				<textarea
 					className="w-100 form-control"
 					value={description}
@@ -129,7 +129,7 @@ export default function RequestAssetModal(props: Props) {
 				</p>
 				<Button
 					className="btn-detail py-2 ms-3 border-0 curs"
-					onClick={() => requestHandle()}
+					onClick={() => {requestHandle();props.closeModal()}}
 				>
 					Request Aset
 				</Button>

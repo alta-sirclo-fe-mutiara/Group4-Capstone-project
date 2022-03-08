@@ -128,6 +128,7 @@ export default function EmployeeBeranda() {
 													id_status={item.id_status}
 													id={item.id}
 													id_asset={item.id_asset}
+													id_category={item.id_category}
 													fetch={fetchActivityData}
 												/>
 											</p>
@@ -189,6 +190,8 @@ export default function EmployeeBeranda() {
 															item={item.asset_name}
 															date={item.request_date}
 															date_return={item.return_date}
+															id_asset={item.id_asset}
+															id_category={item.id_category}
 															request_description={item.description}
 														/>
 													</p>
