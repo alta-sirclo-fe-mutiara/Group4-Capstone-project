@@ -10,6 +10,8 @@ type Props = {
   date: string;
   date_return: string;
   request_description: string;
+  id_asset: number
+  id_category: number
 };
 
 const ModalDetailPenggunaan = (props: Props) => {
@@ -85,6 +87,8 @@ const ModalDetailPenggunaan = (props: Props) => {
       <RequestAssetModal
         show={isRequestOpen}
         closeModal={() => setIsRequestOpen(false)}
+        id_asset={props.id_asset}
+        id_category={props.id_category}
       />
     </>
   );

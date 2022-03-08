@@ -17,7 +17,7 @@ export default function ManagerBeranda() {
 
 	const fetchData = () => {
 		axios
-			.get(`/requests`)
+			.get(`/requests?status=new`)
 			.then((res) => {
 				setData(res.data.data.data);
 				console.log(data);
