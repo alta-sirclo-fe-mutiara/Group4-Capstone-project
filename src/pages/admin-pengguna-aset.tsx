@@ -171,12 +171,12 @@ export default function PenggunaAset() {
 									Sisa Waktu
 									<div className="d-flex flex-column ml-2">
 										<i
-											className="bi bi-caret-up-fill curs"
+											className={returnDate === "longest" ? "bi bi-caret-down-fill curs primeCol" : "bi bi-caret-down-fill curs"}
 											onClick={() => {setReturnDate("longest"); setRequest("")}}
 											style={{ height: "15px", fontSize: "15px" }}
 										></i>
 										<i
-											className="bi bi-caret-down-fill curs"
+											className={returnDate === "shortest" ? "bi bi-caret-down-fill curs primeCol" : "bi bi-caret-down-fill curs"}
 											onClick={() => {setReturnDate("shortest"); setRequest("")}}
 											style={{ fontSize: "15px" }}
 										></i>

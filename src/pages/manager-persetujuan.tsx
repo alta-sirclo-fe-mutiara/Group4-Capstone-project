@@ -1,4 +1,4 @@
-import { ModalPermohonanAset } from "../components/Modal/ModalPermohonan";
+import { ModalPermohonanManager } from "../components/Modal/ModalPermohonan";
 import { useEffect, useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { Form } from "react-bootstrap";
@@ -234,7 +234,7 @@ export default function PenggunaAset() {
 												}
 											>
 												<p onClick={() => setTip(0)} className="curs mb-0">
-													<ModalPermohonanAset
+													<ModalPermohonanManger
 														photo={item.photo}
 														category={item.category}
 														asset_name={item.asset_name}
