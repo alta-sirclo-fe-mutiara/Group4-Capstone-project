@@ -58,6 +58,7 @@ Access our site at https://e-assets.vercel.app/
 - React Router Dom
 - Axios
 - SCSS
+- Momen JS
 
 **Prototype:** [Figma](https://www.figma.com/file/SDAqY0zgggzCASzzbHQjvZ/Capstone---E-Assets?node-id=0%3A1)
 
