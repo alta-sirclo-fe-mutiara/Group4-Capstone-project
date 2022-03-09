@@ -23,6 +23,7 @@ type Props = {
   id?: number;
   fetch?: any;
   id_asset?: number;
+  id_category?: number;
 };
 
 const ModalPermohonanManager = (props: Props) => {
@@ -250,7 +251,7 @@ const ModalPermohonanEmployee = (props: Props) => {
       </p>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton className="border-0">
-          <Modal.Title className="modal-title">Detail Permohonan</Modal.Title>
+          <Modal.Title className="modal-title">Detail Permohonan </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="container">
@@ -324,7 +325,7 @@ const ModalPermohonanEmployee = (props: Props) => {
                   setIsRequestOpen(true);
                 }}
               >
-                Ajukan Peminjaman Ulang
+                Ajukan Peminjaman Ulang 
               </Button>
             </>
           ) : props.id_status === 6 || props.id_status === 7 ? (
@@ -358,6 +359,7 @@ const ModalPermohonanEmployee = (props: Props) => {
         show={isRequestOpen}
         closeModal={() => setIsRequestOpen(false)}
         id_asset={props.id_asset}
+        id_category={props.id_category}
       />
     </>
   );

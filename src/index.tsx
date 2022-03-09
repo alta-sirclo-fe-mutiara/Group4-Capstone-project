@@ -3,14 +3,15 @@ import ReactDOM from "react-dom";
 import "./assets/scss/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
-import Routes from "./routes";
+import Routes from "./routes/Index";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 
 axios.defaults.baseURL = "https://dipssyman.space";
-axios.defaults.headers.common["Authorization"] =
-  `Bearer ${localStorage.getItem("token")}`;
-  
+axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
+	"token"
+)}`;
+
 ReactDOM.render(
 	<React.StrictMode>
 		<Routes />

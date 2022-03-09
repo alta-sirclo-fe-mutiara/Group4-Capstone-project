@@ -1,9 +1,10 @@
 
 # E-Assets
 
-![Logo](https://cdn.freelogodesign.org/files/508cd32b6e024b2cb3681aa96cf1afad/thumb/logo_200x200.png?v=637819523170000000)
-
-
+<div align="center">
+    <img src="https://cdn.freelogodesign.org/files/508cd32b6e024b2cb3681aa96cf1afad/thumb/logo_200x200.png?v=637819523170000000" alt="Logo">
+</div>
+</br>
 About E-Assets is an Employee Assets Management created for make it easier for users to request and monitor the employee assets and the purpose of study in Sirclo Tech Academy.
 
 
@@ -58,6 +59,9 @@ Access our site at https://e-assets.vercel.app/
 - React Router Dom
 - Axios
 - SCSS
+- Momen JS
+- Vercel
+</br>
 
 **Prototype:** [Figma](https://www.figma.com/file/SDAqY0zgggzCASzzbHQjvZ/Capstone---E-Assets?node-id=0%3A1)
 

@@ -108,7 +108,7 @@ button.btn-aset {
 }
 
 .primeCol {
-  color: #2c7a75;
+  color: #2c7a75 !important;
 }
 
 .primeBCol {
