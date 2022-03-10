@@ -77,7 +77,7 @@ export default function RequestAssetModal(props: Props) {
 				<i className="bi bi-x-lg curs" onClick={props.closeModal}></i>
 			</Modal.Header>
 			<Modal.Body className="ModalForm">
-				<p>Kategori Aset {category}</p>
+				<p>Kategori Aset</p>
 				<select
 					className="form-select"
 					name="category"
