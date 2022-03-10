@@ -55,7 +55,7 @@ export default function PenggunaAset() {
 	const prevPage = () => {
 		setRecentPage((recentPage -= 1));
 	};
-	console.log(returnDate);
+	
 	return (
 		<div className="container">
 			<div className="my-3 d-flex flex-column align-items-center w-screen text-center">
