@@ -12,6 +12,12 @@ About E-Assets is an Employee Assets Management created for make it easier for u
 
 Access our site at https://e-assets.vercel.app/
 
+Video Demo: [Link](https://drive.google.com/file/d/1vSE5yr7hph_ym0m9gdmiTMJke7rkJY8V/view?usp=sharing)
+
+## Screenshot App
+![Media Player 19_09_2023 08_17_18](https://github.com/alta-sirclo-fe-mutiara/Group4-Capstone-project/assets/16263184/da6dabd3-291f-45f5-9ff3-bfa8d99625cd)
+
+
 ## Features
 
 - Login and Logout User
